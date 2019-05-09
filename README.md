@@ -13,16 +13,16 @@ Und das Bundesministerium für Bildung und Forschung ergänzt:
 „Die Ausführung der Projektarbeit wird mit praxisbezogenen Unterlagen dokumentiert. Der Prüfungsausschuss bewertet die Projektarbeit anhand der Dokumentation. Dabei wird nicht das Ergebnis – z.B. ein lauffähiges Programm – herangezogen, sondern der Arbeitsprozess. Die Dokumentation ist keine wissenschaftliche Abhandlung, sondern eine handlungsorientierte Darstellung des Projektablaufs mit praxisbezogenen, d.h. betriebüblichen Unterlagen. Soweit erforderlich können in einem Anhang z. B. den Zusammenhang erläuternde Darstellungen beigefügt werden.“
 
 Außerdem werden dort die grundlegenden Inhalte der Projektdokumentation aufgelistet:
-- Name und Ausbildungsberuf des Prüfungsteilnehmers
-- Angabe des Ausbildungsbetriebes
-- Thema der Projektarbeit
+- Name und Ausbildungsberuf des Prüfungsteilnehmers &#9745;
+- Angabe des Ausbildungsbetriebes &#9745;
+- Thema der Projektarbeit &#9745;
 - Falls erforderlich, Beschreibung/Konkretisierung des Auftrages
 - Umfassende Beschreibung der Prozessschritte und der erzielten Ergebnisse
 - Gegebenenfalls Veränderungen zum Projektantrag mit Begründung
 - Eine Kundendokumentation kann einen Umfang von max. 10 Seiten haben und soll Bestandteil des Anhangs sein
 - Falls erforderlich, Anhang mit praxisbezogenen Unterlagen und Dokumenten (z. B. Abnahmeprotokolle, Tabellen, Grafiken, Screenshots, Quellcode, etc.). Dieser Anhang sollte nicht aufgebläht werden. Die angehängten Dokumente sind neben der Kundendokumentation auf maximal 10 Seiten zu beschränken. 
 - Alle Quellen deutlich kenntlich zu machen
-- Eine persönliche Erklärung. Die unterschriebene Erklärung ist der Online-Version nur hinzuzufügen, wenn keine ausgedruckten Exemplare der Dokumentation verlangt werden.
+- Eine persönliche Erklärung. Die unterschriebene Erklärung ist der Online-Version nur hinzuzufügen, wenn keine ausgedruckten Exemplare der Dokumentation verlangt werden. &#9745;
 
 ## Formale Vorgaben
 - 35 - 40 Seiten (Deckblatt, Inhaltsverzeichnis, Erklärung und Anhang zählen nicht zum Seitenumfang!)
