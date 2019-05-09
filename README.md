@@ -46,22 +46,27 @@ Typographische Konventionen, Seitenränder usw. können in der DateiSeitenstil.t
 - Beschreibung der technischen und organisatorischen Ausgangssituation
 - Beschreibung von Randbedingungen
 - Abgrenzung durch Definition der technischen und organisatorischen Schnittstellen
+- Projektziel, Teilaufgaben, Kundenwünsche
+- Projektumfeld, Prozess-Schnittstellen (Ansprechpartner, Einstieg, Ausstieg)
 
 ### Ressourcen- und Ablaufplanung (15 %)
-- Die eingesetzten Ressourcen müssen mit Aufgabe, Zeitbedarf und Kosten angegeben werden.
+- Die eingesetzten Ressourcen (Personal, Sachmittel) müssen mit Aufgabe, Zeitbedarf und Kosten (Termin-/Kostenplanung) angegeben werden.
 - Die Planung der Arbeitsschritte muss inhaltlich und zeitlich nachvollziehbar dargestellt
-werden.
+werden (Ablaufplan).
 
 ### Durchführung und Auftragsbearbeitung (30 %)
-- Die Durchführung muss beschrieben werden. Entscheidungen müssen mit Begründung dargestellt werden.
+- Die Durchführung muss beschrieben werden. Entscheidungen müssen mit Begründung dargestellt werden (Abweichung/Anpassungen).
 - Die einzelnen Prozessschritte müssen deutlich dargestellt werden.
+- Vorgehensweise
 
 ### Projektergebnisse (15 %)
 - Die Projektergebnisse müssen mit den geforderten oder erwarteten Ergebnissen verglichen
-werden, Abweichungen müssen begründet werden.
+werden, Abweichungen müssen begründet werden (Soll-Ist-Vergleich).
 - Die benötigten Zeiten für die einzelnen Schritte sind gegen die Planung abzugleichen, Abweichungen sind zu begründen.
 - Zusammenfassung der Ergebnisse und der Durchführung, daraus gewonnene Resultate für
 das eigene Projekt und ggf. für folgende Projekte.
+- Qualitätskontrolle
+- Abnahme, Prozess, Ergebnis umfassend darstellen/bewerten
 
 ### Gestaltung des Portfolios (15 %)
 - Äußere Form (Gestaltung von Text, Tabellen, Grafiken)
