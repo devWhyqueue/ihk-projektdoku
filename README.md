@@ -1,6 +1,6 @@
 # ihk-projektdoku
 
-Diese Projekt enthält die Projektdokumentation zu der Webanwendung SSRS Statistics.
+Diese Projekt enthält die Projektdokumentation zu der Webanwendung SSRS Statistics und basiert auf der genannten Vorlage.
 
 ## LaTeX-Vorlage zur Projektdokumentation für Fachinformatiker Anwendungsentwicklung
 
@@ -18,7 +18,7 @@ Grundsätzlich definiert die Regierung der Bundesrepublik Deutschland das Ziel d
 
 Und das Bundesministerium für Bildung und Forschung ergänzt:
 
-„Die Ausführung der Projektarbeit wird mit praxisbezogenen Unterlagen dokumen-tiert. Der Prüfungsausschuss bewertet die Projektarbeit anhand der Dokumentation. Dabei wird nicht das Ergebnis – z.B. ein lauffähiges Programm – herangezogen, sondern der Arbeitsprozess. Die Dokumentation ist keine wissenschaftliche Abhandlung, sondern eine handlungsorientierte Darstellung des Projektablaufs mit praxisbezogenen, d.h. betriebüblichen Unterlagen. Sie soll einen Umfang von maximal 10 bis 15 DIN A 4-Seiten nicht überschreiten. Soweit erforderlich können in einem Anhang z. B. den Zusammenhang erläuternde Darstellungen beigefügt werden.“
+„Die Ausführung der Projektarbeit wird mit praxisbezogenen Unterlagen dokumentiert. Der Prüfungsausschuss bewertet die Projektarbeit anhand der Dokumentation. Dabei wird nicht das Ergebnis – z.B. ein lauffähiges Programm – herangezogen, sondern der Arbeitsprozess. Die Dokumentation ist keine wissenschaftliche Abhandlung, sondern eine handlungsorientierte Darstellung des Projektablaufs mit praxisbezogenen, d.h. betriebüblichen Unterlagen. Soweit erforderlich können in einem Anhang z. B. den Zusammenhang erläuternde Darstellungen beigefügt werden.“
 
 Außerdem werden dort die grundlegenden Inhalte der Projektdokumentation aufgelistet:
 - Name und Ausbildungsberuf des Prüfungsteilnehmers
@@ -27,16 +27,52 @@ Außerdem werden dort die grundlegenden Inhalte der Projektdokumentation aufgeli
 - Falls erforderlich, Beschreibung/Konkretisierung des Auftrages
 - Umfassende Beschreibung der Prozessschritte und der erzielten Ergebnisse
 - Gegebenenfalls Veränderungen zum Projektantrag mit Begründung
-- Wenn für das Projekt erforderlich, ein Anhang mit praxisbezogenen Unterlagen und Do-kumenten. Dieser Anhang sollte nicht aufgebläht werden. Die angehängten Dokumenteund Unterlagen sind auf das absolute Minimum zu beschränken.
-
-In den folgenden Kapiteln werden diese geforderten Inhalte und sinnvolle Ergänzungen nunmeist stichwortartig und ggfs. mit Beispielen beschrieben. Nicht alle Kapitel müssen in jeder Dokumentation vorhanden sein. Handelt es sich bspw. um ein in sich geschlossenes Projekt, kann das Kapitel 1.5: Projektabgrenzung entfallen; arbeitet die Anwendung nur mit XML-Dateien, kann und muss keine Datenbank beschrieben werden usw.
+- Eine Kundendokumentation kann einen Umfang von max. 10 Seiten haben und soll Bestandteil des Anhangs sein
+- Falls erforderlich, Anhang mit praxisbezogenen Unterlagen und Dokumenten (z. B. Abnahmeprotokolle, Tabellen, Grafiken, Screenshots, Quellcode, etc.). Dieser Anhang sollte nicht aufgebläht werden. Die angehängten Dokumente sind neben der Kundendokumentation auf maximal 10 Seiten zu beschränken. 
+- Alle Quellen deutlich kenntlich zu machen
+- Eine persönliche Erklärung. Die unterschriebene Erklärung ist der Online-Version nur hinzuzufügen, wenn keine ausgedruckten Exemplare der Dokumentation verlangt werden.
 
 ## Formale Vorgaben
-Die formalen Vorgaben zum Umfang und zur Gestaltung der Projektdokumentation könnenje nach IHK recht unterschiedlich sein. Normalerweise sollte die zuständige IHK einen Leitfaden bereitstellen, in dem alle Formalien nachgelesen werden können, wie z. B. bei der IHK Oldenburg. Als Richtwert verwende ich 15 Seiten für den reinen Inhalt. Also in dieser Vorlage alle Seiten, die arabisch nummeriert sind (ohne das Literaturverzeichnis und die eidesstattliche Erklärung). Große Abbildungen, Quelltexte, Tabellen usw. gehören in den Anhang, der 25 Seiten nichtüberschreiten sollte. Typographische Konventionen, Seitenränder usw. können in der DateiSeitenstil.tex beliebig angepasst werden.
+- 35 - 40 Seiten (Deckblatt, Inhaltsverzeichnis, Erklärung und Anhang zählen nicht zum Seitenumfang!)
+- Schriftgröße: 12
+- Zeilenabstand: 1,5
+- Rand links 2,5 cm, Rand rechts 1,5 cm 
+- Seitennummerierung
+
+Typographische Konventionen, Seitenränder usw. können in der DateiSeitenstil.tex beliebig angepasst werden.
 
 ## Bewertungskriterien
-Die Bewertungskriterien für die Benotung der Projektdokumentation sind recht einheitlich undkönnen leicht in Erfahrung gebracht werden, z. B. bei der IHK Darmstadt. Grundsätzlich sollte die Projektdokumentation nach der Fertigstellung noch einmal im Hinblick auf diese Kriterien durchgeschaut werden.
+### Ausgangssituation (15 %)
+- Beschreibung der technischen und organisatorischen Ausgangssituation
+- Beschreibung von Randbedingungen
+- Abgrenzung durch Definition der technischen und organisatorischen Schnittstellen
 
+### Ressourcen- und Ablaufplanung (15 %)
+- Die eingesetzten Ressourcen müssen mit Aufgabe, Zeitbedarf und Kosten angegeben werden.
+- Die Planung der Arbeitsschritte muss inhaltlich und zeitlich nachvollziehbar dargestellt
+werden.
+
+### Durchführung und Auftragsbearbeitung (30 %)
+- Die Durchführung muss beschrieben werden. Entscheidungen müssen mit Begründung dargestellt werden.
+- Die einzelnen Prozessschritte müssen deutlich dargestellt werden.
+
+### Projektergebnisse (15 %)
+- Die Projektergebnisse müssen mit den geforderten oder erwarteten Ergebnissen verglichen
+werden, Abweichungen müssen begründet werden.
+- Die benötigten Zeiten für die einzelnen Schritte sind gegen die Planung abzugleichen, Abweichungen sind zu begründen.
+- Zusammenfassung der Ergebnisse und der Durchführung, daraus gewonnene Resultate für
+das eigene Projekt und ggf. für folgende Projekte.
+
+### Gestaltung des Portfolios (15 %)
+- Äußere Form (Gestaltung von Text, Tabellen, Grafiken)
+- Innere Form (Strukturierung, fachgerechte Darstellung)
+- Korrekte Rechtschreibung wird erwartet.
+
+### Kundendokumentation (10 %)
+- Die Zielgruppe muss bestimmt werden.
+- Adressatengerechte Aufarbeitung der Dokumentation. 
+
+Die Zielgruppe sind fachlich versierte Personen. Es soll keine Marketingbroschüre erstellt werden.
 
 ## Lizenz
 
