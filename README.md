@@ -42,24 +42,24 @@ Außerdem werden dort die grundlegenden Inhalte der Projektdokumentation aufgeli
 Typographische Konventionen, Seitenränder usw. können in der DateiSeitenstil.tex beliebig angepasst werden.
 
 ## Bewertungskriterien
-### Ausgangssituation (15 %)
+### Ausgangssituation (15 %, ca. 7 Seiten)
 - Beschreibung der technischen und organisatorischen Ausgangssituation
 - Beschreibung von Randbedingungen
 - Abgrenzung durch Definition der technischen und organisatorischen Schnittstellen
 - Projektziel, Teilaufgaben, Kundenwünsche
 - Projektumfeld, Prozess-Schnittstellen (Ansprechpartner, Einstieg, Ausstieg)
 
-### Ressourcen- und Ablaufplanung (15 %)
+### Ressourcen- und Ablaufplanung (15 %, ca. 7 Seiten)
 - Die eingesetzten Ressourcen (Personal, Sachmittel) müssen mit Aufgabe, Zeitbedarf und Kosten (Termin-/Kostenplanung) angegeben werden.
 - Die Planung der Arbeitsschritte muss inhaltlich und zeitlich nachvollziehbar dargestellt
 werden (Ablaufplan).
 
-### Durchführung und Auftragsbearbeitung (30 %)
+### Durchführung und Auftragsbearbeitung (30 %, ca. 14 Seiten)
 - Die Durchführung muss beschrieben werden. Entscheidungen müssen mit Begründung dargestellt werden (Abweichung/Anpassungen).
 - Die einzelnen Prozessschritte müssen deutlich dargestellt werden.
 - Vorgehensweise
 
-### Projektergebnisse (15 %)
+### Projektergebnisse (15 %. ca. 7 Seiten)
 - Die Projektergebnisse müssen mit den geforderten oder erwarteten Ergebnissen verglichen
 werden, Abweichungen müssen begründet werden (Soll-Ist-Vergleich).
 - Die benötigten Zeiten für die einzelnen Schritte sind gegen die Planung abzugleichen, Abweichungen sind zu begründen.
@@ -68,14 +68,14 @@ das eigene Projekt und ggf. für folgende Projekte.
 - Qualitätskontrolle
 - Abnahme, Prozess, Ergebnis umfassend darstellen/bewerten
 
+### Kundendokumentation (10 %, max. 10 Seiten)
+- Die Zielgruppe muss bestimmt werden.
+- Adressatengerechte Aufarbeitung der Dokumentation. 
+
 ### Gestaltung des Portfolios (15 %)
 - Äußere Form (Gestaltung von Text, Tabellen, Grafiken)
 - Innere Form (Strukturierung, fachgerechte Darstellung)
 - Korrekte Rechtschreibung wird erwartet.
-
-### Kundendokumentation (10 %)
-- Die Zielgruppe muss bestimmt werden.
-- Adressatengerechte Aufarbeitung der Dokumentation. 
 
 Die Zielgruppe sind fachlich versierte Personen. Es soll keine Marketingbroschüre erstellt werden.
 
