@@ -74,6 +74,23 @@ das eigene Projekt und ggf. für folgende Projekte.
 
 Die Zielgruppe sind fachlich versierte Personen. Es soll keine Marketingbroschüre erstellt werden.
 
+## Abgabe (bis zum 20. Mai 2019, 23:59Uhr)
+
+Die Dokumentation, die während der Realisierung des Projektes entsteht, wird als
+"Upload" mit max. 4 MB im PDF-Format ins Internet eingestellt. Andere Dateiformate sind nicht
+möglich. Der Dateiname muss sprechend sein (Name Vorname). Der Upload muss spätestens am
+Tag der mitgeteilten Frist erfolgen. Terminliche Veränderungen bei der Projektdurchführung, müssen mit der IHK immer vor der Frist abgestimmt werden. Eine verspätete Abgabe kann als nicht erbrachte Prüfungsleistung mit 0 Punkten gewertet werden.
+
+### Auflagen:
+Ihr Projekt wird von Herrn Venohr und Herrn Zülch, in unserem Prüfungsausschuss betreut.
+
+Bitte senden Sie je ein schriftliches Belegexemplare Ihrer Projektdokumentation
+in kundengerechter Form an folgende Adressen:
+
+IHK-GfI mbH, z. H. Herrn Frank Venohr, Hörder Hafenstr. 5, 44263 Dortmund, frank.venohr@gfi.ihk.de
+
+MATERNA GmbH, Information & Communications, z. H. Herrn Dietmar Zülch, Vosskuhle 37, 44141 Dortmund, dietmar.zuelch@materna.de
+
 ## Lizenz
 
 [![Creative Commons Lizenzvertrag](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)  
