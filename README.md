@@ -35,7 +35,7 @@ Typographische Konventionen, Seitenränder usw. können in der DateiSeitenstil.t
 
 ## Bewertungskriterien
 ### Ausgangssituation (15 %, ca. 7 Seiten)
-- Beschreibung der technischen und organisatorischen Ausgangssituation
+- Beschreibung der technischen und organisatorischen Ausgangssituation &#9745;
 - Beschreibung von Randbedingungen
 - Abgrenzung durch Definition der technischen und organisatorischen Schnittstellen
 - Projektziel, Teilaufgaben, Kundenwünsche
