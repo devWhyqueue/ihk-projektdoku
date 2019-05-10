@@ -9,7 +9,7 @@ Die Webapplikation wurde im Rahmen eines internen Projekts bei der \ac{KVWL} in 
 
 \subsubsection{Unternehmen} 
 \label{sec:Unternehmen}
-Laut offzieller Unternehmenswebsite\footnote{\cite{KVWL}} vertritt die \ac{KVWL}
+Laut offizieller Unternehmenswebsite\footnote{\cite{KVWL}} vertritt die \ac{KVWL}
 \begin{displayquote}
 	die Interessen von über 15.000 niedergelassenen Vertragsärzten und Ärztlichen und Psychologischen Psychotherapeuten sowie Kinder- und Jugendlichenpsychotherapeuten in Westfalen-Lippe. Mit rund 2000 Mitarbeitern, von denen ca. die Hälfte im Notfalldienst überwiegend geringfügig beschäftigt ist, ist die \ac{KVWL} eine der größten Kassenärztlichen Vereinigungen. Alle zur vertragsärztlichen Versorgung zugelassenen Ärzte, Ärztlichen und Psychologischen Psychotherapeuten, sowie Kinder- und Jugendlichenpsychotherapeuten sind Pflichtmitglieder der \ac{KVWL}. Zu den zentralen Aufgaben der \ac{KVWL} zählt die Sicherstellung der ambulanten ärztlichen Versorgung. [...]\\
 	Als öffentlich-rechtliche Körperschaft handelt die Kassenärztliche Vereinigung in Vertretung ihrer Mitglieder mit den Verbänden der Krankenkassen die Gesamtvergütung für die ärztlichen Leistungen aus. Dazu schließt sie entsprechende Verträge ab. Als genossenschaftlicher Zusammenschluss garantiert die \ac{KVWL} somit, dass die wirtschaftlichen Interessen ihrer Mitglieder gegenüber den Krankenkassen gewahrt werden.
@@ -18,32 +18,78 @@ Darüber hinaus trägt sie dafür Sorge, dass eine ausreichende ärztliche Verso
 
 \subsubsection{Auftraggeber} 
 \label{sec:Auftraggeber}
+Wie in dem Projektantrag\footnote{\cite{Projektantrag}} bereits beschrieben ist der
+\begin{displayquote}
+	Auftraggeber für dieses Projekt [...] das \acs{CFT} \teamName des Geschäftsbereich Informationstechnologie der \ac{KVWL} (\acs{CFT} steht für \aclu{CFT}).
+	[...]
+	Das IT-Team \teamName verwaltet die Daten der \ac{KVWL} mithilfe unterschiedlicher Datenbankmanagementsysteme wie SQL Server oder Oracle Datenbanken.
+\end{displayquote}
+Der Begriff \ac{DWH} beschreibt dabei eine zentrale Datenbank, welche Daten aus mehreren heterogenen Quellen zur Zwecken der Analyse zusammenführt und verdichtet.\footnote{\Vgl \cite{wiki:dwh}}
+Folglich hat das Team die die Zielsetzung alle im Unternehmen produzierten Daten für Auswertungszwecke an einem zentralen Ort zu verwalten und in einer Form aufzuarbeiten, sodass einem möglichst großer Benutzerpool einfache Zugriffsmöglichkeiten zur Verfügung gestellt werden.
+Zum Tagesgeschäft des \teamName gehört die Erstellung, Anpassung und Administration von Berichten, den sogenannten Reports, die den Fachabteilungen für operative und strategische Auswertungen und Analysen bereitgestellt werden.
 
-\begin{itemize}
-	\item Wer ist Auftraggeber/Kunde des Projekts?
-\end{itemize}
+\subsection{Ausgangssituation} 
+\label{sec:Ausgangssituation}
+Dieser Abschnitt liefert nur eine kurzen Überblick über die organisatorische und technische Ausgangssituation vor Projektbeginn. Genaueres wird später unter dem Punkt \ref{sec:Anforderungsanalyse} (\ua die Ist- und Soll-Zustände) erläutert werden.
+
+\subsubsection{Organisatorisch}
+\label{sec:Ausgangssituation:Organisatorisch}
+Da eine der Hauptaufgaben des Teams die Verwaltung der oben erwähnten Reports darstellt, werden kontinuierlich Berichte zur Förderung der \ac{BI} (deutsch: Geschäftsanalytik) erstellt und modifiziert, um Nutzern und Entwicklern einen komfortablen Zugriff zur einfachen Gewinnung verwertbarer Erkenntnisse zu ermöglichen. Hierzu werden \ac{BI}-Reports mit Tabellen und Diagrammen entwickelt, die Benutzern einen zentralisierten und einheitlichen Zugang zu der Vielzahl der komplexen Datenstrukturen gewähren.\footnote{\Vgl \cite{Projektantrag}}
+Um über die Gesamtmenge einen Überblick zu bewahren, existieren Metadaten-Berichte (also Berichte über Berichte), die einige Informationen \zB über die Anzahl und den Status bereitstellen.
+Die Anzahl der angelegten Metadaten-Berichte ist jedoch sehr gering und die Informationsdichte nicht ausreichend, aus welchem Grund dieses Projekt genau an dieser Stelle ansetzt.
+
+\subsubsection{Technisch}
+\label{sec:Ausgangssituation:Technisch}
+Zur Berichtserstellung wird die Berichtserstellungsplattform \ac{SSRS} eingesetzt, die Werkzeuge bietet (wie den Berichts-Generator/Designer), um aussagekräftige und anschauliche Berichte auf einem Webportal veröffentlichen zu können.\footnote{\Vgl \cite{Projektantrag}}
+Es ist ein serverbasiertes Generierungssystem für Berichte des Herstellers Microsoft und ist nur ein Tool von vielen aus der Reihe der \ac{BI}-Werkzeuge (\zB auch Crystal Reports).
 
 
-\subsection{Projektziel} 
+
+\subsection[Projektziel]{Projektziel\footnote{\cite{Projektantrag}}}
 \label{sec:Projektziel}
-\begin{itemize}
-	\item Worum geht es eigentlich?
-	\item Was soll erreicht werden?
-\end{itemize}
+\begin{displayquote}
+	Ziel der Anwendung ist die Verbesserung der Qualität der Gesamtheit der Berichte, um einen fehlerfreien und schnellen Zugriff auf \ac{BI}-Daten zu jeder Zeit sicherzustellen und die Anzahl der ungenutzten Berichte und Datenquellen schrittweise zu reduzieren. Für diesen Prozess soll die Applikation einen komfortablen Einstieg, aber auch Möglichkeiten für eine unkomplizierte Erweiterung bieten, um \ggfs die Erhebung neuer Statistiken zu begünstigen.
+\end{displayquote}
 
 
-\subsection{Projektbegründung} 
+\subsection[Projektbegründung]{Projektbegründung\footnote{\cite{Projektantrag}}}
 \label{sec:Projektbegruendung}
-\begin{itemize}
-	\item Warum ist das Projekt sinnvoll (\zB Kosten- oder Zeitersparnis, weniger Fehler)?
-	\item Was ist die Motivation hinter dem Projekt?
-\end{itemize}
+\begin{displayquote}
+	Die stetig wachsende Anzahl von Berichten erschwert den Überblick über den Status (Fehleranfälligkeit), die Performance und die Abhängigkeiten von Berichten sowie die darangekoppelten Datenquellen. Aktuell existieren über 1000 Berichte zur Auswertung diverser Daten für viele Abteilungen, die \ua Transparenz und Zugang zu \ac{KP}-Indikatoren schaffen und so einen erheblichen, produktiven Mehrwert erzeugen. Dennoch fehlen Metadaten über diese Plattform, die Aufwände für die Erstellung, Überarbeitung und Korrektur von Berichten auf die relevanten Stellen fokussieren.
+\end{displayquote}
 
+\subsection[Projektbeschreibung]{Projektbeschreibung\footnote{\cite{Projektantrag}}} 
+\label{sec:Projektbeschreibung}
+\begin{displayquote}
+	Aufgabe des Prüflings \autorName\xspace ist daher die Implementierung einer Web-Applikation, die geeignete quantitative Metriken über die Ausführung, den Status, die Performance und die Abhängigkeiten zwischen den Berichten anschaulich visualisiert. Es muss eine Übersicht über die am häufigsten ausgeführten, fehlerhaften, langsamen Berichte und nicht mehr referenzierte Datenquellen angezeigt werden können. Die Nutzung der Applikation sollte ausgewählten Anwendern (Team \teamName) vorbehalten sein, \dahe ein Login mit Anbindung an das unternehmensinterne \ac{AD} muss implementiert werden. Das Backend der Anwendung soll in der Programmiersprache Java umgesetzt, das Frontend sollte als ansprechende HTML-Seite mit CSS gemäß der Cooperate-Design-Richtlinien der \ac{KVWL} entworfen werden.
+\end{displayquote}
 
 \subsection{Projektschnittstellen} 
 \label{sec:Projektschnittstellen}
+
+\subsubsection{Organisatorisch} 
+\label{sec:Projektschnittstellen:Organisatorisch}
+
+\paragraph{Projektverantwortlichkeiten} ~\\
+\label{p:Projektverantwortlichkeiten}
+Für die Analyse, Umsetzung und Planung des gesamten Projekts ist Yannik Queisler zuständig, der seit dem 11. März 2019 Mitarbeiter des \ac{CFT} \teamName ist. Da dieses Projekt nicht nur ein unternehmens- sondern auch abteilungsinternes Projekt ist, entstammen sämtliche Anforderungen ausschließlich aus diesem Team. Eine detailreichere Aufstellung sämtlicher Beteiligter folgt direkt im Anschluss im Abschnitt \nameref{p:Stakeholder}.
+
+\paragraph{Stakeholder} ~\\
+\label{p:Stakeholder}
+Die folgende Tabelle zeigt alle beteiligten Stakeholder, \dahe alle am Projektergebnis interessierten Personen (deutsch: Anspruchsgruppe).
+\tabelle{Stakeholder}{tab:Stakeholder}{Stakeholder}
+
+\paragraph{Endbenutzer} ~\\
+\label{p:Endbenutzer}
+Die Anwendung \projektName soll von allen Mitgliedern des \ac{CFT} \teamName genutzt werden können. Entsprechende Zugangsberechtigungen zur Beschränkung auf eben diesen Nutzerkreis sind zu implementieren.
+
+\subsubsection{Technisch} 
+\label{sec:Projektschnittstellen:Technisch}
+
+
+
 \begin{itemize}
-	\item Mit welchen anderen Systemen interagiert die Anwendung (technische Schnittstellen)?
+	\item Mit welchen anderen Systemen interagiert die Anwendung (technische Schnittstellen)? 
 	\item Wer genehmigt das Projekt \bzw stellt Mittel zur Verfügung? 
 	\item Wer sind die Benutzer der Anwendung?
 	\item Wem muss das Ergebnis präsentiert werden?
