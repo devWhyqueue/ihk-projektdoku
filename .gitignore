@@ -127,5 +127,6 @@ sympy-plots-for-*.tex/
 /tmp/
 
 # Generated PDF
-*.pdf
+/*.pdf
+
 __latexindent_temp.tex
