@@ -42,9 +42,8 @@ Typographische Konventionen, Seitenränder usw. können in der DateiSeitenstil.t
 - Projektumfeld, Prozess-Schnittstellen (Ansprechpartner, Einstieg, Ausstieg) &#9745;
 
 ### Ressourcen- und Ablaufplanung (15 %, ca. 7 Seiten)
-- Die eingesetzten Ressourcen (Personal, Sachmittel) müssen mit Aufgabe, Zeitbedarf und Kosten (Termin-/Kostenplanung) angegeben werden.
-- Die Planung der Arbeitsschritte muss inhaltlich und zeitlich nachvollziehbar dargestellt
-werden (Ablaufplan).
+- Die eingesetzten Ressourcen (Personal, Sachmittel) müssen mit Aufgabe, Zeitbedarf und Kosten (Termin-/Kostenplanung) angegeben werden. &#9745;
+- Die Planung der Arbeitsschritte muss inhaltlich und zeitlich nachvollziehbar dargestellt werden (Ablaufplan). &#9745;
 
 ### Durchführung und Auftragsbearbeitung (30 %, ca. 14 Seiten)
 - Die Durchführung muss beschrieben werden. Entscheidungen müssen mit Begründung dargestellt werden (Abweichung/Anpassungen).
