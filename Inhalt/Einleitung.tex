@@ -25,7 +25,7 @@ Wie in dem Projektantrag\footnote{\cite{Projektantrag}} bereits beschrieben ist 
 	Das IT-Team \teamName verwaltet die Daten der \ac{KVWL} mithilfe unterschiedlicher Datenbankmanagementsysteme wie SQL Server oder Oracle Datenbanken.
 \end{displayquote}
 Der Begriff \ac{DWH} beschreibt dabei eine zentrale Datenbank, welche Daten aus mehreren heterogenen Quellen zur Zwecken der Analyse zusammenführt und verdichtet.\footnote{\Vgl \cite{wiki:dwh}}
-Folglich hat das Team die die Zielsetzung alle im Unternehmen produzierten Daten für Auswertungszwecke an einem zentralen Ort zu verwalten und in einer Form aufzuarbeiten, sodass einem möglichst großer Benutzerpool einfache Zugriffsmöglichkeiten zur Verfügung gestellt werden.
+Folglich hat das Team die Zielsetzung alle im Unternehmen produzierten Daten für Auswertungszwecke an einem zentralen Ort zu verwalten und in einer Form aufzuarbeiten, sodass einem möglichst großer Benutzerpool einfache Zugriffsmöglichkeiten zur Verfügung gestellt werden.
 Zum Tagesgeschäft des \teamName gehört die Erstellung, Anpassung und Administration von Berichten, den sogenannten Reports, die den Fachabteilungen für operative und strategische Auswertungen und Analysen bereitgestellt werden.
 
 \subsection{Ausgangssituation} 
@@ -55,7 +55,7 @@ Es ist ein serverbasiertes Generierungssystem für Berichte des Herstellers Micr
 \subsection[Projektbegründung]{Projektbegründung\footnote{\cite{Projektantrag}}}
 \label{sec:Projektbegruendung}
 \begin{displayquote}
-	Die stetig wachsende Anzahl von Berichten erschwert den Überblick über den Status (Fehleranfälligkeit), die Performance und die Abhängigkeiten von Berichten sowie die darangekoppelten Datenquellen. Aktuell existieren über 1000 Berichte zur Auswertung diverser Daten für viele Abteilungen, die \ua Transparenz und Zugang zu \ac{KP}-Indikatoren schaffen und so einen erheblichen, produktiven Mehrwert erzeugen. Dennoch fehlen Metadaten über diese Plattform, die Aufwände für die Erstellung, Überarbeitung und Korrektur von Berichten auf die relevanten Stellen fokussieren.
+	Die stetig wachsende Anzahl von Berichten erschwert den Überblick über den Status (Fehleranfälligkeit), die Performance und die Abhängigkeiten von Berichten sowie die daran gekoppelten Datenquellen. Aktuell existieren über 1000 Berichte zur Auswertung diverser Daten für viele Abteilungen, die \ua Transparenz und Zugang zu \ac{KP}-Indikatoren schaffen und so einen erheblichen, produktiven Mehrwert erzeugen. Dennoch fehlen Metadaten über diese Plattform, die Aufwände für die Erstellung, Überarbeitung und Korrektur von Berichten auf die relevanten Stellen fokussieren.
 \end{displayquote}
 
 \subsection[Projektbeschreibung]{Projektbeschreibung\footnote{\cite{Projektantrag}}} 
@@ -86,18 +86,45 @@ Die Anwendung \projektName soll von allen Mitgliedern des \ac{CFT} \teamName gen
 \subsubsection{Technisch} 
 \label{sec:Projektschnittstellen:Technisch}
 
+\paragraph{Programmiersprachen} ~\\
+\label{p:Programmiersprachen}
+Für die Implementierung des Projekts wurde die Programmiersprache Java in der Version 8 eingesetzt. Die clientseitige Oberfläche basiert auf HTML5-Templates, welche mit CSS gestaltet und mit Daten durch die Template-Engine Thymeleaf angereichert wurden. Jegliche Logik, die sich auf die Darstellung \bzw Navigation bezieht, ist mit ECMAScript beschrieben. Der Großteil der Datenbankabfragen ist unmittelbar durch Java-Code implementiert, vereinzelt für komplexere Abfragen kommt jedoch auch SQL zum Einsatz.
+
+\paragraph{Frameworks/Bibliotheken} ~\\
+\label{p:Frameworks}
+Die Anwendung wird mit dem Build-Management-Tool Maven automatisiert gebaut und basiert hauptsächlich auf dem Spring-Framework. Dieses stellt eine große Bandbreite verschiedener Funktionalitäten (\zB \ac{DI} oder \ac{AOP}) zur Verfügung und vereinfacht im Allgemeinen die Entwicklung von Web-Anwendungen.\\
+Zusätzlich wird dabei von dem Spring Boot Projekt Gebrauch gemacht, dass die Konfiguration von Spring-Applikationen durch Realisierung des Design-Paradigmas Convention over Configuration erheblich vereinfacht.\\
+Als \ac{ORM}-Framework (deutsch: objektrelationale Abbildung) und \ac{JPA}-Implementierung kommt Hibernate zum Einsatz. In diesem Zusammenhang erwähnenswert ist die Benutzung der Querydsl API, einer Schnittstelle zur Erstellung von gut lesbaren SQL-Abfragen in Java mittels eines Fluent Interfaces (deutsch: sprechender Schnittstellen), einer Form der Programmierung, die Sätzen natürlicher Sprache sehr nahekommt.
+Außerdem werden diverse Funktionen üblicher Standard-Bibliotheken wie JUnit Jupiter (Test-Framework), Lombok (Code-Reduktion) und diverser Spring Boot Subprojekte (Security, Data, Web) verwendet.
 
 
-\begin{itemize}
-	\item Mit welchen anderen Systemen interagiert die Anwendung (technische Schnittstellen)? 
-	\item Wer genehmigt das Projekt \bzw stellt Mittel zur Verfügung? 
-	\item Wer sind die Benutzer der Anwendung?
-	\item Wem muss das Ergebnis präsentiert werden?
-\end{itemize}
-
+\paragraph{Abhängigkeiten und Schnittstellen} ~\\
+\label{p:Abhaengigkeiten}
+Abhängigkeiten zu anderen Web-Anwendungen oder Services bestehen nicht, es wird lediglich über \ac{JDBC} auf die ReportServer-Datenbank (Microsoft SQL Server) zugegriffen. Eine vereinfachte Darstellung der Abhängigkeiten zwischen den Komponenten zeigt das Verteilungsdiagramm in \Abbildung{Deployment}.
+\begin{figure}[htb]
+\centering
+\includegraphicsKeepAspectRatio{Verteilungsdiagramm.png}{0.8}
+\caption{Verteilungsdiagramm}
+\label{fig:Deployment}
+\end{figure} 
 
 \subsection{Projektabgrenzung} 
 \label{sec:Projektabgrenzung}
-\begin{itemize}
-	\item Was ist explizit nicht Teil des Projekts (\insb bei Teilprojekten)?
-\end{itemize}
+Dieses Projekt beinhaltet ausschließlich die Implementierung der Spring Boot Applikation mit einer simpel gehaltenen Visualisierung der verschiedenen Statistiken. Es wurden keine aufwendigen Diagrammtypen erzeugt, sondern nur Tabellen implementiert, in denen die gewünschten Informationen enthalten sind.
+Desweiteren wurde sich auf die Hauptfunktionalitäten beschränkt und die mögliche Erhebung weiterführender, komplexer Metadaten als Weiterentwicklungspotential protokolliert.
+
+\subsection{Randbedingungen} 
+\label{sec:Randbedingungen}
+Abschließend im Rahmen der Einleitung aufzugreifende Aspekte sind die vom Projektumfeld vorgegebenen Randbedingungen, hier unterteilt in zeitliche, organisatorische und technische Faktoren.
+
+\paragraph{Organisatorisch} ~\\
+\label{p:Randbedingungen:Organisatorisch}
+Die Unternehmenorganisation im Geschäftsbereich IT bei der \ac{KVWL} besteht in ihren elementaren Bestandteilen aus einer Menge von selbstorganisierten \ac{CFT}s. Aus diesem Grund existieren verhältnismäßig flache Hierarchien, das in Bezugnahme auf dieses Projekt dazu geführt hat, dass mein Projektfortschritt nur Ansprechpartnern des Teams kommuniziert werden musste. Dies hat zu einem geringeren Leistungsdruck und besseren Arbeitsklima beigetragen.
+
+\paragraph{Zeitlich} ~\\
+\label{p:Randbedingungen:Zeitlich}
+Das Projekt wurde seitens der IHK eindeutig auf einen Zeitraum von 70 Stunden beschränkt, weshalb im Vorfeld eine umfangreiche Projekt- und Zeitplanung erfolgen musste, welche in der folgenden Sektion \ref{sec:Projektplanung} genauer ausgeführt wird.
+
+\paragraph{Technisch} ~\\
+\label{p:Randbedingungen:Technisch}
+Die IT-Umgebung in der \ac{KVWL} besteht im Wesentlichen aus einer Menge von Windows-Desktop-Arbeitsplätzen (meist in Büros mit \ca drei Mitarbeitern), an denen die Entwicklung von Anwendungen erfolgt und einem Rechenzentrum, das die Aufgaben der zentralen Datenverwaltung und Server-Hosting übernimmt.

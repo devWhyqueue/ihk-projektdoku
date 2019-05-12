@@ -6,7 +6,7 @@ Diese Projekt enthält die Projektdokumentation zu der Webanwendung SSRS Statist
 
 Grundsätzlich definiert die Regierung der Bundesrepublik Deutschland das Ziel der Projektdokumentation wie folgt:
 
-„Durch die Projektarbeit und deren Dokumentation soll der Prüfling belegen, daßer Arbeitsabläufe und Teilaufgaben zielorientiert unter Beachtung wirtschaftlicher,technischer, organisatorischer und zeitlicher Vorgaben selbständig planen und kundengerecht umsetzen sowie Dokumentationen kundengerecht anfertigen, zusammenstellen und modifizieren kann.“
+„Durch die Projektarbeit und deren Dokumentation soll der Prüfling belegen, daß er Arbeitsabläufe und Teilaufgaben zielorientiert unter Beachtung wirtschaftlicher,technischer, organisatorischer und zeitlicher Vorgaben selbständig planen und kundengerecht umsetzen sowie Dokumentationen kundengerecht anfertigen, zusammenstellen und modifizieren kann.“
 
 Und das Bundesministerium für Bildung und Forschung ergänzt:
 
@@ -16,7 +16,7 @@ Außerdem werden dort die grundlegenden Inhalte der Projektdokumentation aufgeli
 - Name und Ausbildungsberuf des Prüfungsteilnehmers &#9745;
 - Angabe des Ausbildungsbetriebes &#9745;
 - Thema der Projektarbeit &#9745;
-- Falls erforderlich, Beschreibung/Konkretisierung des Auftrages
+- Falls erforderlich, Beschreibung/Konkretisierung des Auftrages &#9745;
 - Umfassende Beschreibung der Prozessschritte und der erzielten Ergebnisse
 - Gegebenenfalls Veränderungen zum Projektantrag mit Begründung
 - Eine Kundendokumentation kann einen Umfang von max. 10 Seiten haben und soll Bestandteil des Anhangs sein
@@ -36,10 +36,10 @@ Typographische Konventionen, Seitenränder usw. können in der DateiSeitenstil.t
 ## Bewertungskriterien
 ### Ausgangssituation (15 %, ca. 7 Seiten)
 - Beschreibung der technischen und organisatorischen Ausgangssituation &#9745;
-- Beschreibung von Randbedingungen
-- Abgrenzung durch Definition der technischen und organisatorischen Schnittstellen
-- Projektziel, Teilaufgaben, Kundenwünsche
-- Projektumfeld, Prozess-Schnittstellen (Ansprechpartner, Einstieg, Ausstieg)
+- Beschreibung von Randbedingungen &#9745;
+- Abgrenzung durch Definition der technischen und organisatorischen Schnittstellen &#9745;
+- Projektziel, Teilaufgaben, Kundenwünsche &#9745;
+- Projektumfeld, Prozess-Schnittstellen (Ansprechpartner, Einstieg, Ausstieg) &#9745;
 
 ### Ressourcen- und Ablaufplanung (15 %, ca. 7 Seiten)
 - Die eingesetzten Ressourcen (Personal, Sachmittel) müssen mit Aufgabe, Zeitbedarf und Kosten (Termin-/Kostenplanung) angegeben werden.
