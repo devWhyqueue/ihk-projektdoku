@@ -1,0 +1,92 @@
+% !TEX root = ../Projektdokumentation.tex
+\section{Projektdurchführung} 
+\label{sec:Projektdurchführung}
+Das Kapitel Projektdurchführung befasst sich mit allen acht, in Abschnitt \ref{sec:Projektphasen} erwähnten, Projektphasen. Prozessschritte und Vorgehensweisen werden differenziert dargestellt und jegliche Abweichungen vom Projektantrag werden umfassend begründet werden. Zudem werden Entscheidungen zu auftretenden Anpassungen und daraus resultierende Folgen erläutert werden.
+
+
+\subsection{Wirtschaftlichkeitsanalyse}
+\label{sec:Wirtschaftlichkeitsanalyse}
+Eine Wirtschaftlichkeitsanalyse stellt die Kosten und das erwartete Ergebnis eines Projektes gegenüber. Ziel ist die Überprüfung der Rentabilität \bzw Wirtschaftlichkeit. Gründe für erfolgreiche Projekte sollen identifiziert und die Wirkung von Schwächen begrenzt werden.\footnote{\Vgl \cite{finlex:wa}}\\
+
+\subsubsection{\gqq{Make or Buy}-Entscheidung}
+\label{sec:MakeOrBuyEntscheidung}
+Eine umfangreiche Recherche innerhalb des eigenen Unternehmens und aller verfügbaren Internetquellen ergab, dass schon mehrere Lösungen zur Darstellung von Statistiken für die Berichterstellungsplattform \ac{SSRS} existieren. Ein repräsentatives Beispiel aller online verfügbaren Ansätze für die Erhebung von Metadaten liefert der Lösungsansatz des Autors Jeff Pries. Er stellt eine Reihe von Informationen über Benutzer, Berichtsausführungen und Performance als Report innerhalb der \ac{SSRS} dar.\footnote{\Vgl \cite{pries:usage}} Da aber vom Auftraggeber eine \gqq{Implementierung einer Web-Applikation}\footnote{\cite{Projektantrag}} gefordert wurde, die unabhängig und außerhalb des Report-Servers besteht, entspricht keine der gefundenen Lösungen den Anforderungen. Folglich wurde die Entscheidung gefällt \projektName in Form einer Individualsoftware zu realisieren. Diese Umsetzung wird außerdem nicht an externe Dienstleister vergeben, sondern an die interne IT-Abteilung, weil diese am besten mit den Rahmenbedingungen vertraut ist. So kann gezielt auf die Bedürfnisse des Auftraggebers \teamName eingegangen werden, um einen hohen Individualisierungsgrad zu erzielen.
+
+
+\subsubsection{Projektkosten}
+\label{sec:Projektkosten}
+Die Kosten eines Projekts setzen sich aus Personal- und Ressourcenkosten zusammen. Die Kalkulation der Personalkosten erfolgt dabei nicht durch Auflistung der acht Vorgänge und ihrer geschätzten monetären Aufwände, sondern anhand des je Projektrolle aufgewendeten Zeitaufwands. Die angegebenen Stundensätze wurden nicht eigenständig berechnet, sondern bei der Personalabteilung der \ac{KVWL} erfragt. In den Stundensätzen sind sämtliche zusätzlich anfallende Kostenfaktoren (wie Ressourcen- und Fixkosten) enthalten. Da bei \projektName keine Materialkosten anfallen, repräsentieren die Personalkosten die Gesamtprojektkosten. In der untenstehenden Tabelle \ref{tab:Kostenaufstellung} befindet sich die Aufstellung der Kosten.
+\tabelle{Kostenaufstellung}{tab:Kostenaufstellung}{Kostenaufstellung.tex}
+
+\subsubsection{Amortisationsdauer}
+\label{sec:Amortisationsdauer}
+Durch die einfache Fehlerkennung und die schrittweise Reduktion von ungenutzten Berichten und Datenquellen innerhalb der Webanwendung bietet \projektName signifikante Zeiteinsparungen bei der Verwaltung der Berichte.
+\begin{itemize}
+	\item Welche monetären Vorteile bietet das Projekt (\zB Einsparung von Lizenzkosten, Arbeitszeitersparnis, bessere Usability, Korrektheit)?
+	\item Wann hat sich das Projekt amortisiert?
+\end{itemize}
+
+\paragraph{Berechnung der Amortisationsdauer} ~\\
+Bei einer Zeiteinsparung von 10 Minuten am Tag für jeden der 8 Anwender und 220 Arbeitstagen im Jahr ergibt sich eine gesamte Zeiteinsparung von 
+\begin{eqnarray}
+8 \cdot 220 \mbox{ Tage/Jahr} \cdot 10 \mbox{ min/Tag} = 17600 \mbox{ min/Jahr} \approx 293 \mbox{ h/Jahr} 
+\end{eqnarray}
+
+Dadurch ergibt sich eine jährliche Einsparung von 
+\begin{eqnarray}
+293 \mbox{h} \cdot \eur{75}{\mbox{/h}} = \eur{21975}
+\end{eqnarray}
+
+Die Amortisationszeit beträgt also $\frac{\eur{4350}}{\eur{21975}\mbox{/Jahr}} \approx 0,2 \mbox{ Jahre} \approx 10 \mbox{ Wochen}$.
+
+\subsection{Einarbeitung in das Projektumfeld}
+\label{sec:Einarbeitung}
+Der Projektverantwortliche \autorName\xspace setzte sich zunächst mit dem Prozess der Berichtserstellung und -verwaltung des \ac{CFT} \teamName auseinander. Hierzu musste sowohl der Umgang mit dem Berichtsdesigner als auch mit dem zugehörigen Webportal erlernt werden. Außerdem mussten insbesondere die von den \ac{SSRS} persistierten Daten analysiert werden, um Statistiken über jene erfassen zu können.
+
+\subsubsection{Berichtserstellung}
+\label{sec:Berichtserstellung}
+Die Erstellung von Reports erfolgt bei der \ac{KVWL} mithilfe der \ac{IDE} Visual Studio. Es werden zuerst mit einem Assistenten Datenquellen für den Bericht festgelegt und die gewünschten Tabellen angegeben. Daraufhin kann der Bericht beliebig mit einer Reihe von Grafikelementen (Tabellen, Diagramme, Textfelder \etc) gestaltet werden.
+
+\subsubsection{Berichtsverwaltung}
+\label{sec:Berichtsverwaltung}
+Zur Verwaltung der Berichte wird ein in SharePoint integriertes Webportal eingesetzt, das alle publizierten Reports in einer Ordnerstruktur auflistet. Die Verzeichnishierarchien sind wie im Windows-Explorer durchsuchbar und die Reports mit der Angabe der benötigten Parameter einfach auszuführen.
+
+\subsubsection{Analyse der Datenstrukturen}
+\label{sec:Datenstrukturen}
+Die von \ac{SSRS} gesammelten Daten werden in relationalen Tabellen auf dem SQL Server abgelegt. Alle für die Erhebung von Statistiken erforderlichen Tabellen werden in dem nachfolgenden relationalen Datenmodell in \Abbildung{Datenmodell} mitsamt ihrer Abhängigkeiten aufgelistet.
+\begin{figure}[htb]
+	\centering
+	\includegraphicsKeepAspectRatio{Datenmodell.png}{1}
+	\caption{Relationales Datenmodell}
+	\label{fig:Datenmodell}
+\end{figure} 
+
+\subsection{Anwendungsfälle}
+\label{sec:Anwendungsfaelle}
+\begin{itemize}
+	\item Welche Anwendungsfälle soll das Projekt abdecken?
+	\item Einer oder mehrere interessante (!) Anwendungsfälle könnten exemplarisch durch ein Aktivitätsdiagramm oder eine \ac{EPK} detailliert beschrieben werden. 
+\end{itemize}
+
+\paragraph{Beispiel}
+Ein Beispiel für ein Use Case-Diagramm findet sich im \Anhang{app:UseCase}.
+
+
+\subsection{Qualitätsanforderungen}
+\label{sec:Qualitaetsanforderungen}
+\begin{itemize}
+	\item Welche Qualitätsanforderungen werden an die Anwendung gestellt (\zB hinsichtlich Performance, Usability, Effizienz \etc (siehe \citet{ISO9126}))?
+\end{itemize}
+
+
+\subsection{Lastenheft/Fachkonzept}
+\label{sec:Lastenheft}
+\begin{itemize}
+	\item Auszüge aus dem Lastenheft/Fachkonzept, wenn es im Rahmen des Projekts erstellt wurde.
+	\item Mögliche Inhalte: Funktionen des Programms (Muss/Soll/Wunsch), User Stories, Benutzerrollen
+\end{itemize}
+
+\paragraph{Beispiel}
+Ein Beispiel für ein Lastenheft findet sich im \Anhang{app:Lastenheft}. 
+
+\Zwischenstand{Analysephase}{Analyse}
