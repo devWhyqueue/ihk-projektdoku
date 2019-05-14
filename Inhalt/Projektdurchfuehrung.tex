@@ -53,13 +53,44 @@ Zur Verwaltung der Berichte wird ein in SharePoint integriertes Webportal einges
 
 \subsubsection{Analyse der Datenstrukturen}
 \label{sec:Datenstrukturen}
-Die von \ac{SSRS} gesammelten Daten werden in relationalen Tabellen auf dem SQL Server abgelegt. Alle für die Erhebung von Statistiken erforderlichen Tabellen werden in dem nachfolgenden relationalen Datenmodell in \Abbildung{Datenmodell} mitsamt ihrer Abhängigkeiten aufgelistet.
+Die von \ac{SSRS} gesammelten Daten werden in relationalen Tabellen auf dem SQL Server in der ReportServer-Datenbank abgelegt. Alle für die Erhebung von Statistiken erforderlichen Tabellen werden in dem nachfolgenden vereinfachten relationalen Datenmodell in \Abbildung{Datenmodell} mitsamt ihrer Abhängigkeiten aufgelistet.
 \begin{figure}[htb]
 	\centering
-	\includegraphicsKeepAspectRatio{Datenmodell.png}{1}
-	\caption{Relationales Datenmodell}
+	\includegraphicsKeepAspectRatio{Datenmodell.png}{0.5}
+	\caption{Relationales Datenmodell (vereinfacht)}
 	\label{fig:Datenmodell}
-\end{figure} 
+\end{figure}
+
+\paragraph{DataSource} ~\\
+Die Tabelle DataSource beinhaltet alle Datenquellen des Report-Servers. Neben dem im Diagramm aufgeführten Attribut \gqq{Name} enthält es weitere für Datenquellen relevante Informationen wie Zugangsdaten oder weitere Optionen.\\
+Über den Fremdschlüssel \gqq{ItemID} erreicht man das zugehörige Catalog-Item. Dies kann ein DataSource-Item (\gqq{Type}=5) oder ein Report-Item (\gqq{Type}=2) sein. Ein zugehöriges DataSource-Item in der Catalog-Tabelle enthält weitere Informationen zur DataSource (wie \gqq{Path}, also Speicherort). Verweist die \gqq{ItemID} auf ein Report-Item, nutzt dieses die entsprechende DataSource.\\
+Die \gqq{LinkID} zeigt immer auf ein zugehöriges DataSource-Item in der Catalog-Tabelle. Datensätze in der DataSource-Tabelle mit einer \gqq{ItemID}, die auf ein Report-Item verweist, können hierbei beliebig viele DataSource-Items haben. Dies führt dann zu mehreren Zeilen in der DataSource-Tabelle mit denselben ItemIDs, aber unterschiedlichen LinkIDs.\\
+Einträge mit einer \gqq{ItemID}, die ein DataSource-Item referenziert, haben jedoch immer eine \gqq{LinkID}=NULL, da sie ja bereits über die \gqq{ItemID} an die Catalog-Tabelle geknüpft sind (und da ein DataSource-Item ja keine abhängigen DataSource-Items haben kann).
+
+\paragraph{Catalog} ~\\
+Der Catalog umfasst alle für den Report-Server relevanten Items. Darunter befinden sich die bereits oben erwähnten Reports und Datenquellen, aber auch \zB Datasets, Folders oder Resources (für dieses Projekt irrelevant).
+
+\paragraph{ExecutionLogStorage} ~\\
+Einträge im ExecutionLogStorage repräsentieren die Ausführung von Berichten über das Webportal. Wird ein Report ausgeführt, loggt der Report-Server \ua die Ladezeit, den Ausführungsstatus und den aufrufenden Benutzer.
+
+\paragraph{ConfigurationInfo} ~\\
+Hier befinden sich globale Konfigurationen des Report-Servers (SessionTimeout, ExecutionLogLevel, MaxFileSizeMb) als Key-Value-Pairs.
+
+\subsection{Anforderungsanalyse}
+\label{sec:Anforderungsanalyse}
+
+\subsubsection{Anforderungserhebung}
+\label{sec:Anforderungserhebung}
+Die Anforderungen wurden im Rahmen eines Interviews mit den künftigen Benutzern der Applikation erfasst. Dadurch ergab sich der Vorteil, dass die Wünsche des Kunden bereits zu Beginn der Projektphase aufgenommen werden konnten. Außerdem konnte die aktuelle Situation praktisch begutachtet werden, um die zentralen Probleme, Erwartungen und Ziele des Teams \teamName zu identifizieren.
+
+\subsubsection{Ist-Zustand}
+\label{sec:Ist}
+Aktuell bietet das von den \ac{SSRS} zu Verfügung gestellte Webportal zwar komfortablen Zugriff auf alle erstellten Berichte, liefert aber keine Statistiken oder Metadaten zu deren Status, Performance oder Fehleranfälligkeit. Auch die in einer nur sehr geringen Anzahl vorhandenen Metadaten-Berichte bieten nur unzureichenden Überblick über die Gesamtsituation. Es ist zur Zeit ein hohes Maß an Fachwissen erforderlich, um Abhängigkeiten und mögliche Fehlerquellen zeit- und kosteneffizient zu identifizieren.
+
+\subsubsection{Soll-Zustand}
+\label{sec:Soll}
+\projektName soll den Benutzern in einer ähnlich intuitiven Form wie beim \ac{SSRS}-Webportal Berichte ausgeführt werden, Zugang zu diversen Statistiken bieten, die ohne tiefgehendes Fachwissen verstanden werden können. Diese sollen dann für die Reduzierung der ungenutzten Berichte und Datenquellen genutzt werden und die Report-Verwaltung und Fehleranalyse allgemein erleichtern.
+
 
 \subsection{Anwendungsfälle}
 \label{sec:Anwendungsfaelle}
