@@ -62,19 +62,25 @@ Die von \ac{SSRS} gesammelten Daten werden in relationalen Tabellen auf dem SQL 
 \end{figure}
 
 \paragraph{DataSource} ~\\
+\label{p:DataSource}
 Die Tabelle DataSource beinhaltet alle Datenquellen des Report-Servers. Neben dem im Diagramm aufgeführten Attribut \gqq{Name} enthält es weitere für Datenquellen relevante Informationen wie Zugangsdaten oder weitere Optionen.\\
 Über den Fremdschlüssel \gqq{ItemID} erreicht man das zugehörige Catalog-Item. Dies kann ein DataSource-Item (\gqq{Type}=5) oder ein Report-Item (\gqq{Type}=2) sein. Ein zugehöriges DataSource-Item in der Catalog-Tabelle enthält weitere Informationen zur DataSource (wie \gqq{Path}, also Speicherort). Verweist die \gqq{ItemID} auf ein Report-Item, nutzt dieses die entsprechende DataSource.\\
 Die \gqq{LinkID} zeigt immer auf ein zugehöriges DataSource-Item in der Catalog-Tabelle. Datensätze in der DataSource-Tabelle mit einer \gqq{ItemID}, die auf ein Report-Item verweist, können hierbei beliebig viele DataSource-Items haben. Dies führt dann zu mehreren Zeilen in der DataSource-Tabelle mit denselben ItemIDs, aber unterschiedlichen LinkIDs.\\
 Einträge mit einer \gqq{ItemID}, die ein DataSource-Item referenziert, haben jedoch immer eine \gqq{LinkID}=NULL, da sie ja bereits über die \gqq{ItemID} an die Catalog-Tabelle geknüpft sind (und da ein DataSource-Item ja keine abhängigen DataSource-Items haben kann).
 
 \paragraph{Catalog} ~\\
+\label{p:Catalog}
 Der Catalog umfasst alle für den Report-Server relevanten Items. Darunter befinden sich die bereits oben erwähnten Reports und Datenquellen, aber auch \zB Datasets, Folders oder Resources (für dieses Projekt irrelevant).
 
 \paragraph{ExecutionLogStorage} ~\\
+\label{p:ExecutionLogStorage}
 Einträge im ExecutionLogStorage repräsentieren die Ausführung von Berichten über das Webportal. Wird ein Report ausgeführt, loggt der Report-Server \ua die Ladezeit, den Ausführungsstatus und den aufrufenden Benutzer.
 
 \paragraph{ConfigurationInfo} ~\\
+\label{p:ConfigurationInfo}
 Hier befinden sich globale Konfigurationen des Report-Servers (SessionTimeout, ExecutionLogLevel, MaxFileSizeMb) als Key-Value-Pairs.
+
+\Zwischenstand{Einarbeitung in das Projektumfeld}{Einarbeitung}
 
 \subsection{Anforderungsanalyse}
 \label{sec:Anforderungsanalyse}
@@ -91,33 +97,154 @@ Aktuell bietet das von den \ac{SSRS} zu Verfügung gestellte Webportal zwar komf
 \label{sec:Soll}
 \projektName soll den Benutzern in einer ähnlich intuitiven Form wie beim \ac{SSRS}-Webportal Berichte ausgeführt werden, Zugang zu diversen Statistiken bieten, die ohne tiefgehendes Fachwissen verstanden werden können. Diese sollen dann für die Reduzierung der ungenutzten Berichte und Datenquellen genutzt werden und die Report-Verwaltung und Fehleranalyse allgemein erleichtern.
 
-
-\subsection{Anwendungsfälle}
+\subsubsection{Anwendungsfälle}
 \label{sec:Anwendungsfaelle}
-\begin{itemize}
-	\item Welche Anwendungsfälle soll das Projekt abdecken?
-	\item Einer oder mehrere interessante (!) Anwendungsfälle könnten exemplarisch durch ein Aktivitätsdiagramm oder eine \ac{EPK} detailliert beschrieben werden. 
-\end{itemize}
+Die ermittelten Anforderungsfälle werden in dem folgenden Anwendungsfalldiagramm dargestellt. Detailliertere User Stories befinden sich im \Anhang{app:UserStories}.
+\begin{figure}[htb]
+	\centering
+	\includegraphicsKeepAspectRatio{Anwendungsfalldiagramm.png}{0.7}
+	\caption{Anwendungsfalldiagramm}
+	\label{fig:Anwendungsfalldiagramm}
+\end{figure}\\
+Neben der Standardanforderung eines Logins, der den Zugriff nur auf Mitglieder des \teamName beschränken soll, werden einige Anforderungsfälle für das Projekt definiert. Zunächst soll es eine Statistik-Übersicht geben, die einen groben Überblick über die einzelnen Statistiken anbietet. Hier wird nur die Anzahl der jeweiligen Berichte oder Datenquellen angezeigt. Für mehr Details können Auflistungen \zB der ungenutzten oder meistgenutzten Berichte eingesehen werden, 
+die dann in einer Tabelle mit verschiedenen Attributen aufgelistet werden.
 
-\paragraph{Beispiel}
-Ein Beispiel für ein Use Case-Diagramm findet sich im \Anhang{app:UseCase}.
-
-
-\subsection{Qualitätsanforderungen}
+\subsubsection{Qualitätsanforderungen}
 \label{sec:Qualitaetsanforderungen}
+Der Softwareentwicklungsprozess der \ac{KVWL} orientiert sich an branchenüblichen Softwarequalitätsanforderungen, um Wartungskosten zu reduzieren. Zur Sicherstellung der Produktqualität wird die Norm ISO/IEC 9126\footnote{\cite{ISO9126}} verwendet, von der hier kurz die für das Projekt relevantesten Kriterien vorgestellt werden.
+
+\paragraph{Benutzbarkeit} ~\\
+\label{p:Benutzbarkeit}
+Bei der Implementierung wird auf eine hohe Bedienbarkeit gesetzt. Die Benutzer sollen den Umgang mit der Anwendung schnell erlernen können und schnellstmöglich damit beginnen das Programm produktiv zu nutzen. Zur besseren Verständlichkeit werden verschiedene Farbtöne genutzt, um Nutzer über die Dringlichkeit des Handlungsbedarfs in Bezug auf die jeweilige Statistik zu informieren.
+
+\paragraph{Funktionalität} ~\\
+\label{p:Funktionalitaet}
+Die aufgenommenen Anforderungen sollen zu Beginn des Projekts auf ihre Umsetzbarkeit geprüft werden, um dem Benutzer direkt im Voraus einen klaren Eindruck über die realisierbaren Funktionen der Software zu verschaffen. Außerdem werden die Ergebnisse der Datenabfragen und Methoden auf ihre Ordnungsmäßigkeit und Richtigkeit durch den Einsatz von Tests überprüft.
+
+\paragraph{Änderbarkeit} ~\\
+\label{p:Aenderbarkeit}
+Wie bereits erwähnt, sollen auch nach Ende des Projektes noch weitere Funktionen hinzugefügt werden können. Dies erfordert eine einfache Analysierbarkeit und Modifizierbarkeit, um offen für noch unbekannte Anforderungen zu bleiben.
+
+\subsection{Systementwurf}
+\label{sec:Systementwurf}
+
+\subsubsection{Zielplattform}
+\label{sec:Systementwurf}
+Die \ac{KVWL} setzt hauptsächlich auf Software, die in Java programmiert ist. Somit ist dies eine implizite Vorgabe für dieses Projekt. Aktuell wird die Programmiersprache Java in der Version 8 eingesetzt.
+
+\paragraph{Server} ~\\
+\label{p:Server}
+ Da das Team \teamName hauptsächlich Windows-Server betreibt, muss auch \projektName auf diesen bereitgestellt werden. Diese sind bereits in ausreichender Zahl vorhanden, sodass weder Hardware noch zusätzliche virtuelle Server benötigt werden. Die Installation eines Webservers (wie Tomcat oder WildFly) ist ebenfalls nicht notwendig, weil das genutzte Spring Boot Framework bereits einen eingebetteten Webserver mitliefert.\footnote{\Vgl \cite{spring:web}} Zudem benötigt die Applikation keine Persistierungsmöglichkeiten für Daten, es muss also keine Datenbank erzeugt werden.
+ 
+\paragraph{Clients} ~\\
+\label{p:Clients}
+ Die Arbeitsplätze der Anwender sind alle mit dem Betriebssystem Windows 10 mit den vorinstallierten Internetbrowsern Microsoft Edge und Mozilla Firefox ausgestattet. Der Zugriff auf \projektName kann durch einen beliebigen Browser erfolgen.
+
+\subsubsection{Architekturdesign}
+\label{sec:Architekturdesign}
+Aufgrund nur weniger Vorgaben im Hinblick auf die Softwarearchitektur, mussten diesbezüglich einige Entscheidungen getroffen werden.
+
+\paragraph{Grundlegende Architektur} ~\\
+\label{p:Architektur}
+Das Grundgerüst der Architektur schafft die Anwendung des Schichtenmodells. Hierbei werden einzelne Komponenten der Software einer Schicht zugeordnet. Es ist zu beachten, dass Zugriffe zwischen Schichten nur von höheren auf tiefere Schichten erfolgen dürfen und nicht umgekehrt.\footnote{\Vgl \cite{wiki:arch}}
+Bei \projektName wurde eine Drei-Schichten-Architektur implementiert, bestehend aus der Datenhaltung-, der Logik- und der Präsentationsschicht. Für gewöhnlich ist die Datenhaltungsschicht sowohl für das Speichern als auch das Laden von Daten verantwortlich, bei diesem Projekt mussten jedoch keine Informationen persistiert werden.
+
+\paragraph{Datenhaltung} ~\\
+\label{p:Datenhaltung}
+Zugriffe auf die Tabellen des Report-Servers werden in der Datenhaltungsschicht definiert. Sie sind das Herzstück der Applikation. Hier werden die in den Anforderungen definierten statistischen Daten aus den Tabellen der ReportServer-Datenbank extrahiert und auf Java-Entitäten abgebildet. In \Abbildung{CustomItemRepository} wird ein Repository dargestellt, dass auf Datensätze der Tabelle Catalog zugreift.
+\begin{figure}[htb]
+	\centering
+	\includegraphicsKeepAspectRatio{Klassendiagramm_CustomItemRepository.png}{0.5}
+	\caption{Klasse CustomItemRepository}
+	\label{fig:CustomItemRepository}
+\end{figure}
+
+\paragraph{Logik} ~\\
+\label{p:Logik}
+Die Geschäftslogik von \projektName besteht im Wesentlichen aus der Abbildung von Entitäten der Datenhaltungsschicht auf Objekte der Logikschicht und der Deklaration von Service-Methoden, die diese weiterverarbeiten. Eine Übersicht der Klassen des Pakets \gqq{Mapping} findet sich in \Abbildung{Mapping}.
+\begin{figure}[htb]
+	\centering
+	\includegraphicsKeepAspectRatio{Klassendiagramm_Mapping.png}{0.5}
+	\caption{Paket \gqq{Mapping}}
+	\label{fig:Mapping}
+\end{figure}\\
+Mithilfe dieser Mapping-Klassen werden die Entitätsobjekte in Business-Objekte konvertiert, die Clienten (aus der Präsentationsschicht) über Service-Methoden einfach verwenden können. Klassen der Präsentationsschicht können auf die gewünschte Menge von Business-Objekten über Service-Klassen zugreifen. Repräsentativ für die Service-Klassen zeigt \Abbildung{Logik} die ReportService-Schnittstelle.
+\begin{figure}[htb]
+	\centering
+	\includegraphicsKeepAspectRatio{Klassendiagramm_ReportService.png}{0.6}
+	\caption{Services in der Logikschicht}
+	\label{fig:Logik}
+\end{figure}
+
+\paragraph{Präsentation} ~\\
+\label{p:Praesentation}
+Zur Strukturierung der Präsentationsschicht wurde das \ac{MVC}-Muster angewandt. Das Architekturmuster trennt die drei Komponenten Modell, Präsentation und Steuerung voneinander ab. Das Modell enthält Daten die dargestellt werden sollen, Views präsentieren diese und reagieren auf Benutzerinteraktionen und die Controller verwalten \bzw steuern die beiden anderen Komponenten.\footnote{\Vgl \cite{wiki:mvc}}
+Die Entscheidung für diese Modell wurde aufgrund des eingesetzten Spring Frameworks getroffen. Dies bietet mit Spring MVC\footnote{\Vgl \cite{spring:mvc}} eine eingebaute unterstützung für dieses Architekturmuster.
+
+\subsubsection{Framework}
+\label{sec:Framework}
+Wie schon in im Abschnitt Projektumfeld unter Punkt \ref{p:Frameworks} erwähnt, wurden diverse Frameworks eingesetzt. Strukturell jedoch beeinflusste das Spring Framework maßgeblich den Entwurf der Applikation. In der Datenhaltungsschicht wurden mithilfe von Spring Data\footnote{\Vgl \cite{spring:data}} einheitliche und komfortable Datenzugriffe realisiert. Mit Spring MVC wurde eine leicht änder- und erweiterbare Präsentationsschicht konstruiert. Nur die Logikschicht bedient sich keinerlei Funktionalitäten des Spring Frameworks. Genauere Einzelheiten hierzu finden sich im Abschnitt \ref{sec:Implementierungsphase}.
+
+\subsubsection{Entwurf der Benutzeroberfläche}
+\label{sec:Benutzeroberflaeche}
+Das Webinterface von \projektName wurde mithilfe von Mock-Ups in enger Kooperation mit den Benutzern entworfen. Da ein auf die Benutzeranforderungen abgestimmtes Design ausschlaggebend für die Benutzbarkeit (\ref{p:Benutzbarkeit}) der Anwendung ist, wurden die Mock-Ups über eine Vielzahl an Iterationen hinweg kontinuierlich verbessert. So konnte eine hohe Kundenzufriedenheit am Ende der Entwurfsphase erreicht werden. Der Aufbau der \ac{GUI} orientiert sich an der unternehmensüblichen Struktur für Webseiten. Im oberen Bereich befindet sich eine Navigationsleiste mit der die Unterseiten erreicht werden können. Im Mittelteil werden die Hauptinhalte (Tabellen \etc) platziert und am unteren Rand liegt ein Footer, der die Version der Applikation anzeigt. Die verwendeten Farben entsprechen den Corporate-Design-Richtlinien der \ac{KVWL}. Eine PDF-Version des Mock-Ups kann im \Anhang{app:Mock} eingesehen werden.
+
+\subsubsection{Maßnahmen zur Qualitätssicherung}
+\label{sec:Qualitaetssicherung}
+Um die Produktqualität der in Kapitel~\ref{sec:Qualitaetsanforderungen}: \nameref{sec:Qualitaetsanforderungen} beschriebenen Qualitätsanforderungen sicherzustellen, wurden eine Reihe von Maßnahmen ergriffen.
+
+\paragraph{Anwender-Reviews} ~\\
+\label{p:Reviews}
+Zur Qualitätssicherung wurden in unregelmäßigen Abständen die zukünftigen Benutzer der Anwendung eingeladen, um den Fortschritt der Entwicklung zu begutachten. Dabei sollten Fehler und Unstimmigkeiten aufgedeckt werden. Diese wurden direkt im Anschluss behoben, um \zB die Arbeit an falsch verstandenen Anforderungen zu vermeiden.
+
+\paragraph{Automatische Prüfung} ~\\
+\label{p:Pruefung}
+Im Zuge der Implementierung wurden Unit-Tests erstellt, die (bis zu einem bestimmten Grad) die Fähigkeit haben Fehler im Programmcode zu identifizieren. Sie werden spätestens bei jedem Build als automatisierter Test wiederholt ausgeführt.
+
+\paragraph{Versionierung} ~\\
+\label{p:Versionierung}
+Für die zentrale Verwaltung des Quellcodes wurde Git verwendet. Mithilfe dieses Tools lassen sich verschiedene Versionen des Quellcodes verwalten und bei Bedarf kann dieser auf einen alten Stand zurückgesetzt werden. Dies erweist sich besonders bei der nachträglichen Erkennung von Fehlern als extrem hilfreich.
+
+\paragraph{Buildmanagement} ~\\
+\label{p:Buildmangement}
+Der Erstellungsprozess der Software ist ein umfangreicher und komplexer Prozess, bei dem der Quellcode in Software-Artefakte überführt wird, die ausgeführt werden können. Da manuelle Builds sehr fehleranfällig sind, wurde der Build-Prozess mithilfe des Buildmangement-Tools Maven automatisiert. Über eine Konfigurationsdatei (\ac{POM}) werden alle Abhängigkeiten des Projekts bequem verwaltet und werden vollautomatisch beim Build der Anwendung eingebunden.
+
+\Zwischenstand{Entwurfsphase}{Entwurf}
+
+\subsection{Implementierung} 
+\label{sec:Implementierung}
+
+
+\subsection{Implementierung der Datenstrukturen}
+\label{sec:ImplementierungDatenstrukturen}
+
 \begin{itemize}
-	\item Welche Qualitätsanforderungen werden an die Anwendung gestellt (\zB hinsichtlich Performance, Usability, Effizienz \etc (siehe \citet{ISO9126}))?
+	\item Beschreibung der angelegten Datenbank (\zB Generierung von \acs{SQL} aus Modellierungswerkzeug oder händisches Anlegen), \acs{XML}-Schemas \usw.
 \end{itemize}
 
 
-\subsection{Lastenheft/Fachkonzept}
-\label{sec:Lastenheft}
+\subsection{Implementierung der Benutzeroberfläche}
+\label{sec:ImplementierungBenutzeroberflaeche}
+
 \begin{itemize}
-	\item Auszüge aus dem Lastenheft/Fachkonzept, wenn es im Rahmen des Projekts erstellt wurde.
-	\item Mögliche Inhalte: Funktionen des Programms (Muss/Soll/Wunsch), User Stories, Benutzerrollen
+	\item Beschreibung der Implementierung der Benutzeroberfläche, falls dies separat zur Implementierung der Geschäftslogik erfolgt (\zB bei \acs{HTML}-Oberflächen und Stylesheets).
+	\item \Ggfs Beschreibung des Corporate Designs und dessen Umsetzung in der Anwendung.
+	\item Screenshots der Anwendung
 \end{itemize}
 
 \paragraph{Beispiel}
-Ein Beispiel für ein Lastenheft findet sich im \Anhang{app:Lastenheft}. 
+Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im \Anhang{Screenshots}.
 
-\Zwischenstand{Analysephase}{Analyse}
+
+\subsection{Implementierung der Geschäftslogik}
+\label{sec:ImplementierungGeschaeftslogik}
+
+\begin{itemize}
+	\item Beschreibung des Vorgehens bei der Umsetzung/Programmierung der entworfenen Anwendung.
+	\item \Ggfs interessante Funktionen/Algorithmen im Detail vorstellen, verwendete Entwurfsmuster zeigen.
+	\item Quelltextbeispiele zeigen.
+	\item Hinweis: Wie in Kapitel~\ref{sec:Einleitung}: \nameref{sec:Einleitung} zitiert, wird nicht ein lauffähiges Programm bewertet, sondern die Projektdurchführung. Dennoch würde ich immer Quelltextausschnitte zeigen, da sonst Zweifel an der tatsächlichen Leistung des Prüflings aufkommen können.
+\end{itemize}
+
+\paragraph{Beispiel}
+Die Klasse \texttt{Com\-par\-ed\-Na\-tu\-ral\-Mo\-dule\-In\-for\-ma\-tion} findet sich im \Anhang{app:CNMI}.  
