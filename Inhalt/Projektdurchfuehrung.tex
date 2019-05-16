@@ -10,21 +10,17 @@ Eine Wirtschaftlichkeitsanalyse stellt die Kosten und das erwartete Ergebnis ein
 
 \subsubsection{\gqq{Make or Buy}-Entscheidung}
 \label{sec:MakeOrBuyEntscheidung}
-Eine umfangreiche Recherche innerhalb des eigenen Unternehmens und aller verfügbaren Internetquellen ergab, dass schon mehrere Lösungen zur Darstellung von Statistiken für die Berichterstellungsplattform \ac{SSRS} existieren. Ein repräsentatives Beispiel aller online verfügbaren Ansätze für die Erhebung von Metadaten liefert der Lösungsansatz des Autors Jeff Pries. Er stellt eine Reihe von Informationen über Benutzer, Berichtsausführungen und Performance als Report innerhalb der \ac{SSRS} dar.\footnote{\Vgl \cite{pries:usage}} Da aber vom Auftraggeber eine \gqq{Implementierung einer Web-Applikation}\footnote{\cite{Projektantrag}} gefordert wurde, die unabhängig und außerhalb des Report-Servers besteht, entspricht keine der gefundenen Lösungen den Anforderungen. Folglich wurde die Entscheidung gefällt \projektName in Form einer Individualsoftware zu realisieren. Diese Umsetzung wird außerdem nicht an externe Dienstleister vergeben, sondern an die interne IT-Abteilung, weil diese am besten mit den Rahmenbedingungen vertraut ist. So kann gezielt auf die Bedürfnisse des Auftraggebers \teamName eingegangen werden, um einen hohen Individualisierungsgrad zu erzielen.
+Eine umfangreiche Recherche innerhalb des eigenen Unternehmens und aller verfügbaren Internetquellen ergab, dass schon mehrere Lösungen zur Darstellung von Statistiken für die Berichterstellungsplattform \ac{SSRS} existieren. Ein repräsentatives Beispiel aller online verfügbaren Ansätze für die Erhebung von Metadaten liefert der Lösungsansatz des Autors Jeff Pries. Er stellt eine Reihe von Informationen über Benutzer, Berichtsausführungen und Performance als Report innerhalb der \ac{SSRS} dar.\footnote{\Vgl \cite{pries:usage}} Da aber vom Auftraggeber eine \gqq{Implementierung einer Web-Applikation}\footnote{\cite{Projektantrag}} gefordert wurde, die unabhängig und außerhalb des Report-Servers besteht, entspricht keine der gefundenen Lösungen den Anforderungen. Folglich wurde die Entscheidung gefällt, \projektName in Form einer Individualsoftware zu realisieren. Diese Umsetzung wird außerdem nicht an externe Dienstleister vergeben, sondern an die interne IT-Abteilung, weil diese am besten mit den Rahmenbedingungen vertraut ist. So kann gezielt auf die Bedürfnisse des Auftraggebers \teamName eingegangen werden, um einen hohen Individualisierungsgrad zu erzielen.
 
 
 \subsubsection{Projektkosten}
 \label{sec:Projektkosten}
-Die Kosten eines Projekts setzen sich aus Personal- und Ressourcenkosten zusammen. Die Kalkulation der Personalkosten erfolgt dabei nicht durch Auflistung der acht Vorgänge und ihrer geschätzten monetären Aufwände, sondern anhand des je Projektrolle aufgewendeten Zeitaufwands. Die angegebenen Stundensätze wurden nicht eigenständig berechnet, sondern bei der Personalabteilung der \ac{KVWL} erfragt. In den Stundensätzen sind sämtliche zusätzlich anfallende Kostenfaktoren (wie Ressourcen- und Fixkosten) enthalten. Da bei \projektName keine Materialkosten anfallen, repräsentieren die Personalkosten die Gesamtprojektkosten. In der untenstehenden Tabelle \ref{tab:Kostenaufstellung} befindet sich die Aufstellung der Kosten.
+Die Kosten eines Projekts setzen sich aus Personal- und Ressourcenkosten zusammen. Die Kalkulation der Personalkosten erfolgt dabei nicht durch Auflistung der acht Vorgänge und ihrer geschätzten monetären Aufwände, sondern anhand des je Projektrolle aufgewendeten Zeitaufwands. Die angegebenen Stundensätze wurden nicht eigenständig berechnet, sondern bei der Personalabteilung der \ac{KVWL} erfragt. In den Stundensätzen sind sämtliche zusätzlich anfallenden Kostenfaktoren (wie Ressourcen- und Fixkosten) enthalten. Da bei \projektName keine Materialkosten anfallen, repräsentieren die Personalkosten die Gesamtprojektkosten. In der untenstehenden Tabelle \ref{tab:Kostenaufstellung} befindet sich die Aufstellung der Kosten.
 \tabelle{Kostenaufstellung}{tab:Kostenaufstellung}{Kostenaufstellung.tex}
 
 \subsubsection{Amortisationsdauer}
 \label{sec:Amortisationsdauer}
-Durch die einfache Fehlerkennung und die schrittweise Reduktion von ungenutzten Berichten und Datenquellen innerhalb der Webanwendung bietet \projektName signifikante Zeiteinsparungen bei der Verwaltung der Berichte.
-\begin{itemize}
-	\item Welche monetären Vorteile bietet das Projekt (\zB Einsparung von Lizenzkosten, Arbeitszeitersparnis, bessere Usability, Korrektheit)?
-	\item Wann hat sich das Projekt amortisiert?
-\end{itemize}
+Durch die einfache Fehlererkennung und die schrittweise Reduktion von ungenutzten Berichten und Datenquellen innerhalb der Webanwendung bietet \projektName signifikante Zeiteinsparungen bei der Verwaltung der Berichte.
 
 \paragraph{Berechnung der Amortisationsdauer} ~\\
 Bei einer Zeiteinsparung von 10 Minuten am Tag für jeden der 8 Anwender und 220 Arbeitstagen im Jahr ergibt sich eine gesamte Zeiteinsparung von 
@@ -41,7 +37,7 @@ Die Amortisationszeit beträgt also $\frac{\eur{4350}}{\eur{21975}\mbox{/Jahr}} 
 
 \subsection{Einarbeitung in das Projektumfeld}
 \label{sec:Einarbeitung}
-Der Projektverantwortliche \autorName\xspace setzte sich zunächst mit dem Prozess der Berichtserstellung und -verwaltung des \ac{CFT} \teamName auseinander. Hierzu musste sowohl der Umgang mit dem Berichtsdesigner als auch mit dem zugehörigen Webportal erlernt werden. Außerdem mussten insbesondere die von den \ac{SSRS} persistierten Daten analysiert werden, um Statistiken über jene erfassen zu können.
+Der Projektverantwortliche \autorName\xspace setzte sich zunächst mit dem Prozess der Berichts\-erstellung und -verwaltung des \ac{CFT} \teamName auseinander. Hierzu musste sowohl der Umgang mit dem Berichtsdesigner als auch mit dem zugehörigen Webportal erlernt werden. Außerdem mussten insbesondere die von den \ac{SSRS} persistierten Daten analysiert werden, um Statistiken über jene erfassen zu können.
 
 \subsubsection{Berichtserstellung}
 \label{sec:Berichtserstellung}
@@ -64,7 +60,7 @@ Die von \ac{SSRS} gesammelten Daten werden in relationalen Tabellen auf dem SQL 
 \paragraph{DataSource} ~\\
 \label{p:DataSource}
 Die Tabelle DataSource beinhaltet alle Datenquellen des Report-Servers. Neben dem im Diagramm aufgeführten Attribut \gqq{Name} enthält es weitere für Datenquellen relevante Informationen wie Zugangsdaten oder weitere Optionen.\\
-Über den Fremdschlüssel \gqq{ItemID} erreicht man das zugehörige Catalog-Item. Dies kann ein DataSource-Item (\gqq{Type}=5) oder ein Report-Item (\gqq{Type}=2) sein. Ein zugehöriges DataSource-Item in der Catalog-Tabelle enthält weitere Informationen zur DataSource (wie \gqq{Path}, also Speicherort). Verweist die \gqq{ItemID} auf ein Report-Item, nutzt dieses die entsprechende DataSource.\\
+Über den Fremdschlüssel \gqq{ItemID} erreicht man das zugehörige Catalog-Item. Dies kann ein Data\-Source-Item (\gqq{Type}=5) oder ein Report-Item (\gqq{Type}=2) sein. Ein zugehöriges Data\-Source-Item in der Catalog-Tabelle enthält weitere Informationen zur DataSource (wie \gqq{Path}, also Speicherort). Verweist die \gqq{ItemID} auf ein Report-Item, nutzt dieses die entsprechende DataSource.\\
 Die \gqq{LinkID} zeigt immer auf ein zugehöriges DataSource-Item in der Catalog-Tabelle. Datensätze in der DataSource-Tabelle mit einer \gqq{ItemID}, die auf ein Report-Item verweist, können hierbei beliebig viele DataSource-Items haben. Dies führt dann zu mehreren Zeilen in der DataSource-Tabelle mit denselben ItemIDs, aber unterschiedlichen LinkIDs.\\
 Einträge mit einer \gqq{ItemID}, die ein DataSource-Item referenziert, haben jedoch immer eine \gqq{LinkID}=NULL, da sie ja bereits über die \gqq{ItemID} an die Catalog-Tabelle geknüpft sind (und da ein DataSource-Item ja keine abhängigen DataSource-Items haben kann).
 
@@ -78,7 +74,7 @@ Einträge im ExecutionLogStorage repräsentieren die Ausführung von Berichten �
 
 \paragraph{ConfigurationInfo} ~\\
 \label{p:ConfigurationInfo}
-Hier befinden sich globale Konfigurationen des Report-Servers (SessionTimeout, ExecutionLogLevel, MaxFileSizeMb) als Key-Value-Pairs.
+Hier befinden sich globale Konfigurationen des Report-Servers (SessionTimeout, Execution\-Log\-Level, MaxFileSizeMb) als Key-Value-Pairs.
 
 \Zwischenstand{Einarbeitung in das Projektumfeld}{Einarbeitung}
 
@@ -91,11 +87,11 @@ Die Anforderungen wurden im Rahmen eines Interviews mit den künftigen Benutzern
 
 \subsubsection{Ist-Zustand}
 \label{sec:Ist}
-Aktuell bietet das von den \ac{SSRS} zu Verfügung gestellte Webportal zwar komfortablen Zugriff auf alle erstellten Berichte, liefert aber keine Statistiken oder Metadaten zu deren Status, Performance oder Fehleranfälligkeit. Auch die in einer nur sehr geringen Anzahl vorhandenen Metadaten-Berichte bieten nur unzureichenden Überblick über die Gesamtsituation. Es ist zur Zeit ein hohes Maß an Fachwissen erforderlich, um Abhängigkeiten und mögliche Fehlerquellen zeit- und kosteneffizient zu identifizieren.
+Aktuell bietet das von den \ac{SSRS} zur Verfügung gestellte Webportal zwar komfortablen Zugriff auf alle erstellten Berichte, liefert aber keine Statistiken oder Metadaten zu deren Status, Performance oder Fehleranfälligkeit. Auch die in einer nur sehr geringen Anzahl vorhandenen Metadaten-Berichte bieten nur unzureichenden Überblick über die Gesamtsituation. Es ist zur Zeit ein hohes Maß an Fachwissen erforderlich, um Abhängigkeiten und mögliche Fehlerquellen zeit- und kosteneffizient zu identifizieren.
 
 \subsubsection{Soll-Zustand}
 \label{sec:Soll}
-\projektName soll den Benutzern in einer ähnlich intuitiven Form wie beim \ac{SSRS}-Webportal Berichte ausgeführt werden, Zugang zu diversen Statistiken bieten, die ohne tiefgehendes Fachwissen verstanden werden können. Diese sollen dann für die Reduzierung der ungenutzten Berichte und Datenquellen genutzt werden und die Report-Verwaltung und Fehleranalyse allgemein erleichtern.
+\projektName soll den Benutzern in einer ähnlich intuitiven Form, in der beim \ac{SSRS}-Webportal Berichte ausgeführt werden können, Zugang zu diversen Statistiken bieten, die ohne tiefgehendes Fachwissen verstanden werden können. Diese sollen dann für die Reduzierung der ungenutzten Berichte und Datenquellen genutzt werden und die Report-Verwaltung und Fehleranalyse allgemein erleichtern.
 
 \subsubsection{Anwendungsfälle}
 \label{sec:Anwendungsfaelle}
@@ -115,7 +111,7 @@ Der Softwareentwicklungsprozess der \ac{KVWL} orientiert sich an branchenüblich
 
 \paragraph{Benutzbarkeit} ~\\
 \label{p:Benutzbarkeit}
-Bei der Implementierung wird auf eine hohe Bedienbarkeit gesetzt. Die Benutzer sollen den Umgang mit der Anwendung schnell erlernen können und schnellstmöglich damit beginnen das Programm produktiv zu nutzen. Zur besseren Verständlichkeit werden verschiedene Farbtöne genutzt, um Nutzer über die Dringlichkeit des Handlungsbedarfs in Bezug auf die jeweilige Statistik zu informieren.
+Bei der Implementierung wird auf eine hohe Bedienbarkeit gesetzt. Die Benutzer sollen den Umgang mit der Anwendung schnell erlernen können und schnellstmöglich damit beginnen, das Programm produktiv zu nutzen. Zur besseren Verständlichkeit werden verschiedene Farbtöne genutzt, um Nutzer über die Dringlichkeit des Handlungsbedarfs in Bezug auf die jeweilige Statistik zu informieren.
 
 \paragraph{Funktionalität} ~\\
 \label{p:Funktionalitaet}
@@ -134,7 +130,7 @@ Die \ac{KVWL} setzt hauptsächlich auf Software, die in Java programmiert ist. S
 
 \paragraph{Server} ~\\
 \label{p:Server}
- Da das Team \teamName hauptsächlich Windows-Server betreibt, muss auch \projektName auf diesen bereitgestellt werden. Diese sind bereits in ausreichender Zahl vorhanden, sodass weder Hardware noch zusätzliche virtuelle Server benötigt werden. Die Installation eines Webservers (wie Tomcat oder WildFly) ist ebenfalls nicht notwendig, weil das genutzte Spring Boot Framework bereits einen eingebetteten Webserver mitliefert.\footnote{\Vgl \cite{spring:web}} Zudem benötigt die Applikation keine Persistierungsmöglichkeiten für Daten, es muss also keine Datenbank erzeugt werden.
+ Da das Team \teamName hauptsächlich Windows-Server betreibt, muss auch \projektName auf diesen bereitgestellt werden. Diese sind bereits in ausreichender Zahl vorhanden, sodass weder Hardware noch zusätzliche virtuelle Server benötigt werden. Die Installation eines Webservers (wie Tomcat oder WildFly) ist ebenfalls nicht notwendig, weil das genutzte Spring Boot Framework bereits einen eingebetteten Webserver mitliefert.\footnote{\Vgl \cite{spring:web}} Zudem benötigt die Applikation keine Persistierungsmöglichkeiten für Daten; es muss also keine Datenbank erzeugt werden.
  
 \paragraph{Clients} ~\\
 \label{p:Clients}
@@ -142,12 +138,12 @@ Die \ac{KVWL} setzt hauptsächlich auf Software, die in Java programmiert ist. S
 
 \subsubsection{Architekturdesign}
 \label{sec:Architekturdesign}
-Aufgrund nur weniger Vorgaben im Hinblick auf die Softwarearchitektur, mussten diesbezüglich einige Entscheidungen getroffen werden.
+Aufgrund nur weniger Vorgaben im Hinblick auf die Softwarearchitektur mussten diesbezüglich einige Entscheidungen getroffen werden.
 
 \paragraph{Grundlegende Architektur} ~\\
 \label{p:Architektur}
 Das Grundgerüst der Architektur schafft die Anwendung des Schichtenmodells. Hierbei werden einzelne Komponenten der Software einer Schicht zugeordnet. Es ist zu beachten, dass Zugriffe zwischen Schichten nur von höheren auf tiefere Schichten erfolgen dürfen und nicht umgekehrt.\footnote{\Vgl \cite{wiki:arch}}
-Bei \projektName wurde eine Drei-Schichten-Architektur implementiert, bestehend aus der Datenhaltung-, der Logik- und der Präsentationsschicht. Für gewöhnlich ist die Datenhaltungsschicht sowohl für das Speichern als auch das Laden von Daten verantwortlich, bei diesem Projekt mussten jedoch keine Informationen persistiert werden.
+Bei \projektName wurde eine Drei-Schichten-Architektur implementiert, bestehend aus der Datenhaltung-, der Logik- und der Präsentationsschicht. Für gewöhnlich ist die Datenhaltungsschicht sowohl für das Speichern als auch das Laden von Daten verantwortlich; bei diesem Projekt mussten jedoch keine Informationen persistiert werden.
 
 \paragraph{Datenhaltung} ~\\
 \label{p:Datenhaltung}
@@ -178,16 +174,16 @@ Mithilfe dieser Mapping-Klassen werden die Entitätsobjekte in Business-Objekte 
 
 \paragraph{Präsentation} ~\\
 \label{p:Praesentation}
-Zur Strukturierung der Präsentationsschicht wurde das \ac{MVC}-Muster angewandt. Das Architekturmuster trennt die drei Komponenten Modell, Präsentation und Steuerung voneinander ab. Das Modell enthält Daten die dargestellt werden sollen, Views präsentieren diese und reagieren auf Benutzerinteraktionen und die Controller verwalten \bzw steuern die beiden anderen Komponenten.\footnote{\Vgl \cite{wiki:mvc}}
-Die Entscheidung für diese Modell wurde aufgrund des eingesetzten Spring Frameworks getroffen. Dies bietet mit Spring MVC\footnote{\Vgl \cite{spring:mvc}} eine eingebaute unterstützung für dieses Architekturmuster.
+Zur Strukturierung der Präsentationsschicht wurde das \ac{MVC}-Muster angewandt. Das Architekturmuster trennt die drei Komponenten Modell, Präsentation und Steuerung voneinander ab. Das Modell enthält Daten, die dargestellt werden sollen, Views präsentieren diese und reagieren auf Benutzerinteraktionen und die Controller verwalten \bzw steuern die beiden anderen Komponenten.\footnote{\Vgl \cite{wiki:mvc}}
+Die Entscheidung für dieses Modell wurde aufgrund des eingesetzten Spring Frameworks getroffen. Dies bietet mit Spring MVC\footnote{\Vgl \cite{spring:mvc}} eine eingebaute Unterstützung für dieses Architekturmuster.
 
 \subsubsection{Framework}
 \label{sec:Framework}
-Wie schon in im Abschnitt Projektumfeld unter Punkt \ref{p:Frameworks} erwähnt, wurden diverse Frameworks eingesetzt. Strukturell jedoch beeinflusste das Spring Framework maßgeblich den Entwurf der Applikation. In der Datenhaltungsschicht wurden mithilfe von Spring Data\footnote{\Vgl \cite{spring:data}} einheitliche und komfortable Datenzugriffe realisiert. Mit Spring MVC wurde eine leicht änder- und erweiterbare Präsentationsschicht konstruiert. Nur die Logikschicht bedient sich keinerlei Funktionalitäten des Spring Frameworks. Genauere Einzelheiten hierzu finden sich im Abschnitt \ref{sec:Implementierungsphase}.
+Wie schon im Abschnitt Projektumfeld unter Punkt \ref{p:Frameworks} erwähnt, wurden diverse Frameworks eingesetzt. Strukturell jedoch beeinflusste das Spring Framework maßgeblich den Entwurf der Applikation. In der Datenhaltungsschicht wurden mithilfe von Spring Data\footnote{\Vgl \cite{spring:data}} einheitliche und komfortable Datenzugriffe realisiert. Mit Spring MVC wurde eine leicht änder- und erweiterbare Präsentationsschicht konstruiert. Nur die Logikschicht bedient sich keinerlei Funktionalitäten des Spring Frameworks. Genauere Einzelheiten hierzu finden sich im Abschnitt \ref{sec:Implementierungsphase}.
 
 \subsubsection{Entwurf der Benutzeroberfläche}
 \label{sec:Benutzeroberflaeche}
-Das Webinterface von \projektName wurde mithilfe von Mock-Ups in enger Kooperation mit den Benutzern entworfen. Da ein auf die Benutzeranforderungen abgestimmtes Design ausschlaggebend für die Benutzbarkeit (\ref{p:Benutzbarkeit}) der Anwendung ist, wurden die Mock-Ups über eine Vielzahl an Iterationen hinweg kontinuierlich verbessert. So konnte eine hohe Kundenzufriedenheit am Ende der Entwurfsphase erreicht werden. Der Aufbau der \ac{GUI} orientiert sich an der unternehmensüblichen Struktur für Webseiten. Im oberen Bereich befindet sich eine Navigationsleiste mit der die Unterseiten erreicht werden können. Im Mittelteil werden die Hauptinhalte (Tabellen \etc) platziert und am unteren Rand liegt ein Footer, der die Version der Applikation anzeigt. Die verwendeten Farben entsprechen den Corporate-Design-Richtlinien der \ac{KVWL}. Eine PDF-Version des Mock-Ups kann im \Anhang{app:Mock} eingesehen werden.
+Das Webinterface von \projektName wurde mithilfe von Mock-Ups in enger Kooperation mit den Benutzern entworfen. Da ein auf die Benutzeranforderungen abgestimmtes Design ausschlaggebend für die Benutzbarkeit (\ref{p:Benutzbarkeit}) der Anwendung ist, wurden die Mock-Ups über eine Vielzahl an Iterationen hinweg kontinuierlich verbessert. So konnte eine hohe Kundenzufriedenheit am Ende der Entwurfsphase erreicht werden. Der Aufbau der \ac{GUI} orientiert sich an der unternehmensüblichen Struktur für Webseiten. Im oberen Bereich befindet sich eine Navigationsleiste, mit der die Unterseiten erreicht werden können. Im Mittelteil werden die Hauptinhalte (Tabellen \etc) platziert und am unteren Rand liegt ein Footer, der die Version der Applikation anzeigt. Die verwendeten Farben entsprechen den Corporate-Design-Richtlinien der \ac{KVWL}. Eine PDF-Version des Mock-Ups kann im \Anhang{app:Mock} eingesehen werden.
 
 \subsubsection{Maßnahmen zur Qualitätssicherung}
 \label{sec:Qualitaetssicherung}
@@ -199,7 +195,7 @@ Zur Qualitätssicherung wurden in unregelmäßigen Abständen die zukünftigen B
 
 \paragraph{Automatische Prüfung} ~\\
 \label{p:Pruefung}
-Im Zuge der Implementierung wurden Unit-Tests erstellt, die (bis zu einem bestimmten Grad) die Fähigkeit haben Fehler im Programmcode zu identifizieren. Sie werden spätestens bei jedem Build als automatisierter Test wiederholt ausgeführt.
+Im Zuge der Implementierung wurden Unit-Tests erstellt, die (bis zu einem bestimmten Grad) die Fähigkeit haben, Fehler im Programmcode zu identifizieren. Sie werden spätestens bei jedem Build als automatisierter Test wiederholt ausgeführt.
 
 \paragraph{Versionierung} ~\\
 \label{p:Versionierung}
