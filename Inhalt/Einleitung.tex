@@ -1,11 +1,11 @@
 % !TEX root = ../Projektdokumentation.tex
 \section{Einleitung}
 \label{sec:Einleitung}
-Diese Projektdokumentation zu der Webanwendung \projektName für die \ac{KVWL}, welche im Rahmen der IHK-Abschlussprüfung Sommer 2019 erstellt wurde, beschreibt umfassend \ua die Thematik, notwendige Prozessschritte und erzielte Ergebnisse des Projekts. Zum besseren Verständnis erhält sie sowohl ergänzende, praxisbezogene Unterlagen und Dokumente (wie Tabellen, Grafiken, Screenshots und Quellcode) als auch eine Kundendokumentation, die Bestandteil des Anhangs ist.
+Diese Projektdokumentation zu der Webanwendung \projektName für die \ac{KVWL}, welche im Rahmen der IHK-Abschlussprüfung im Sommer 2019 erstellt wurde, beschreibt umfassend die Thematik, notwendige Prozessschritte und erzielte Ergebnisse des Projekts. Zum besseren Verständnis erhält sie sowohl ergänzende, praxisbezogene Unterlagen und Dokumente (Tabellen, Grafiken, Screenshots und Quellcode) als auch eine Kundendokumentation, die Bestandteil des Anhangs ist.
 
 \subsection{Projektumfeld} 
 \label{sec:Projektumfeld}
-Die Webapplikation wurde im Rahmen eines internen Projekts bei der \ac{KVWL} in Dortmund umgesetzt. Sie wurde während des Projektzeitraums vollständig auf Basis der Wünsche des Auftraggebers neu entwickelt und soll in dessen Umgebung/Umfeld nach Projektende produktiv eingesetzt werden.
+Die Webapplikation wurde im Rahmen eines internen Projekts bei der \ac{KVWL} in Dortmund umgesetzt. Sie wurde während des Projektzeitraums vollständig auf Basis der Wünsche des Auftraggebers neu entwickelt und soll in dessen IT-Umgebung nach Projektende produktiv eingesetzt werden.
 
 \subsubsection{Unternehmen} 
 \label{sec:Unternehmen}
@@ -14,7 +14,7 @@ Laut offizieller Unternehmenswebsite\footnote{\cite{KVWL}} vertritt die \ac{KVWL
 	die Interessen von über 15.000 niedergelassenen Vertragsärzten und Ärztlichen und Psychologischen Psychotherapeuten sowie Kinder- und Jugendlichenpsychotherapeuten in Westfalen-Lippe. Mit rund 2000 Mitarbeitern, von denen ca. die Hälfte im Notfalldienst überwiegend geringfügig beschäftigt ist, ist die \ac{KVWL} eine der größten Kassenärztlichen Vereinigungen. Alle zur vertragsärztlichen Versorgung zugelassenen Ärzte, Ärztlichen und Psychologischen Psychotherapeuten, sowie Kinder- und Jugendlichenpsychotherapeuten sind Pflichtmitglieder der \ac{KVWL}. Zu den zentralen Aufgaben der \ac{KVWL} zählt die Sicherstellung der ambulanten ärztlichen Versorgung. [...]\\
 	Als öffentlich-rechtliche Körperschaft handelt die Kassenärztliche Vereinigung in Vertretung ihrer Mitglieder mit den Verbänden der Krankenkassen die Gesamtvergütung für die ärztlichen Leistungen aus. Dazu schließt sie entsprechende Verträge ab. Als genossenschaftlicher Zusammenschluss garantiert die \ac{KVWL} somit, dass die wirtschaftlichen Interessen ihrer Mitglieder gegenüber den Krankenkassen gewahrt werden.
 \end{displayquote}
-Darüber hinaus trägt sie dafür Sorge, dass eine ausreichende ärztliche Versorgung sichergestellt ist (Sicherstellungsauftrag) und die Abrechnungen ihrer Mitglieder sachlich-rechnerisch korrekt sind (Gewährleistungsauftrag), wofür unterstützend auch eine Stelle zur Bekämpfung rechtwidriger Finanzmittelnutzung im Gesundheitswesen eingerichtet wurde.\footnote{\Vgl \cite{KVWL}}
+Darüber hinaus trägt sie dafür Sorge, dass eine ausreichende ärztliche Versorgung sichergestellt ist (Sicherstellungsauftrag) und die Abrechnungen ihrer Mitglieder sachlich-rechnerisch korrekt sind (Gewährleistungsauftrag). Unterstützend wurde eine Geschäftsstelle zur Bekämpfung rechtwidriger Finanzmittelnutzung im Gesundheitswesen eingerichtet.\footnote{\Vgl \cite{KVWL}}
 
 \subsubsection{Auftraggeber} 
 \label{sec:Auftraggeber}
@@ -25,23 +25,23 @@ Wie in dem Projektantrag\footnote{\cite{Projektantrag}} bereits beschrieben, ist
 	Das IT-Team \teamName verwaltet die Daten der \ac{KVWL} mithilfe unterschiedlicher Datenbankmanagementsysteme wie SQL Server oder Oracle Datenbanken.
 \end{displayquote}
 Der Begriff \ac{DWH} beschreibt dabei eine zentrale Datenbank, welche Daten aus mehreren heterogenen Quellen zu Zwecken der Analyse zusammenführt und verdichtet.\footnote{\Vgl \cite{wiki:dwh}}
-Folglich hat das Team die Zielsetzung, alle im Unternehmen produzierten Daten für Auswertungszwecke an einem zentralen Ort zu verwalten und in einer Form aufzuarbeiten, sodass einem möglichst großem Benutzerpool einfache Zugriffsmöglichkeiten zur Verfügung gestellt werden.
-Zum Tagesgeschäft des \teamName gehört die Erstellung, Anpassung und Administration von Berichten, den sogenannten Reports, die den Fachabteilungen für operative und strategische Auswertungen und Analysen bereitgestellt werden.
+Folglich hat das Team die Zielsetzung, alle im Unternehmen produzierten Daten für Auswertungszwecke an einem zentralen Ort zu verwalten und in einer Form aufzubereiten, sodass einem möglichst großem Benutzerkreis einfache Zugriffsmöglichkeiten zur Verfügung gestellt werden.
+Zum Tagesgeschäft des IT-Teams \teamName gehört die Erstellung, Anpassung und Administration von Berichten (Reports), die den Fachabteilungen für operative und strategische Auswertungen und Analysen bereitgestellt werden.
 
 \subsection{Ausgangssituation} 
 \label{sec:Ausgangssituation}
-Dieser Abschnitt liefert nur einen kurzen Überblick über die organisatorische und technische Ausgangssituation vor Projektbeginn. Genaueres wird später unter dem Punkt \ref{sec:Anforderungsanalyse} (\ua die Ist- und Soll-Zustände) erläutert werden.
+Dieser Abschnitt liefert nur einen kurzen Überblick über die organisatorische und technische Ausgangssituation vor Projektbeginn. Genaueres wird später unter dem Punkt \ref{sec:Anforderungsanalyse} (\ua die Ist- und Soll-Zustände) erläutert.
 
 \subsubsection{Organisatorisch}
 \label{sec:Ausgangssituation:Organisatorisch}
-Da eine der Hauptaufgaben des Teams die Verwaltung der oben erwähnten Reports darstellt, werden kontinuierlich Berichte zur Förderung der \ac{BI} (deutsch: Geschäftsanalytik) erstellt und modifiziert, um Nutzern und Entwicklern einen komfortablen Zugriff zur einfachen Gewinnung verwertbarer Erkenntnisse zu ermöglichen. Hierzu werden \ac{BI}-Reports mit Tabellen und Diagrammen entwickelt, die Benutzern einen zentralisierten und einheitlichen Zugang zu der Vielzahl der komplexen Datenstrukturen gewähren.\footnote{\Vgl \cite{Projektantrag}}
-Um über die Gesamtmenge einen Überblick zu bewahren, existieren Metadaten-Berichte (also Berichte über Berichte), die einige Informationen \zB über die Anzahl und den Status bereitstellen.
-Die Anzahl der angelegten Metadaten-Berichte ist jedoch sehr gering und die Informationsdichte nicht ausreichend, aus welchem Grund dieses Projekt genau an dieser Stelle ansetzt.
+Da eine der Hauptaufgaben des Teams die Bereitstellung von Informationen ist, werden kontinuierlich Berichte zur Förderung der \ac{BI} (Geschäftsanalytik) erstellt und modifiziert, um Nutzern und Entwicklern einen komfortablen Zugriff zur einfachen Gewinnung verwertbarer Erkenntnisse zu ermöglichen. Hierzu werden \ac{BI}-Reports mit Tabellen und Diagrammen entwickelt, die Benutzern einen zentralisierten und einheitlichen Zugang zu der Vielzahl der komplexen Datenstrukturen gewähren.\footnote{\Vgl \cite{Projektantrag}}
+Um über die Gesamtmenge einen Überblick zu bewahren, existieren Metadaten-Berichte (also Berichte über Berichte), die \zB Informationen über die Anzahl und den Status bereitstellen.
+Da die Anzahl der angelegten Metadaten-Berichte sehr gering und die Informationsdichte nicht ausreichend ist, setzt dieses Projekt genau an dieser Stelle an.
 
 \subsubsection{Technisch}
 \label{sec:Ausgangssituation:Technisch}
-Zur Berichtserstellung wird die Berichtserstellungsplattform \ac{SSRS} eingesetzt, die Werkzeuge bietet (wie den Berichts-Generator/Designer), um aussagekräftige und anschauliche Berichte auf einem Webportal veröffentlichen zu können.\footnote{\Vgl \cite{Projektantrag}}
-Es ist ein serverbasiertes Generierungssystem für Berichte des Herstellers Microsoft und ist nur ein Tool von vielen aus der Reihe der \ac{BI}-Werkzeuge (\zB auch Crystal Reports).
+Zur Berichtserstellung wird die Berichtserstellungsplattform \ac{SSRS} eingesetzt, die Werkzeuge wie den Berichts-Generator/Designer bietet, um aussagekräftige und anschauliche Berichte auf einem Webportal veröffentlichen zu können.\footnote{\Vgl \cite{Projektantrag}}
+Es ist ein serverbasiertes Generierungssystem für Berichte des Herstellers Microsoft und nur ein Tool von vielen aus der Reihe der \ac{BI}-Werkzeuge (\zB auch Crystal Reports).
 
 
 
@@ -72,16 +72,16 @@ Es ist ein serverbasiertes Generierungssystem für Berichte des Herstellers Micr
 
 \paragraph{Projektverantwortlichkeiten} ~\\
 \label{p:Projektverantwortlichkeiten}
-Für die Analyse, Umsetzung und Planung des gesamten Projekts ist Yannik Queisler zuständig, der seit dem 11. März 2019 Mitarbeiter des \ac{CFT} \teamName ist. Da dieses Projekt nicht nur ein unternehmens- sondern auch abteilungsinternes Projekt ist, entstammen sämtliche Anforderungen ausschließlich aus diesem Team. Eine detailreichere Aufstellung sämtlicher Beteiligter folgt direkt im Anschluss im Abschnitt \nameref{p:Stakeholder}.
+Für die Analyse, Umsetzung und Planung des gesamten Projekts ist Yannik Queisler zuständig, der seit dem 11. März 2019 Mitarbeiter des \ac{CFT} \teamName ist. Da dieses Projekt nicht nur ein unternehmens- sondern auch teaminternes Projekt ist, entstammen sämtliche Anforderungen ausschließlich aus diesem Team. Eine detaillierte Aufstellung aller Beteiligten folgt direkt im Anschluss im Abschnitt \nameref{p:Stakeholder}.
 
 \paragraph{Stakeholder} ~\\
 \label{p:Stakeholder}
-Die folgende Tabelle zeigt alle beteiligten Stakeholder, \dahe alle am Projektergebnis interessierten Personen (deutsch: Anspruchsgruppe).
+Die folgende Tabelle zeigt die beteiligten Stakeholder, \dahe die am Projektergebnis interessierten Personen (Anspruchsgruppe).
 \tabelle{Stakeholder}{tab:Stakeholder}{Stakeholder}
 
 \paragraph{Endbenutzer} ~\\
 \label{p:Endbenutzer}
-Die Anwendung \projektName soll von allen Mitgliedern des \ac{CFT} \teamName genutzt werden können. Entsprechende Zugangsberechtigungen zur Beschränkung auf eben diesen Nutzerkreis sind zu implementieren.
+Die Anwendung \projektName soll von allen Mitgliedern des \ac{CFT} \teamName genutzt werden können. Entsprechende Zugangsberechtigungen zur Beschränkung auf diesen Nutzerkreis sind zu implementieren.
 
 \subsubsection{Technisch} 
 \label{sec:Projektschnittstellen:Technisch}
@@ -94,7 +94,7 @@ Für die Implementierung des Projekts wurde die Programmiersprache Java in der V
 \label{p:Frameworks}
 Die Anwendung wird mit dem Build-Management-Tool Maven automatisiert gebaut und basiert hauptsächlich auf dem Spring-Framework. Dieses stellt eine große Bandbreite verschiedener Funktionalitäten (\zB \ac{DI} oder \ac{AOP}) zur Verfügung und vereinfacht im Allgemeinen die Entwicklung von Web-Anwendungen.\\
 Zusätzlich wird dabei von dem Spring Boot Projekt Gebrauch gemacht, dass die Konfiguration von Spring-Applikationen durch Realisierung des Design-Paradigmas Convention over Configuration erheblich vereinfacht.\\
-Als \ac{ORM}-Framework (deutsch: objektrelationale Abbildung) und \ac{JPA}-Implementierung kommt Hibernate zum Einsatz. In diesem Zusammenhang erwähnenswert ist die Benutzung der Querydsl API, einer Schnittstelle zur Erstellung von gut lesbaren SQL-Abfragen in Java mittels eines Fluent Interfaces (deutsch: sprechender Schnittstellen), einer Form der Programmierung, die Sätzen natürlicher Sprache sehr nahekommt.
+Als \aclu{ORM}-Framework (\ac{ORM}: objektrelationale Abbildung) und \aclu{JPA}-Implementierung (\ac{JPA}) kommt Hibernate zum Einsatz. In diesem Zusammenhang erwähnenswert ist die Benutzung der Querydsl API, einer Schnittstelle zur Erstellung von gut lesbaren SQL-Abfragen in Java mittels eines Fluent Interfaces (sprechende Schnittstellen), einer Form der Programmierung, die der natürlichen Sprache sehr nahekommt.
 Außerdem werden diverse Funktionen üblicher Standard-Bibliotheken wie JUnit Jupiter (Test-Framework), Lombok (Code-Reduktion) und diverser Spring Boot Subprojekte (Security, Data, Web) verwendet.
 
 
@@ -119,12 +119,12 @@ Abschließend im Rahmen der Einleitung aufzugreifende Aspekte sind die vom Proje
 
 \paragraph{Organisatorisch} ~\\
 \label{p:Randbedingungen:Organisatorisch}
-Die Unternehmenorganisation im Geschäftsbereich IT bei der \ac{KVWL} besteht in ihren elementaren Bestandteilen aus einer Menge von selbstorganisierten \ac{CFT}s. Aus diesem Grund existieren verhältnismäßig flache Hierarchien, was in Bezugnahme auf dieses Projekt dazu geführt hat, dass mein Projektfortschritt nur Ansprechpartnern des Teams kommuniziert werden musste. Dies hat zu einem geringeren Leistungsdruck und besseren Arbeitsklima beigetragen.
+Die Unternehmenorganisation im Geschäftsbereich IT bei der \ac{KVWL} besteht in ihren elementaren Bestandteilen aus einer Menge von selbstorganisierten \ac{CFT}s. Aus diesem Grund existieren verhältnismäßig flache Hierarchien, die in Bezugnahme auf dieses Projekt dazu geführt haben, dass mein Projektfortschritt nur mit Ansprechpartnern des Teams kommuniziert werden musste. Dies hat zu einem geringeren Leistungsdruck und besseren Arbeitsklima beigetragen.
 
 \paragraph{Zeitlich} ~\\
 \label{p:Randbedingungen:Zeitlich}
-Das Projekt wurde seitens der IHK eindeutig auf einen Zeitraum von 70 Stunden beschränkt, weshalb im Vorfeld eine umfangreiche Projekt- und Zeitplanung erfolgen musste, welche in der folgenden Sektion \ref{sec:Projektplanung} genauer ausgeführt wird.
+Das Projekt wurde seitens der IHK auf einen Zeitraum von 70 Stunden beschränkt, weshalb im Vorfeld eine umfangreiche Projekt- und Zeitplanung erfolgen musste. Diese wird in der folgenden Sektion \ref{sec:Projektplanung} genauer ausgeführt.
 
 \paragraph{Technisch} ~\\
 \label{p:Randbedingungen:Technisch}
-Die IT-Umgebung in der \ac{KVWL} besteht im Wesentlichen aus einer Menge von Windows-Desktop-Arbeitsplätzen (meist in Büros mit \ca drei Mitarbeitern), an denen die Entwicklung von Anwendungen erfolgt und einem Rechenzentrum, das die Aufgaben der zentralen Datenverwaltung und des Server-Hostings übernimmt.
+Die IT-Umgebung in der \ac{KVWL} besteht im Wesentlichen aus einer Menge von Windows-Desktop-Arbeitsplätzen, an denen die Entwicklung und Verwaltung von Anwendungen erfolgt und einem Rechenzentrum, das die Aufgaben der zentralen Datenverwaltung und des Server-Hostings übernimmt.
