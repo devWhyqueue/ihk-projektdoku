@@ -213,38 +213,301 @@ Der Erstellungsprozess der Software ist ein umfangreicher und komplexer Prozess,
 
 \subsection{Implementierung} 
 \label{sec:Implementierung}
+Die Codierung der Anwendung findet auf dem lokalen Windows-Rechner des Anwendungsentwicklers statt. Da die Java-Entwicklung eine der Haupttätigkeiten von Entwicklern im Geschäftsbereich IT ist, müssen hierfür nur wenige Vorbereitungen getroffen werden.
 
+\subsubsection{Vorbereitung der Entwicklungsumgebung}
+\label{sec:Entwicklungsumgebung}
+Wie bereits beschrieben wurde, sind sowohl eine aktuelle Java 8 Version als auch eine \ac{IDE} auf dem Entwicklerrechner vorhanden. Es musste lediglich ein Bitbucket-Repository zur Versionsverwaltung angelegt und auf den lokalen Rechner geklont werden. Danach konnte das Basisprojekt unterstützt durch den Spring Initializr\footnote{\cite{spring:init}} über eine Weboberfläche generiert werden.
 
-\subsection{Implementierung der Datenstrukturen}
-\label{sec:ImplementierungDatenstrukturen}
+\subsubsection{Einarbeitung in die genutzten Technologien}
+\label{sec:Technologien}
+Nachdem die Entwicklungsumgebung eingerichtet war, konnte die Entwicklung des Projektes beginnen. Der Großteil der Technologien war bereits bekannt und wurde relativ sicher beherrscht. Die \ac{GUI} wurde mithilfe von Thymleaf-Templates aufgebaut, mit CSS gestaltet und ECMAScript gesteuert. Die Geschäftslogik wurde in einfachen Java-Klassen (\ac{POJO}) realisiert. Nur für die Datenzugriffe über \ac{JPA} wurde das für den Prüfling bisher unbekannte Framework Querydsl benutzt. Als Nachschlagewerke wurden hauptsächlich die offizielle Dokumentationsseiten und die Anleitungen von Beaeldung genutzt.
 
-\begin{itemize}
-	\item Beschreibung der angelegten Datenbank (\zB Generierung von \acs{SQL} aus Modellierungswerkzeug oder händisches Anlegen), \acs{XML}-Schemas \usw.
-\end{itemize}
+\subsubsection{Implementierung der Datenzugriffe}
+\label{sec:ImplementierungDatenzugriffe}
+Ausgehend von dem folgenden repräsentativen Beispiel für eine implementierte Datenabfrage, wird die Umsetzung dieses SQL-Ausdrucks durch alle Schichten hindurch beschrieben. Andere Statistiken wurden auf diesselbe Art extrahiert, verarbeitet und dargestellt. Das Resultat der Abfrage ist die geordnete Auflistung der am häufigsten ausgeführten Reports des letzten Monats.
+\begin{lstlisting}[language=SQL,caption={SQL-Abfrage}]
+SELECT c.itemid, c.name, c.path, c.type, COUNT(c.itemid)
+FROM   Catalog c 
+       INNER JOIN ExecutionLogStorage e ON c.itemid = e.reportid 
+WHERE  c.type = 2
+       AND c.NAME NOT LIKE 'H!_%' ESCAPE '!'
+       AND e.timestart > DATE_SUB(NOW(), INTERVAL 30 DAY)
+GROUP  BY c.itemid, c.name, c.type, c.path 
+ORDER BY COUNT(c.itemid) DESC
+\end{lstlisting}
+In der Abfrage werden zunächst die Attribute eines Items aus dem Catalog selektiert. Die Tabelle Catalog wird mit dem ExecutionLogStorage über die ItemID gejoint. Durch das Type-Attribut werden alle Berichte herausgefiltert und alle Berichte mit dem Namenspräfix \gqq{H\_} herausgefiltert, da dies die Unterberichte sind. Außdem wird der Ausführungszeitpunkt auf ein Intervall von 30 Tagen beschränkt und die Ergebnismenge schließlich nach der Anzahl der Ausführungen absteigend sortiert.\\
+Die äquivalente Darstellung als Java-Methode unter Verwendung von Querydsl sieht wie folgt aus:
+\begin{lstlisting}[language=Java,caption={Querydsl},label=l:querydsl]
+	public Page<ItemEntity> findMostExecutedReportsInRecent(Period period, Pageable pageable) {
+    List<ItemEntity> mostExecutedReports = queryFactory.selectFrom(itemEntity)
+        .innerJoin(itemEntity.executionLogEntities, executionLogEntity)
+        .where(isReport().and(executedInTheLast(period)))
+        .groupBy(itemEntity.id, itemEntity.name, itemEntity.type, itemEntity.path)
+        .orderBy(itemEntity.count()
+            .desc())
+        .fetch();
 
+    return DataUtils.generateItemEntityPageFromItemEntityList(mostExecutedReports, pageable);
+  	}
+\end{lstlisting}
+Es lässt sich bei der Java-Methode unmittelbar die Ähnlichkeit zur SQL-Abfrage feststellen. Der einzige Unterschied besteht darin, dass noch ein Parameter zur Paginierung übergeben wird. Dieser bewirkt, dass immer nur der Teil der Gesamtergebnismenge zurückgegeben wird, der auch in der Tabelle in der Benutzeroberfläche angezeigt wird.
 
-\subsection{Implementierung der Benutzeroberfläche}
-\label{sec:ImplementierungBenutzeroberflaeche}
-
-\begin{itemize}
-	\item Beschreibung der Implementierung der Benutzeroberfläche, falls dies separat zur Implementierung der Geschäftslogik erfolgt (\zB bei \acs{HTML}-Oberflächen und Stylesheets).
-	\item \Ggfs Beschreibung des Corporate Designs und dessen Umsetzung in der Anwendung.
-	\item Screenshots der Anwendung
-\end{itemize}
-
-\paragraph{Beispiel}
-Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im \Anhang{Screenshots}.
-
-
-\subsection{Implementierung der Geschäftslogik}
+\subsubsection{Implementierung der Geschäftslogik}
 \label{sec:ImplementierungGeschaeftslogik}
+Damit die Präsentationsschicht die Menge der am häufigsten ausgeführten Berichte des letzten Monats abrufen kann, muss auch die Geschäftslogikschicht eine Service-Methode zum Aufruf anbieten. In dieser ruft sie die in Listing \ref{l:querydsl} definierte getMostExecutedReportsIn()-Methode der Datenzugriffsschicht auf.
+\begin{lstlisting}[language=Java,caption={getMostUsedReports()-Methode des ReportServices},label={l:getMostUsedReports}]
+	@Override
+  	public Page<ExecutedReport> getMostUsedReports(Pageable pageable) {
+    Page<ItemEntity> itemEntities = reportStatisticsService
+        .getMostExecutedReportsIn(StatisticConstants.UNUSED_DEFINITION, pageable);
 
-\begin{itemize}
-	\item Beschreibung des Vorgehens bei der Umsetzung/Programmierung der entworfenen Anwendung.
-	\item \Ggfs interessante Funktionen/Algorithmen im Detail vorstellen, verwendete Entwurfsmuster zeigen.
-	\item Quelltextbeispiele zeigen.
-	\item Hinweis: Wie in Kapitel~\ref{sec:Einleitung}: \nameref{sec:Einleitung} zitiert, wird nicht ein lauffähiges Programm bewertet, sondern die Projektdurchführung. Dennoch würde ich immer Quelltextausschnitte zeigen, da sonst Zweifel an der tatsächlichen Leistung des Prüflings aufkommen können.
-\end{itemize}
+    return itemEntities
+        .map(dataEntityToBusinessObjectMapper::convertToReport)
+        .map(ExecutedReport.class::cast);
+  }
+\end{lstlisting}
+Zunächst werden in der Methode die ItemEntities in der Variable itemEntities des Typs Page gespeichert.
+Wie bereits im Abschnitt \ref{p:Logik} beschrieben, werden daraufhin die aus der Datenbank extrahierten Entitäten mithilfe der Mapper-Klassen auf Business-Objekte abgebildet. Im folgenden Listing wird eine ItemEntity (Tabelle Catalog) dargestellt.
+\begin{lstlisting}[language=Java,caption={ItemEntity}]
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id")
+@Entity
+@Table(name = "Catalog")
+@Immutable
+public class ItemEntity {
 
-\paragraph{Beispiel}
-Die Klasse \texttt{Com\-par\-ed\-Na\-tu\-ral\-Mo\-dule\-In\-for\-ma\-tion} findet sich im \Anhang{app:CNMI}.  
+  @Id
+  @Column(name = "ItemID")
+  private UUID id;
+
+  private String name;
+  private String path;
+  private Integer type;
+
+  @OneToMany(mappedBy = "itemEntity", cascade = CascadeType.MERGE)
+  private Set<ExecutionLogEntity> executionLogEntities = new HashSet<>();
+
+  @OneToMany(mappedBy = "itemEntity", cascade = CascadeType.MERGE)
+  private Set<DataSourceEntity> dataSourceEntities = new HashSet<>();
+
+  public ItemEntity() {
+  }
+
+  public ItemEntity(UUID id, String name, String path, Integer type) {
+    this.id = id;
+    this.name = name;
+    this.path = path;
+    this.type = type;
+  }
+
+  public void addExecutionLogEntity(ExecutionLogEntity executionLogEntity) {
+    this.executionLogEntities.add(executionLogEntity);
+    executionLogEntity.setItemEntity(this);
+  }
+
+  public void addDataSourceEntity(DataSourceEntity dataSourceEntity) {
+    this.dataSourceEntities.add(dataSourceEntity);
+    dataSourceEntity.setItemEntity(this);
+  }
+}
+\end{lstlisting}
+Man erkennt in der Klasse alle auch in der SQL-Abfrage vorhandenen Attribute und die 1:n-Beziehung zum ExecutionLogStorage in Form des executionLogEntities-Objekts. Die ItemEntities werden nun auf die Business-Objekte Report \bzw ExecutedReport abgebildet, abhängig davon, ob zu der ItemEntity ExecutionLogEntities existieren. Dieses Logik findet sich in den Mapper-Klassen. Im Anschluss sieht man die Klassen Report und ExecutedReport.
+\begin{lstlisting}[language=Java,caption={Report}]
+@Getter
+@Setter
+@EqualsAndHashCode
+public class Report {
+
+  private String name;
+  private String path;
+
+  public Report(String name, String path) {
+    this.name = name;
+    this.path = path;
+  }
+}
+\end{lstlisting}
+\begin{lstlisting}[language=Java,caption={ExecutedReport}]
+	@Getter
+	@Setter
+	@EqualsAndHashCode(callSuper = true)
+	public class ExecutedReport extends Report {
+	
+	  private LocalDateTime lastExecutedOn;
+	  private String lastExecutedBy;
+	  private String lastStatus;
+	  private Integer sizeInBytes;
+	  private Duration avgExecutionTime;
+	  // period depends on UNUSED_DEFINITION
+	  private Long numOfExecutionsInPeriod;
+	
+	  @Builder
+	  private ExecutedReport(String name, String path, LocalDateTime lastExecutedOn,
+		  String lastExecutedBy, String lastStatus, Integer sizeInBytes,
+		  Duration avgExecutionTime, Long numOfExecutionsInPeriod) {
+		super(name, path);
+		this.lastExecutedOn = lastExecutedOn;
+		this.lastExecutedBy = lastExecutedBy;
+		this.lastStatus = lastStatus;
+		this.sizeInBytes = sizeInBytes;
+		this.avgExecutionTime = avgExecutionTime;
+		this.numOfExecutionsInPeriod = numOfExecutionsInPeriod;
+	  }
+	
+	  public Long getNotUsedSinceDays() {
+		return ChronoUnit.DAYS.between(lastExecutedOn, LocalDateTime.now());
+	  }
+	}
+\end{lstlisting}
+Da eine Page der am häufigsten ausgeführten Reports abgerufen wird, sind alle Reports vom Typ ExecutedReport und können als entsprechend parametrisierte Page von der getMostUsedReports()-Methode (Listing \ref{l:getMostUsedReports}) zurückgegeben werden.
+
+\subsubsection{Implementierung der Präsentationssschicht}
+\label{sec:ImplementierungPraesentationsschicht}
+Auch in der Präsentationsschicht findet jetzt nochmal ein Mapping zwischen den ExecutedReport Business-Objekten auf \ac{GUI}-Objekte statt. \ac{GUI}-Objekte sind einfache \acs{DTO}s (\acs{DTO}: \aclu{DTO}), die nur Attribute und Zugriffsmethoden (get(), set()) auf diese bieten. Das \ac{DTO} für einen ExectuedReport sieht wie folgt aus:
+\begin{lstlisting}[language=Java,caption={ExecutedReport-DTO}]
+@Getter
+@Setter
+@EqualsAndHashCode
+public class ExecutedReport {
+
+  private String name;
+  private String path;
+  private String lastExecutedOn;
+  private String lastExecutedBy;
+  private String lastStatus;
+  private Integer sizeInBytes;
+  private Long avgExecutionSeconds;
+  private Long avgExecutionMinutes;
+  private Long notUsedSinceDays;
+  private Long numOfExecutionsInPeriod;
+
+  @Builder
+  private ExecutedReport(String name, String path, String lastExecutedOn,
+      String lastExecutedBy, String lastStatus, Integer sizeInBytes,
+      Long avgExecutionSeconds, Long avgExecutionMinutes, Long notUsedSinceDays,
+      Long numOfExecutionsInPeriod) {
+    this.name = name;
+    this.path = path;
+    this.lastExecutedOn = lastExecutedOn;
+    this.lastExecutedBy = lastExecutedBy;
+    this.lastStatus = lastStatus;
+    this.sizeInBytes = sizeInBytes;
+    this.avgExecutionSeconds = avgExecutionSeconds;
+    this.avgExecutionMinutes = avgExecutionMinutes;
+    this.notUsedSinceDays = notUsedSinceDays;
+    this.numOfExecutionsInPeriod = numOfExecutionsInPeriod;
+  }
+}
+\end{lstlisting}
+Der UsageStatsController kann nun über die Service-Methode getMostUsedReports() der Präsentationsschicht, die wiederum die Service-Methode der Geschäftslogikschicht aufruft und die zurückgegebene ExecutedReport-Page auf eine Page aus \ac{DTO}s mappt, die Daten unter einer Webadresse bereitstellen. Dies sieht so aus:
+\begin{lstlisting}[language=Java,caption={UsageStatsController}]
+@Controller
+@RequestMapping("/usage-stats")
+public class UsageStatsController {
+
+  private UsageStatisticsService usageStatisticsService;
+
+  @Autowired
+  public UsageStatsController(UsageStatisticsService usageStatisticsService) {
+    this.usageStatisticsService = usageStatisticsService;
+  }
+
+  // Andere Controller-Methoden ausgelassen
+
+  @GetMapping("/most-used-reports-table-fragment")
+  public String mostUsedTableFragment(Pageable pageable, Model model) {
+    Page<ExecutedReport> mostUsedReports = usageStatisticsService
+        .getMostUsedReports(pageable);
+
+    model.addAttribute("mostUsedReports", mostUsedReports);
+
+    return "fragments/tables/most_used_reports_pageable_table";
+  }
+}
+\end{lstlisting}
+Per ECMAScript werden die Tabellendaten unter der angegebenen Adresse abgerufen und \ua mit dem folgenden Thymeleaf-Template unter Verwendung der CSS-Bibliothek Bootstrap dargestellt.
+\begin{lstlisting}[language=HTML,caption={Tabellen-Fragment}]
+<div layout:replace="~{templates/pageable_table_template(dataPage=${mostUsedReports})}">
+  <th:block layout:fragment="table_headers">
+    <th scope="col">Name</th>
+    <th scope="col">Pfad</th>
+    <th scope="col">Anzahl Ausfuehrungen</th>
+    <th scope="col">zuletzt ausgefuehrt am</th>
+  </th:block>
+  <th:block layout:fragment="table_data">
+    <td th:text="${item.name}"></td>
+    <td th:text="${item.path}"></td>
+    <td th:text="${item.numOfExecutionsInPeriod}"></td>
+    <td th:text="${item.lastExecutedOn}"></td>
+  </th:block>
+</div>
+\end{lstlisting}
+Die Tabelle sieht dann bei Anzeige im Browser wie folgt aus:
+\begin{figure}[htb]
+	\centering
+	\includegraphicsKeepAspectRatio{Tabelle.png}{1}
+	\caption{HTML-Tabelle}
+	\label{fig:Tabelle}
+\end{figure}
+Screenshots der kompletten Applikation befinden sich im \Anhang{app:adllsd}.
+
+
+\subsection{Überprüfung}
+\label{sec:Ueberpruefung}
+Neben den beschriebenen Anwender-Reviews (Paragraph \ref{p:Reviews}) wurden auch Testklassen geschrieben, die automatisiert mit dem JUnit-Framework ausgeführt werden konnten. Es wurden nur Funktionalitäts- und keine Performancetests erstellt, da die Applikation nur von einem verhältnismäßig kleinen Nutzerkreis gleichzeitig verwendet werden muss. Exemplarisch wird im folgenden Listing ein Test der Datenzugriffsschicht-Methode findMostExecutedReportsInRecent() abgebildet.
+\begin{lstlisting}[language=Java,caption={ItemEntityRepositoryFindTest}]
+@ExtendWith(SpringExtension.class)
+@DataJpaTest
+public class ItemEntityRepositoryFindTest {
+
+  @Autowired
+  private ItemEntityRepository itemEntityRepository;
+
+  // Andere Test-Methoden ausgelassen
+
+  @Test
+  public void testFindMostExecutedReportsInLastDayShouldReturnOneItemEntity() {
+    ExecutionLogEntity executionLogEntity = ExecutionLogEntity.builder()
+        .timeStart(LocalDateTime.now().minusMinutes(2))
+        .timeEnd(LocalDateTime.now().minusMinutes(1)).build();
+    ItemEntity itemEntity = new ItemEntity(UUID.randomUUID(), "Report1",
+        "/Reports/Test/Report1",
+        2);
+    itemEntity.addExecutionLogEntity(executionLogEntity);
+    itemEntityRepository.save(itemEntity);
+
+    Page<ItemEntity> mostExecutedReports = itemEntityRepository.findMostExecutedReportsInRecent(
+        Period.ofDays(1),
+        PageRequest.of(0, 5));
+
+    assertEquals(1, mostExecutedReports.getTotalElements());
+  }
+}
+\end{lstlisting}
+Erwähnenswert ist die Verwendung der DataJpaTest-Annotation, die für die Testklasse eine eigene speicherresidente Testdatenbank erzeugt, sodass durch die Datenmanipulationsmethoden auf dem ItemEntityRepository keine Daten in der tatsächlichen Datenbank verändert werden. Alle Tests wurden nach dem Build-Operate-Check-Muster\footnote{\cite{fitnesse:boc}} verfasst.
+
+\Zwischenstand{Überprüfung}{Ueberpruefung}
+
+\subsection{Abnahme}
+\label{sec:Abnahme}
+Die Abnahme erfolgte im \ac{CFT} \teamName durch die Ansprechpartnerin Anne Schlebusch und die zukünftige Benutzerin Vera Ahrendt. Sie bestand aus einer kurzen Vorführung der erstellten Applikation und einigen händischen Tests durch beide Teammitglieder. Die Tests bestanden im Wesentlichen nur aus einer funktionalen Überprüfung der Oberfläche. Nach der Anmeldung in der App, testeten beide alle klickbaren Funktionen der Anwendung aus und ließen sich die entsprechenden Ausgaben anzeigen. Diese glichen sie mit ähnlichen Abfragen aus den bestehenden Metadaten-Berichten ab und validierten so die korrekte Datenabfrage. Insgesamt bereitete die Abnahme keine bemerkenswerten Probleme, da die Anwender schon im Vorfeld ausreichend in das Projekt integriert wurden.
+
+\subsection{Erstellung der Dokumentation}
+\label{sec:Dokumentation}
+Neben dieser Projektdokumentation wurden weitere Typen von Dokumentationen erstellt. Es sei bereits zu Beginn vermerkt, das das Verfassen aller Dokumentationsartefakte erheblich mehr Zeit in Anspruch genommen hat als zu Beginn eingeplant. Dies lässt sich aus der Tabelle \ref{tab:Dokumentation} am Ende dieser Sektion entnehmen.
+
+\subsubsection{Projektdokumentation}
+\label{sec:Projektdokumentation}
+Abgesehen von dieser umfangreichen Dokumentation des Projekts wurden noch einige Aspekte auf der unternehmensinternen Kollaborationsplattform Confluence dokumentiert. Dort finden sich sowohl die Projektmotivation, Mock-Ups, Besprechungsprotokolle, als auch \ua Links zur Versionsverwaltung und zum Testserver. Diese Seite bietet einen ersten Einstieg in das Projekt.
+
+\subsubsection{Benutzerdokumentation}
+\label{sec:Benutzerdokumentation}
+In der Benutzerdokumentation werden die Funktionen der Software anhand von Screenshots erklärt. Sie dient dem Anwender als Nachschlagewerk, falls Fragen während der Benutzung aufkommen. Die vollständige Benutzerdokumentation befindet sich im \Anhang{app:Benutzerdokumentation}.
+
+\subsubsection{Quellcodedokumentation}
+\label{sec:Quellcodedokumentation}
+Zum besseren Verständnis des Codes und zu Wartungszwecken wurden vereinzelt Code-Kommentare eingebaut. Dies lief werkzeuggestützt durch das von Java standardmäßig mitgelieferte Werkzeug JavaDoc ab. Eine Dokumentation lässt sich so auf Knopfdruck über das Buildmanagement-Werkzeug Maven generieren.
+
+\Zwischenstand{Erstellung der Dokumentation}{Dokumentation}
