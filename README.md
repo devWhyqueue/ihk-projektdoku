@@ -46,9 +46,9 @@ Typographische Konventionen, Seitenränder usw. können in der DateiSeitenstil.t
 - Die Planung der Arbeitsschritte muss inhaltlich und zeitlich nachvollziehbar dargestellt werden (Ablaufplan). &#9745;
 
 ### Durchführung und Auftragsbearbeitung (30 %, ca. 14 Seiten)
-- Die Durchführung muss beschrieben werden. Entscheidungen müssen mit Begründung dargestellt werden (Abweichung/Anpassungen).
-- Die einzelnen Prozessschritte müssen deutlich dargestellt werden.
-- Vorgehensweise
+- Die Durchführung muss beschrieben werden. Entscheidungen müssen mit Begründung dargestellt werden (Abweichung/Anpassungen). &#9745;
+- Die einzelnen Prozessschritte müssen deutlich dargestellt werden. &#9745;
+- Vorgehensweise &#9745;
 
 ### Projektergebnisse (15 %. ca. 7 Seiten)
 - Die Projektergebnisse müssen mit den geforderten oder erwarteten Ergebnissen verglichen

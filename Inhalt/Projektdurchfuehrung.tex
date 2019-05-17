@@ -208,15 +208,15 @@ Der Erstellungsprozess der Software ist ein umfangreicher und komplexer Prozess,
 
 \subsection{Implementierung} 
 \label{sec:Implementierung}
-Die Codierung der Anwendung findet auf dem lokalen Windows-Rechner des Anwendungsentwicklers statt. Da die Java-Entwicklung eine der Haupttätigkeiten von Entwicklern im Geschäftsbereich IT ist, müssen hierfür nur wenige Vorbereitungen getroffen werden.
+Die Codierung der Anwendung findet auf dem lokalen Windows-Rechner des Anwendungsentwicklers statt. Da die Java-Entwicklung eine der Haupttätigkeiten von Entwicklern im Geschäftsbereich IT ist, müssen nur wenige Vorbereitungen getroffen werden.
 
 \subsubsection{Vorbereitung der Entwicklungsumgebung}
 \label{sec:Entwicklungsumgebung}
-Wie bereits beschrieben wurde, sind sowohl eine aktuelle Java 8 Version als auch eine \ac{IDE} auf dem Entwicklerrechner vorhanden. Es musste lediglich ein Bitbucket-Repository zur Versionsverwaltung angelegt und auf den lokalen Rechner geklont werden. Danach konnte das Basisprojekt unterstützt durch den Spring Initializr\footnote{\cite{spring:init}} über eine Weboberfläche generiert werden.
+Wie bereits beschrieben wurde, sind sowohl die aktuelle Java 8 Version als auch eine \ac{IDE} auf dem Entwicklerrechner vorhanden. Es musste lediglich ein Bitbucket-Repository zur Versionsverwaltung angelegt und auf den lokalen Rechner geklont werden. Danach konnte das Basisprojekt unterstützt durch den Spring Initializr\footnote{\cite{spring:init}} über eine Weboberfläche generiert werden.
 
 \subsubsection{Einarbeitung in die genutzten Technologien}
 \label{sec:Technologien}
-Nachdem die Entwicklungsumgebung eingerichtet war, konnte die Entwicklung des Projektes beginnen. Der Großteil der Technologien war bereits bekannt und wurde relativ sicher beherrscht. Die \ac{GUI} wurde mithilfe von Thymleaf-Templates aufgebaut, mit CSS gestaltet und ECMAScript gesteuert. Die Geschäftslogik wurde in einfachen Java-Klassen (\ac{POJO}) realisiert. Nur für die Datenzugriffe über \ac{JPA} wurde das für den Prüfling bisher unbekannte Framework Querydsl benutzt. Als Nachschlagewerke wurden hauptsächlich die offizielle Dokumentationsseiten und die Anleitungen von Beaeldung genutzt.
+Nachdem die Entwicklungsumgebung eingerichtet worden ist, konnte die Entwicklung des Projektes beginnen. Der Großteil der Technologien war bereits bekannt und wurde relativ sicher beherrscht. Die \ac{GUI} wurde mithilfe von Thymleaf-Templates aufgebaut, mit CSS gestaltet und ECMAScript gesteuert. Die Geschäftslogik wurde in einfachen Java-Klassen (\acs{POJO}: \aclu{POJO}) realisiert. Nur für die Datenzugriffe über \ac{JPA} wurde das für den Prüfling bisher unbekannte Framework Querydsl benutzt. Als Nachschlagewerke wurden hauptsächlich die offiziellen Dokumentationsseiten und die Anleitungen von Beaeldung genutzt.
 
 \subsubsection{Implementierung der Datenzugriffe}
 \label{sec:ImplementierungDatenzugriffe}
@@ -231,9 +231,9 @@ WHERE  c.type = 2
 GROUP  BY c.itemid, c.name, c.type, c.path 
 ORDER BY COUNT(c.itemid) DESC
 \end{lstlisting}
-In der Abfrage werden zunächst die Attribute eines Items aus dem Catalog selektiert. Die Tabelle Catalog wird mit dem ExecutionLogStorage über die ItemID gejoint. Durch das Type-Attribut werden alle Berichte herausgefiltert und alle Berichte mit dem Namenspräfix \gqq{H\_} herausgefiltert, da dies die Unterberichte sind. Außdem wird der Ausführungszeitpunkt auf ein Intervall von 30 Tagen beschränkt und die Ergebnismenge schließlich nach der Anzahl der Ausführungen absteigend sortiert.\\
+In der Abfrage werden zunächst die Attribute eines Items aus dem Catalog selektiert. Die Tabelle Catalog wird mit dem ExecutionLogStorage über die ItemID verbunden. Durch das Type-Attribut werden alle Berichte identifiziert. Berichte mit dem Namenspräfix \gqq{H\_} werden herausgefiltert, da dies die Unterberichte sind. Außdem wird der Ausführungszeitpunkt auf ein Intervall von 30 Tagen beschränkt und die Ergebnismenge nach der Anzahl der Ausführungen absteigend sortiert.\\
 Die äquivalente Darstellung als Java-Methode unter Verwendung von Querydsl sieht wie folgt aus:
-\begin{lstlisting}[language=Java,caption={Querydsl},label=l:querydsl]
+\begin{lstlisting}[language=Java,caption={findMostExecutedReportsInRecent()},label=l:querydsl]
 	public Page<ItemEntity> findMostExecutedReportsInRecent(Period period, Pageable pageable) {
     List<ItemEntity> mostExecutedReports = queryFactory.selectFrom(itemEntity)
         .innerJoin(itemEntity.executionLogEntities, executionLogEntity)
@@ -251,7 +251,7 @@ Es lässt sich bei der Java-Methode unmittelbar die Ähnlichkeit zur SQL-Abfrage
 \subsubsection{Implementierung der Geschäftslogik}
 \label{sec:ImplementierungGeschaeftslogik}
 Damit die Präsentationsschicht die Menge der am häufigsten ausgeführten Berichte des letzten Monats abrufen kann, muss auch die Geschäftslogikschicht eine Service-Methode zum Aufruf anbieten. In dieser ruft sie die in Listing \ref{l:querydsl} definierte getMostExecutedReportsIn()-Methode der Datenzugriffsschicht auf.
-\begin{lstlisting}[language=Java,caption={getMostUsedReports()-Methode des ReportServices},label={l:getMostUsedReports}]
+\begin{lstlisting}[language=Java,caption={getMostUsedReports()},label={l:getMostUsedReports}]
 	@Override
   	public Page<ExecutedReport> getMostUsedReports(Pageable pageable) {
     Page<ItemEntity> itemEntities = reportStatisticsService
@@ -308,7 +308,7 @@ public class ItemEntity {
   }
 }
 \end{lstlisting}
-Man erkennt in der Klasse alle auch in der SQL-Abfrage vorhandenen Attribute und die 1:n-Beziehung zum ExecutionLogStorage in Form des executionLogEntities-Objekts. Die ItemEntities werden nun auf die Business-Objekte Report \bzw ExecutedReport abgebildet, abhängig davon, ob zu der ItemEntity ExecutionLogEntities existieren. Dieses Logik findet sich in den Mapper-Klassen. Im Anschluss sieht man die Klassen Report und ExecutedReport.
+Man erkennt in der Klasse alle auch in der SQL-Abfrage vorhandenen Attribute und die 1:n-Beziehung zum ExecutionLogStorage in Form des executionLogEntities-Objekts. Die ItemEntities werden nun auf die Business-Objekte Report \bzw ExecutedReport abgebildet, abhängig davon, ob zu der ItemEntity ExecutionLogEntities existieren. Diese Logik findet sich in den Mapper-Klassen. Im Anschluss sieht man die Klassen Report und ExecutedReport.
 \begin{lstlisting}[language=Java,caption={Report}]
 @Getter
 @Setter
@@ -356,11 +356,11 @@ public class Report {
 	  }
 	}
 \end{lstlisting}
-Da eine Page der am häufigsten ausgeführten Reports abgerufen wird, sind alle Reports vom Typ ExecutedReport und können als entsprechend parametrisierte Page von der getMostUsedReports()-Methode (Listing \ref{l:getMostUsedReports}) zurückgegeben werden.
+Da eine Page der am häufigsten ausgeführten Reports abgerufen wird, sind alle Reports vom Typ ExecutedReport und können als entsprechend parametrisierte Page von der get\-Most\-Used\-Reports()-Methode (Listing \ref{l:getMostUsedReports}) zurückgegeben werden.
 
 \subsubsection{Implementierung der Präsentationssschicht}
 \label{sec:ImplementierungPraesentationsschicht}
-Auch in der Präsentationsschicht findet jetzt nochmal ein Mapping zwischen den ExecutedReport Business-Objekten auf \ac{GUI}-Objekte statt. \ac{GUI}-Objekte sind einfache \acs{DTO}s (\acs{DTO}: \aclu{DTO}), die nur Attribute und Zugriffsmethoden (get(), set()) auf diese bieten. Das \ac{DTO} für einen ExectuedReport sieht wie folgt aus:
+Auch in der Präsentationsschicht findet ein Mapping zwischen den ExecutedReport Business-Objekten auf \ac{GUI}-Objekte statt. \ac{GUI}-Objekte sind einfache \acs{DTO}s (\aclu{DTO}s), die nur Attribute und Zugriffsmethoden (get(), set()) auf diese bieten. Das \ac{DTO} für einen ExectuedReport sieht wie folgt aus:
 \begin{lstlisting}[language=Java,caption={ExecutedReport-DTO}]
 @Getter
 @Setter
@@ -396,7 +396,7 @@ public class ExecutedReport {
   }
 }
 \end{lstlisting}
-Der UsageStatsController kann nun über die Service-Methode getMostUsedReports() der Präsentationsschicht, die wiederum die Service-Methode der Geschäftslogikschicht aufruft und die zurückgegebene ExecutedReport-Page auf eine Page aus \ac{DTO}s mappt, die Daten unter einer Webadresse bereitstellen. Dies sieht so aus:
+Der UsageStatsController kann nun über die Service-Methode getMostUsedReports() der Präsentationsschicht die Daten abrufen und unter einer Webadresse bereitstellen. Dazu ruft getMostUsedReports() die Service-Methode aus Listing \ref{l:getMostUsedReports} der Geschäftslogikschicht auf und mappt die zurückgegebene ExecutedReport-Page auf eine Page aus \ac{DTO}s. Dies sieht so aus:
 \begin{lstlisting}[language=Java,caption={UsageStatsController}]
 @Controller
 @RequestMapping("/usage-stats")
@@ -439,19 +439,17 @@ Per ECMAScript werden die Tabellendaten unter der angegebenen Adresse abgerufen 
   </th:block>
 </div>
 \end{lstlisting}
-Die Tabelle sieht dann bei Anzeige im Browser wie folgt aus:
+Die Tabelle wird im Browser folgendermaßen angezeigt:
 \begin{figure}[htb]
 	\centering
 	\includegraphicsKeepAspectRatio{Tabelle.png}{1}
 	\caption{HTML-Tabelle}
 	\label{fig:Tabelle}
 \end{figure}
-Screenshots der kompletten Applikation befinden sich im \Anhang{app:adllsd}.
-
 
 \subsection{Überprüfung}
 \label{sec:Ueberpruefung}
-Neben den beschriebenen Anwender-Reviews (Paragraph \ref{p:Reviews}) wurden auch Testklassen geschrieben, die automatisiert mit dem JUnit-Framework ausgeführt werden konnten. Es wurden nur Funktionalitäts- und keine Performancetests erstellt, da die Applikation nur von einem verhältnismäßig kleinen Nutzerkreis gleichzeitig verwendet werden muss. Exemplarisch wird im folgenden Listing ein Test der Datenzugriffsschicht-Methode findMostExecutedReportsInRecent() abgebildet.
+Neben den beschriebenen Anwender-Reviews (Paragraph \ref{p:Reviews}) wurden Testklassen geschrieben, die automatisiert mit dem JUnit-Framework ausgeführt werden konnten. Es wurden nur Funktionalitäts- und keine Performancetests erstellt, da die Applikation nur von einem verhältnismäßig kleinen Nutzerkreis gleichzeitig verwendet werden muss. Exemplarisch wird hier ein Test der Datenzugriffsschicht-Methode findMostExecutedReportsInRecent() abgebildet.
 \begin{lstlisting}[language=Java,caption={ItemEntityRepositoryFindTest}]
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -487,15 +485,15 @@ Erwähnenswert ist die Verwendung der DataJpaTest-Annotation, die für die Testk
 
 \subsection{Abnahme}
 \label{sec:Abnahme}
-Die Abnahme erfolgte im \ac{CFT} \teamName durch die Ansprechpartnerin Anne Schlebusch und die zukünftige Benutzerin Vera Ahrendt. Sie bestand aus einer kurzen Vorführung der erstellten Applikation und einigen händischen Tests durch beide Teammitglieder. Die Tests bestanden im Wesentlichen nur aus einer funktionalen Überprüfung der Oberfläche. Nach der Anmeldung in der App, testeten beide alle klickbaren Funktionen der Anwendung aus und ließen sich die entsprechenden Ausgaben anzeigen. Diese glichen sie mit ähnlichen Abfragen aus den bestehenden Metadaten-Berichten ab und validierten so die korrekte Datenabfrage. Insgesamt bereitete die Abnahme keine bemerkenswerten Probleme, da die Anwender schon im Vorfeld ausreichend in das Projekt integriert wurden.
+Die Abnahme erfolgte im \ac{CFT} \teamName durch die Ansprechpartnerin Anne Schlebusch und die zukünftige Benutzerin Vera Ahrendt. Sie bestand aus einer kurzen Vorführung der erstellten Applikation und einigen manuellen Tests durch beide Teammitglieder. Die Tests bestanden im Wesentlichen nur aus einer funktionalen Überprüfung der Oberfläche. Nach der Anmeldung an der Web-Applikation, testeten beide alle klickbaren Funktionen der Anwendung und ließen sich die entsprechenden Ausgaben anzeigen. Diese glichen sie mit ähnlichen Abfragen aus den bestehenden Metadaten-Berichten ab und validierten so die korrekte Datenabfrage. Insgesamt bereitete die Abnahme keine bemerkenswerten Probleme, da die Anwender schon im Vorfeld ausreichend in das Projekt integriert wurden.
 
 \subsection{Erstellung der Dokumentation}
 \label{sec:Dokumentation}
-Neben dieser Projektdokumentation wurden weitere Typen von Dokumentationen erstellt. Es sei bereits zu Beginn vermerkt, das das Verfassen aller Dokumentationsartefakte erheblich mehr Zeit in Anspruch genommen hat als zu Beginn eingeplant. Dies lässt sich aus der Tabelle \ref{tab:Dokumentation} am Ende dieser Sektion entnehmen.
+Neben dieser Projektdokumentation wurden weitere Typen von Dokumentationen erstellt. Das Verfassen aller Dokumentationsartefakte hat erheblich mehr Zeit in Anspruch genommen als zu Beginn eingeplant. Dies lässt sich aus der Tabelle \ref{tab:Dokumentation} am Ende dieser Sektion entnehmen.
 
 \subsubsection{Projektdokumentation}
 \label{sec:Projektdokumentation}
-Abgesehen von dieser umfangreichen Dokumentation des Projekts wurden noch einige Aspekte auf der unternehmensinternen Kollaborationsplattform Confluence dokumentiert. Dort finden sich sowohl die Projektmotivation, Mock-Ups, Besprechungsprotokolle, als auch \ua Links zur Versionsverwaltung und zum Testserver. Diese Seite bietet einen ersten Einstieg in das Projekt.
+Abgesehen von dieser umfangreichen Dokumentation des Projekts wurden noch einige Aspekte auf der unternehmensinternen Kollaborationsplattform Confluence dokumentiert. Dort befinden sich sowohl die Projektmotivation, Mock-Ups, Besprechungsprotokolle als auch Links zur Versionsverwaltung und zum Testserver. Diese Seite bietet einen ersten Einstieg in das Projekt.
 
 \subsubsection{Benutzerdokumentation}
 \label{sec:Benutzerdokumentation}
@@ -503,6 +501,8 @@ In der Benutzerdokumentation werden die Funktionen der Software anhand von Scree
 
 \subsubsection{Quellcodedokumentation}
 \label{sec:Quellcodedokumentation}
-Zum besseren Verständnis des Codes und zu Wartungszwecken wurden vereinzelt Code-Kommentare eingebaut. Dies lief werkzeuggestützt durch das von Java standardmäßig mitgelieferte Werkzeug JavaDoc ab. Eine Dokumentation lässt sich so auf Knopfdruck über das Buildmanagement-Werkzeug Maven generieren.
+Zum besseren Verständnis des Codes und zu Wartungszwecken wurden vereinzelt Code-Kommentare eingebaut. Dies erfolgte werkzeuggestützt durch das von Java standardmäßig mitgelieferte Werkzeug Javadoc. Über das Buildmanagement-Werkzeug Maven lässt sich so automatisch eine Dokumentation generieren.
 
 \Zwischenstand{Erstellung der Dokumentation}{Dokumentation}
+
+\newpage
