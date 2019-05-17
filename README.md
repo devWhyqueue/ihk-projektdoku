@@ -51,13 +51,11 @@ Typographische Konventionen, Seitenränder usw. können in der DateiSeitenstil.t
 - Vorgehensweise &#9745;
 
 ### Projektergebnisse (15 %. ca. 7 Seiten)
-- Die Projektergebnisse müssen mit den geforderten oder erwarteten Ergebnissen verglichen
-werden, Abweichungen müssen begründet werden (Soll-Ist-Vergleich).
-- Die benötigten Zeiten für die einzelnen Schritte sind gegen die Planung abzugleichen, Abweichungen sind zu begründen.
-- Zusammenfassung der Ergebnisse und der Durchführung, daraus gewonnene Resultate für
-das eigene Projekt und ggf. für folgende Projekte.
-- Qualitätskontrolle
-- Abnahme, Prozess, Ergebnis umfassend darstellen/bewerten
+- Die Projektergebnisse müssen mit den geforderten oder erwarteten Ergebnissen verglichen werden, Abweichungen müssen begründet werden (Soll-Ist-Vergleich).  &#9745;
+- Die benötigten Zeiten für die einzelnen Schritte sind gegen die Planung abzugleichen, Abweichungen sind zu begründen.  &#9745;
+- Zusammenfassung der Ergebnisse und der Durchführung, daraus gewonnene Resultate für das eigene Projekt und ggf. für folgende Projekte.  &#9745;
+- Qualitätskontrolle  &#9745;
+- Abnahme, Prozess, Ergebnis umfassend darstellen/bewerten  &#9745;
 
 ### Kundendokumentation (10 %, max. 10 Seiten)
 - Die Zielgruppe muss bestimmt werden.
