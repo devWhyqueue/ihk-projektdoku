@@ -6,7 +6,7 @@ Das Kapitel Projektdurchführung befasst sich mit allen acht, in Abschnitt \ref{
 
 \subsection{Wirtschaftlichkeitsanalyse}
 \label{sec:Wirtschaftlichkeitsanalyse}
-Eine Wirtschaftlichkeitsanalyse stellt die Kosten und das erwartete Ergebnis eines Projektes gegenüber. Ziel ist die Überprüfung der Rentabilität \bzw Wirtschaftlichkeit. Gründe für erfolgreiche Projekte sollen identifiziert und die Wirkung von Schwächen begrenzt werden.\footnote{\Vgl \cite{finlex:wa}}\\
+Eine Wirtschaftlichkeitsanalyse stellt die Kosten und das erwartete Ergebnis eines Projektes gegenüber. Ziel ist die Überprüfung der Rentabilität \bzw Wirtschaftlichkeit. Gründe für erfolgreiche Projekte sollen identifiziert und die Wirkung von Schwächen begrenzt werden.\footnote{\Vgl \cite{finlex:wa}}
 
 \subsubsection{\gqq{Make or Buy}-Entscheidung}
 \label{sec:MakeOrBuyEntscheidung}
@@ -95,7 +95,7 @@ Aktuell bietet das von den \ac{SSRS} zur Verfügung gestellte Webportal zwar kom
 
 \subsubsection{Anwendungsfälle}
 \label{sec:Anwendungsfaelle}
-Die ermittelten Anforderungsfälle werden in dem folgenden Anwendungsfalldiagramm dargestellt. Detailliertere User Stories befinden sich im \Anhang{app:UserStories}.
+Die ermittelten Anforderungsfälle werden in dem folgenden Anwendungsfalldiagramm dargestellt.
 \begin{figure}[htb]
 	\centering
 	\includegraphicsKeepAspectRatio{Anwendungsfalldiagramm.png}{0.7}
@@ -124,7 +124,7 @@ Wie bereits erwähnt, sollen nach Ende des Projektes weitere Funktionen hinzugef
 \label{sec:Systementwurf}
 
 \subsubsection{Zielplattform}
-\label{sec:Systementwurf}
+\label{sec:Zielplattform}
 Die \ac{KVWL} setzt bezüglich der Entwicklung von Web-Anwendungen hauptsächlich auf Software, die in Java programmiert ist. Somit ist dies eine implizite Vorgabe für dieses Projekt. Aktuell wird die Programmiersprache Java in der Version 8 eingesetzt.
 
 \paragraph{Server} ~\\
@@ -178,11 +178,11 @@ Die Entscheidung für dieses Modell wurde aufgrund des eingesetzten Spring Frame
 
 \subsubsection{Framework}
 \label{sec:Framework}
-Wie schon im Abschnitt Projektumfeld unter Punkt \ref{p:Frameworks} beschrieben, wurden diverse Frameworks eingesetzt. Strukturell jedoch beeinflusste das Spring Framework maßgeblich den Entwurf der Applikation. In der Datenhaltungsschicht wurden mithilfe von Spring Data\footnote{\Vgl \cite{spring:data}} einheitliche und komfortable Datenzugriffe realisiert. Mit Spring MVC wurde eine leicht änder- und erweiterbare Präsentationsschicht konstruiert. Nur die Logikschicht bedient sich keinerlei Funktionalitäten des Spring Frameworks. Genauere Einzelheiten hierzu finden sich im Abschnitt \ref{sec:Implementierungsphase}.
+Wie schon im Abschnitt Projektumfeld unter Punkt \ref{p:Frameworks} beschrieben, wurden diverse Frameworks eingesetzt. Strukturell jedoch beeinflusste das Spring Framework maßgeblich den Entwurf der Applikation. In der Datenhaltungsschicht wurden mithilfe von Spring Data\footnote{\Vgl \cite{spring:data}} einheitliche und komfortable Datenzugriffe realisiert. Mit Spring MVC wurde eine leicht zu ändernde und erweiterbare Präsentationsschicht konstruiert. Nur die Logikschicht bedient sich keinerlei Funktionalitäten des Spring Frameworks. Genauere Einzelheiten hierzu finden sich im Abschnitt \ref{sec:Implementierung}.
 
 \subsubsection{Entwurf der Benutzeroberfläche}
 \label{sec:Benutzeroberflaeche}
-Das Webinterface von \projektName wurde mithilfe von Mock-Ups in enger Kooperation mit den Benutzern entworfen. Da ein auf die Benutzeranforderungen abgestimmtes Design ausschlaggebend für die Benutzbarkeit (\ref{p:Benutzbarkeit}) der Anwendung ist, wurden die Mock-Ups über eine Vielzahl von Iterationen kontinuierlich verbessert. So konnte eine hohe Kundenzufriedenheit am Ende der Entwurfsphase erreicht werden. Der Aufbau der \ac{GUI} orientiert sich an der unternehmensüblichen Struktur für Webseiten. Im oberen Bereich befindet sich eine Navigationsleiste, mit der die Unterseiten erreicht werden können. Im Mittelteil werden die Hauptinhalte (Tabellen \etc) platziert und am unteren Rand liegt ein Footer, der die Version der Applikation anzeigt. Die verwendeten Farben entsprechen den Corporate-Design-Richtlinien der \ac{KVWL}. Eine PDF-Version des Mock-Ups kann im \Anhang{app:Mock} eingesehen werden.
+Das Webinterface von \projektName wurde mithilfe von Mock-Ups in enger Kooperation mit den Benutzern entworfen. Da ein auf die Benutzeranforderungen abgestimmtes Design ausschlaggebend für die Benutzbarkeit (\ref{p:Benutzbarkeit}) der Anwendung ist, wurden die Mock-Ups über eine Vielzahl von Iterationen kontinuierlich verbessert. So konnte eine hohe Kundenzufriedenheit am Ende der Entwurfsphase erreicht werden. Der Aufbau der \ac{GUI} orientiert sich an der unternehmensüblichen Struktur für Webseiten. Im oberen Bereich befindet sich eine Navigationsleiste, mit der die Unterseiten erreicht werden können. Im Mittelteil werden die Hauptinhalte (Tabellen \etc) platziert und am unteren Rand liegt ein Footer, der die Version der Applikation anzeigt. Die verwendeten Farben entsprechen den Corporate-Design-Richtlinien der \ac{KVWL}. Eine PDF-Version des Mock-Ups kann im \Anhang{app:Mockup} eingesehen werden.
 
 \subsubsection{Maßnahmen zur Qualitätssicherung}
 \label{sec:Qualitaetssicherung}
@@ -202,7 +202,7 @@ Für die zentrale Verwaltung des Quellcodes wurde Git verwendet. Mithilfe dieses
 
 \paragraph{Buildmanagement} ~\\
 \label{p:Buildmangement}
-Der Erstellungsprozess der Software ist ein umfangreicher und komplexer Prozess, bei dem der Quellcode in Software-Artefakte überführt wird, die ausgeführt werden können. Da manuelle Builds sehr fehleranfällig sind, wurde der Build-Prozess mithilfe des Buildmangement-Tools Maven automatisiert. Über eine Konfigurationsdatei (\acs{POM}: \aclu{POM}) werden alle Abhängigkeiten des Projekts komfortabel verwaltet und vollautomatisch beim Build der Anwendung eingebunden.
+Der Erstellungsprozess der Software ist ein umfangreicher und komplexer Prozess, bei dem der Quellcode in Software-Artefakte überführt wird, die ausgeführt werden können. Da manuelle Builds sehr fehleranfällig sind, wurde der Build-Prozess mithilfe des Build-Management-Tools Maven automatisiert. Über eine Konfigurationsdatei (\acs{POM}: \aclu{POM}) werden alle Abhängigkeiten des Projekts komfortabel verwaltet und vollautomatisch beim Build der Anwendung eingebunden.
 
 \Zwischenstand{Entwurfsphase}{Entwurf}
 
@@ -216,7 +216,7 @@ Wie bereits beschrieben wurde, sind sowohl die aktuelle Java 8 Version als auch 
 
 \subsubsection{Einarbeitung in die genutzten Technologien}
 \label{sec:Technologien}
-Nachdem die Entwicklungsumgebung eingerichtet worden ist, konnte die Entwicklung des Projektes beginnen. Der Großteil der Technologien war bereits bekannt und wurde relativ sicher beherrscht. Die \ac{GUI} wurde mithilfe von Thymleaf-Templates aufgebaut, mit CSS gestaltet und ECMAScript gesteuert. Die Geschäftslogik wurde in einfachen Java-Klassen (\acs{POJO}: \aclu{POJO}) realisiert. Nur für die Datenzugriffe über \ac{JPA} wurde das für den Prüfling bisher unbekannte Framework Querydsl benutzt. Als Nachschlagewerke wurden hauptsächlich die offiziellen Dokumentationsseiten und die Anleitungen von Beaeldung genutzt.
+Nachdem die Entwicklungsumgebung eingerichtet worden ist, konnte die Entwicklung des Projektes beginnen. Der Großteil der Technologien war bereits bekannt und wurde relativ sicher beherrscht. Die \ac{GUI} wurde mithilfe von Thymeleaf-Templates aufgebaut, mit CSS gestaltet und ECMAScript gesteuert. Die Geschäftslogik wurde in einfachen Java-Klassen (\acs{POJO}: \aclu{POJO}) realisiert. Nur für die Datenzugriffe über \ac{JPA} wurde das für den Prüfling bisher unbekannte Framework Querydsl benutzt. Als Nachschlagewerke wurden hauptsächlich die offiziellen Dokumentationsseiten und die Anleitungen von Baeldung genutzt.
 
 \subsubsection{Implementierung der Datenzugriffe}
 \label{sec:ImplementierungDatenzugriffe}
@@ -231,7 +231,7 @@ WHERE  c.type = 2
 GROUP  BY c.itemid, c.name, c.type, c.path 
 ORDER BY COUNT(c.itemid) DESC
 \end{lstlisting}
-In der Abfrage werden zunächst die Attribute eines Items aus dem Catalog selektiert. Die Tabelle Catalog wird mit dem ExecutionLogStorage über die ItemID verbunden. Durch das Type-Attribut werden alle Berichte identifiziert. Berichte mit dem Namenspräfix \gqq{H\_} werden herausgefiltert, da dies die Unterberichte sind. Außdem wird der Ausführungszeitpunkt auf ein Intervall von 30 Tagen beschränkt und die Ergebnismenge nach der Anzahl der Ausführungen absteigend sortiert.\\
+In der Abfrage werden zunächst die Attribute eines Items aus dem Catalog selektiert. Die Tabelle Catalog wird mit dem ExecutionLogStorage über die ItemID verbunden. Durch das Type-Attribut werden alle Berichte identifiziert. Berichte mit dem Namenspräfix \gqq{H\_} werden herausgefiltert, da dies die Unterberichte sind. Außerdem wird der Ausführungszeitpunkt auf ein Intervall von 30 Tagen beschränkt und die Ergebnismenge nach der Anzahl der Ausführungen absteigend sortiert.\\
 Die äquivalente Darstellung als Java-Methode unter Verwendung von Querydsl sieht wie folgt aus:
 \begin{lstlisting}[language=Java,caption={findMostExecutedReportsInRecent()},label=l:querydsl]
 	public Page<ItemEntity> findMostExecutedReportsInRecent(Period period, Pageable pageable) {
@@ -501,7 +501,7 @@ In der Benutzerdokumentation werden die Funktionen der Software anhand von Scree
 
 \subsubsection{Quellcodedokumentation}
 \label{sec:Quellcodedokumentation}
-Zum besseren Verständnis des Codes und zu Wartungszwecken wurden vereinzelt Code-Kommentare eingebaut. Dies erfolgte werkzeuggestützt durch das von Java standardmäßig mitgelieferte Werkzeug Javadoc. Über das Buildmanagement-Werkzeug Maven lässt sich so automatisch eine Dokumentation generieren.
+Zum besseren Verständnis des Codes und zu Wartungszwecken wurden vereinzelt Code-Kom\-men\-tare eingebaut. Dies erfolgte werkzeuggestützt durch das von Java standardmäßig mitgelieferte Werkzeug Javadoc. Über das Build-Management-Werkzeug Maven lässt sich so automatisch eine Dokumentation generieren.
 
 \Zwischenstand{Erstellung der Dokumentation}{Dokumentation}
 

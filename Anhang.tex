@@ -1,55 +1,63 @@
 % !TEX root = Projektdokumentation.tex
 \section{Anhang}
+
 \subsection{Detaillierte Zeitplanung}
 \label{app:Zeitplanung}
 
-\tabelleAnhang{ZeitplanungKomplett}
+\subsubsection{Legende}
+\label{app:Legende}
+Rote Tage sind blockiert (\zB durch Fachhochschulveranstaltungen, Urlaub), gelbe Tage sind nur teilweise verfügbar (weniger als vier Stunden) und grüne Tage sind für das Projekt verwendbar. \\
 
-\input{Anhang/AnhangLastenheft.tex}
-\clearpage
-
-\subsection{Use Case-Diagramm}
-\label{app:UseCase}
-Use Case-Diagramme und weitere \acs{UML}-Diagramme kann man auch direkt mit \LaTeX{} zeichnen, siehe \zB \url{http://metauml.sourceforge.net/old/usecase-diagram.html}.
+\subsubsection{Monatskalender}
+\label{app:Monatskalender}
 \begin{figure}[htb]
-\centering
-\includegraphicsKeepAspectRatio{UseCase.pdf}{0.7}
-\caption{Use Case-Diagramm}
+    \centering
+    \includegraphicsKeepAspectRatio{Zeitplanung_Maerz.png}{0.8}
+    \caption{März 2019}
+\end{figure}
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{Zeitplanung_April.png}{0.8}
+    \caption{April 2019}
+\end{figure}
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{Zeitplanung_Mai.png}{0.8}
+    \caption{Mai 2019}
 \end{figure}
 
-\input{Anhang/AnhangPflichtenheft.tex}
+\clearpage
 
-\subsection{Datenbankmodell}
-\label{app:Datenbankmodell}
-ER-Modelle kann man auch direkt mit \LaTeX{} zeichnen, siehe \zB \url{http://www.texample.net/tikz/examples/entity-relationship-diagram/}.
+\subsection{Mock-Ups der Anwendung}
+\label{app:Mockup}
+Im Rahmen des Systementwurfs auf Basis der Anforderungsanalyse wurden Mock-Ups erstellt, die in \Abbildung{Hauptseite} bis \Abbildung{Fehlerstatistiken} gezeigt werden.
 \begin{figure}[htb]
-\centering
-\includegraphicsKeepAspectRatio{database.pdf}{1}
-\caption{Datenbankmodell}
+    \centering
+    \includegraphicsKeepAspectRatio{mock_up_1.pdf}{0.8}
+    \caption{Mock-Up: Hauptseite}
+    \label{fig:Hauptseite}
 \end{figure}
-\clearpage
-
-\input{Anhang/AnhangEntwuerfe.tex}
-\clearpage
-\input{Anhang/AnhangScreenshots.tex}
-\input{Anhang/AnhangDoc.tex}
-\clearpage
-\input{Anhang/AnhangTest.tex}
-
-\subsection{Klasse: ComparedNaturalModuleInformation}
-\label{app:CNMI}
-Kommentare und simple Getter/Setter werden nicht angezeigt.
-\lstinputlisting[language=php, caption={Klasse: ComparedNaturalModuleInformation}]{Listings/cnmi.php}
-\clearpage
-
-\subsection{Klassendiagramm}
-\label{app:Klassendiagramm}
-Klassendiagramme und weitere \acs{UML}-Diagramme kann man auch direkt mit \LaTeX{} zeichnen, siehe \zB \url{http://metauml.sourceforge.net/old/class-diagram.html}.
 \begin{figure}[htb]
-\centering
-\includegraphicsKeepAspectRatio{Klassendiagramm.pdf}{1}
-\caption{Klassendiagramm}
+    \centering
+    \includegraphicsKeepAspectRatio{mock_up_2.pdf}{0.8}
+    \caption{Mock-Up: Ausführungsstatistiken}
 \end{figure}
-\clearpage
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{mock_up_3.pdf}{0.8}
+    \caption{Mock-Up: Abhängigkeitsstatistiken}
+\end{figure}
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{mock_up_4.pdf}{0.8}
+    \caption{Mock-Up: Performancestatistiken}
+\end{figure}
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{mock_up_5.pdf}{0.8}
+    \caption{Mock-Up: Fehlerstatistiken}
+    \label{fig:Fehlerstatistiken}
+\end{figure}
 
-\input{Anhang/AnhangBenutzerDoku.tex}
+\subsection{Benutzerdokumentation}
+\label{app:Benutzerdokumentation}
