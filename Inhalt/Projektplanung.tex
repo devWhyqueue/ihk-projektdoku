@@ -1,49 +1,37 @@
 % !TEX root = ../Projektdokumentation.tex
-\section{Projektplanung} 
-\label{sec:Projektplanung}
+\section{Projektplanung}\label{sec:Projektplanung}
 Dieser Abschnitt dokumentiert die Ressourcen- und Ablaufplanung von \projektName. Es werden die eingesetzten Ressourcen mit den entsprechenden Aufgaben, dem Zeitbedarf und den Kosten angegeben. Die Planung der Arbeitsschritte erfolgt in strikter Anlehnung an das verwendete Vorgehensmodell und wird hier ebenfalls textuell und visuell wiedergegeben.
 
-\subsection{Ressourcenplanung}
-\label{sec:Ressourcenplanung}
+\subsection{Ressourcenplanung}\label{sec:Ressourcenplanung}
 Die Planung der Ressourcen wird in Personal- und Sachmittelplanung untergliedert, für welche die Aspekte Kosten- und Zeitbedarf anhand ihrer Aufgaben erläutert werden.
 
-\subsubsection{Personal}
-\label{sec:Personal}
+\subsubsection{Personal}\label{sec:Personal}
 Auf Basis der Stakeholder-Tabelle in Abschnitt \ref{p:Stakeholder}, folgt nun die Aufwandsaufstellung in Stunden für die einzelnen Projektrollen sortiert nach Aufwand.
 \tabelle{Personalplanung}{tab:Personalplanung}{Personalplanung}
 
-\paragraph{Projektverantwortlicher} ~\\
-\label{p:Projektverantwortlicher}
+\paragraph{Projektverantwortlicher}~\\\label{p:Projektverantwortlicher}
 Der Hauptaufwand des Projekts (70 Stunden), der \ua die Planung, Durchführung und Dokumentation umfasst, wird vom Projektverantwortlichen \autorName\xspace erbracht. Zur effizienten Nutzung dieser Arbeitsdauer ist eine kontinuierliche Kommunikation mit den anderen Projektrollen von enormer Wichtigkeit.
 
-\paragraph{Ansprechpartnerin} ~\\
-\label{p:Ansprechpartnerin}
+\paragraph{Ansprechpartnerin}~\\\label{p:Ansprechpartnerin}
 Den zweitgrößten Aufwand (15 Stunden) trägt die Team-Ansprechpartnerin Anne Schlebusch. Sie übernimmt zum einen die Beantwortung fachlicher und zum anderen die Beratung bei technischen Fragen. Der Großteil des angegebenen Aufwands fließt dabei in die Anforderungserhebung und die Definition benötigter Datenbankabfragen.
 
-\paragraph{Benutzer} ~\\
-\label{p:Benutzer}
+\paragraph{Benutzer}~\\\label{p:Benutzer}
 Darauf folgt die Gruppe der Benutzer, also das \ac{CFT} \teamName, mit einem Aufwand von fünf Stunden. Innerhalb dieses Zeitrahmens können arbeitsteilig Aufgaben wie Rücksprachen bei der Anforderungserhebung und Test des Endprodukts übernommen werden.
 
-\paragraph{Betreuung Auszubildender} ~\\
-\label{p:Betreuung}
+\paragraph{Betreuung Auszubildender}~\\\label{p:Betreuung}
 Da Mareike Schroll als Mitarbeiterin der Personalabteilung lediglich für organisatorische Fragen bezüglich der IHK-Abschlussprüfung des Prüflings zuständig ist, wendet sie den geringsten Aufwand (1 Stunde) für das Projekt auf.
 
-\subsubsection{Sachmittel}
-\label{sec:Sachmittel}
+\subsubsection{Sachmittel}\label{sec:Sachmittel}
 
-\paragraph{Hardware} ~\\
-\label{p:Hardware}
+\paragraph{Hardware}~\\\label{p:Hardware}
 Zur Fertigstellung von \projektName wird ein Standard-Entwicklerarbeitsplatz, ein virtueller Windows-Server für die Bereitstellung der Applikation und der Microsoft SQL Server benötigt. Da dem Auszubildenden Yannik Queisler bereits seit Ausbildungsbeginn alle notwendigen Geräte des Entwicklerarbeitsplatzes (wie PC, Telefon, Bildschirme \etc) zugeteilt wurden, entstehen hierfür keine Kosten. Auch die erforderliche Server-Infrastruktur, sowohl der Windows-Server als auch der SQL Server, sind bereits in dem Geschäftsbereich IT vorhanden. Es fallen also keine weiteren Kosten für Hardwareanschaffungen an.
 
-\paragraph{Software} ~\\
-\label{p:Software}
+\paragraph{Software}~\\\label{p:Software}
 Da der bereitgestellte Entwicklerarbeitsplatz nicht nur Hardwarekomponenten, sondern auch Software umfasst, sind für die Entwicklung ebenfalls keine Kosten zu veranschlagen. Die \ac{IDE} IntelliJ IDEA, Dokumentationswerkzeuge (Office, Confluence) und Diagramm-Tools (Gliffy) stehen zur Verfügung.
 
-\subsection{Ablaufplanung}
-\label{sec:Ablaufplanung}
+\subsection{Ablaufplanung}\label{sec:Ablaufplanung}
 
-\subsubsection{Vorgehensmodell}
-\label{sec:Vorgehensmodell}
+\subsubsection{Vorgehensmodell}\label{sec:Vorgehensmodell}
 Aufgrund der starren zeitlichen Vorgabe, der im Allgemeinen recht kurzen Projektdauer und den im Voraus eindeutigen Benutzeranforderungen wurde das Projekt nach dem Wasserfallmodell durchgeführt. Dies bietet eine einfache Planung durch fest vorgegebene Phasen und eine klare Einschätzung der Kosten im Projekt. Die fünf Phasen des Modells werden im Folgenden anhand der \Abbildung{Waterfall} kurz erklärt.\footnote{\cite{wiki:waterfall}} 
 \begin{figure}[htb]
 	\centering
@@ -52,50 +40,39 @@ Aufgrund der starren zeitlichen Vorgabe, der im Allgemeinen recht kurzen Projekt
 	\label{fig:Waterfall}
 \end{figure}
 
-\paragraph{Anforderungsanalyse und -spezifikation} ~\\
-\label{p:Anforderungsanalyse}
+\paragraph{Anforderungsanalyse und -spezifikation}~\\\label{p:Anforderungsanalyse}
 Zu Beginn werden alle Anforderungen des Auftraggebers erhoben, strukturiert und validiert. Das daraus resultierende Ergebnis wird schriftlich dokumentiert.
 
-\paragraph{Systementwurf} ~\\
-\label{p:Systementwurf}
+\paragraph{Systementwurf}~\\\label{p:Systementwurf}
 Im Anschluss werden die Basiskomponenten des Systems mit ihren Abhängigkeiten identifiziert und meist in Form von UML-Diagrammen festgehalten.
 
-\paragraph{Implementation} ~\\
-\label{p:Implementation}
+\paragraph{Implementation}~\\\label{p:Implementation}
 Darauf folgt die Umsetzung des Entwurfs in eine ausführbare Software, die Implementation. Diese Phase kann auch das Definieren von Modultests beinhalten.
 
-\paragraph{Überprüfung} ~\\
-\label{p:Ueberpruefung}
+\paragraph{Überprüfung}~\\\label{p:Ueberpruefung}
 Nach erfolgreicher Codierung folgt die Überprüfung der Anwendung durch Integrations- und Systemtests.
 
-\paragraph{Wartung} ~\\
-\label{p:Wartung}
+\paragraph{Wartung}~\\\label{p:Wartung}
 Nach der Auslieferung wird die Software fortwährend über die gesamte Lebensdauer gewartet. Diese Phase ist für \projektName nicht relevant, da das Projekt nur die Entwicklung der Anwendung beinhaltet.
 
-\subsubsection{Projektphasen}
-\label{sec:Projektphasen}
+\subsubsection{Projektphasen}\label{sec:Projektphasen}
 Die oben dokumentierten Phasen des Wasserfallmodells wurden für das Projekt noch um einige Phasen verfeinert. Eine Aufstellung der Phasen mit dem jeweiligen zeitlichen Aufwand zeigt Tabelle \ref{tab:Zeitplanung}. Die hinzugefügten Phasen werden nach der Tabelle kurz beschrieben.
 \tabelle{Zeitplanung}{tab:Zeitplanung}{ZeitplanungKurz}\\
 Eine detailliertere Zeitplanung findet sich im \Anhang{app:Zeitplanung}.
 
-\paragraph{Wirtschaftlichkeitsanalyse} ~\\
-\label{p:Wirtschaftlichkeitsanalyse}
+\paragraph{Wirtschaftlichkeitsanalyse}~\\\label{p:Wirtschaftlichkeitsanalyse}
 Im Rahmen der Wirtschaftlichkeitsanalyse werden Kosten und Nutzen gegenübergestellt und begründet. Unter Berücksichtigung der Amortisationsdauer wird über eine Eigenentwicklung der Software oder den Einkauf einer Fremdanwendung entschieden.
 
-\paragraph{Einarbeitung in das Projektumfeld} ~\\
-\label{p:EinarbeitungProjektumfeld}
+\paragraph{Einarbeitung in das Projektumfeld}~\\\label{p:EinarbeitungProjektumfeld}
 Die ReportServer-Datenbank wird umfassend hinsichtlich aller Datenstrukturen analysiert. Dadurch werden relevante Tabellen zur Erhebung der Metadaten identifiziert.
 
-\paragraph{Abnahme} ~\\
-\label{p:Abnahme}
+\paragraph{Abnahme}~\\\label{p:Abnahme}
 Das Team \teamName verwendet die Applikation in der Produktivumgebung und entscheidet über die vollständige Erfüllung der Akzeptanzkriterien.
 
-\paragraph{Erstellen der Dokumentation} ~\\
-\label{p:Dokumentation}
+\paragraph{Erstellen der Dokumentation}~\\\label{p:Dokumentation}
 Die hier vorliegende Projektdokumentation wird verfasst.
 
-\subsubsection{Bearbeitungszeitraum}
-\label{sec:Bearbeitungszeitraum}
+\subsubsection{Bearbeitungszeitraum}\label{sec:Bearbeitungszeitraum}
 \begin{itemize}
 	\item \textbf{Beginn:} 16.03.2019
 	\item \textbf{Ende:} 20.05.2019
@@ -104,14 +81,10 @@ Obwohl die Bearbeitungszeit für eine Projektdauer von 70 Stunden recht großzü
 Aufgrunddessen weist das Projekt eine erhöhte Sensibilität für unvorhergesehene Ereignisse auf, die den Verlauf erheblich beeinflussen können.
 Kalenderauszüge der drei Monate des Projektzeitraums befinden sich im \Anhang{app:Zeitplanung}.
 
-\subsubsection{Meilensteine}
-\label{sec:Meilensteine}
-Es folgt eine Auflistung der Zwischenziele des Projekts mit ihren geplanten Eintrittsdaten.
+\subsubsection{Meilensteine}\label{sec:Meilensteine}
+Es folgt in Tabelle \ref{tab:Meilensteine} eine Auflistung der Zwischenziele des Projekts mit ihren geplanten Eintrittsdaten.
 \tabelle{Meilensteine}{tab:Meilensteine}{Meilensteine}
 
-\subsubsection{Abweichungen vom Projektantrag}
-\label{sec:AbweichungenProjektantrag}
+\subsubsection{Abweichungen vom Projektantrag}\label{sec:AbweichungenProjektantrag}
 Im Projektantrag wird in der Projektbeschreibung von einer anschaulichen Visualisierung\footnote{\cite{Projektantrag}} der Berichte gesprochen. Da für die Statistiken nur Tabellen eingesetzt werden, ist dieser Aspekt anfechtbar.
 Außerdem wurde bei den Projektphasen die Wirtschaftlichkeitsanalyse (siehe Tabelle \ref{tab:Zeitplanung}) in den Zeitplan aufgenommen.
-
-\newpage

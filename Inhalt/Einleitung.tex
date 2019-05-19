@@ -1,130 +1,106 @@
 % !TEX root = ../Projektdokumentation.tex
-\section{Einleitung}
-\label{sec:Einleitung}
+\section{Einleitung}\label{sec:Einleitung}
 Diese Projektdokumentation zu der Webanwendung \projektName für die \ac{KVWL}, welche im Rahmen der IHK-Abschlussprüfung im Sommer 2019 erstellt wurde, beschreibt umfassend die Thematik, notwendige Prozessschritte und erzielte Ergebnisse des Projekts. Zum besseren Verständnis erhält sie sowohl ergänzende, praxisbezogene Unterlagen und Dokumente (Tabellen, Grafiken, Screenshots und Quellcode) als auch eine Kundendokumentation, die Bestandteil des Anhangs ist.
 
-\subsection{Projektumfeld} 
-\label{sec:Projektumfeld}
+\subsection{Projektumfeld}\label{sec:Projektumfeld}
 Die Webapplikation wurde im Rahmen eines internen Projekts bei der \ac{KVWL} in Dortmund umgesetzt. Sie wurde während des Projektzeitraums vollständig auf Basis der Wünsche des Auftraggebers neu entwickelt und soll in dessen IT-Umgebung nach Projektende produktiv eingesetzt werden.
 
-\subsubsection{Unternehmen} 
-\label{sec:Unternehmen}
+\subsubsection{Unternehmen}\label{sec:Unternehmen}
 Laut offizieller Unternehmenswebsite\footnote{\cite{KVWL}} vertritt die \ac{KVWL}
 \begin{displayquote}
-	die Interessen von über 15.000 niedergelassenen Vertragsärzten und Ärztlichen und Psychologischen Psychotherapeuten sowie Kinder- und Jugendlichenpsychotherapeuten in Westfalen-Lippe. Mit rund 2000 Mitarbeitern, von denen ca. die Hälfte im Notfalldienst überwiegend geringfügig beschäftigt ist, ist die \ac{KVWL} eine der größten Kassenärztlichen Vereinigungen. Alle zur vertragsärztlichen Versorgung zugelassenen Ärzte, Ärztlichen und Psychologischen Psychotherapeuten, sowie Kinder- und Jugendlichenpsychotherapeuten sind Pflichtmitglieder der \ac{KVWL}. Zu den zentralen Aufgaben der \ac{KVWL} zählt die Sicherstellung der ambulanten ärztlichen Versorgung. [...]\\
+	die Interessen von über 15.000 niedergelassenen Vertragsärzten und Ärztlichen und Psychologischen Psychotherapeuten sowie Kinder- und Jugendlichenpsychotherapeuten in Westfalen-Lippe. Mit rund 2000 Mitarbeitern, von denen ca. die Hälfte im Notfalldienst überwiegend geringfügig beschäftigt ist, ist die \ac{KVWL} eine der größten Kassenärztlichen Vereinigungen. Alle zur vertragsärztlichen Versorgung zugelassenen Ärzte, Ärztlichen und Psychologischen Psychotherapeuten, sowie Kinder- und Jugendlichenpsychotherapeuten sind Pflichtmitglieder der \ac{KVWL}. Zu den zentralen Aufgaben der \ac{KVWL} zählt die Sicherstellung der ambulanten ärztlichen Versorgung. [\ldots]\\
 	Als öffentlich-rechtliche Körperschaft handelt die Kassenärztliche Vereinigung in Vertretung ihrer Mitglieder mit den Verbänden der Krankenkassen die Gesamtvergütung für die ärztlichen Leistungen aus. Dazu schließt sie entsprechende Verträge ab. Als genossenschaftlicher Zusammenschluss garantiert die \ac{KVWL} somit, dass die wirtschaftlichen Interessen ihrer Mitglieder gegenüber den Krankenkassen gewahrt werden.
 \end{displayquote}
 Darüber hinaus trägt sie dafür Sorge, dass eine ausreichende ärztliche Versorgung sichergestellt ist (Sicherstellungsauftrag) und die Abrechnungen ihrer Mitglieder sachlich-rechnerisch korrekt sind (Gewährleistungsauftrag). Unterstützend wurde eine Geschäftsstelle zur Bekämpfung rechtwidriger Finanzmittelnutzung im Gesundheitswesen eingerichtet.\footnote{\Vgl \cite{KVWL}}
 
-\subsubsection{Auftraggeber} 
-\label{sec:Auftraggeber}
+\subsubsection{Auftraggeber}\label{sec:Auftraggeber}
 Wie in dem Projektantrag\footnote{\cite{Projektantrag}} bereits beschrieben, ist der
 \begin{displayquote}
-	Auftraggeber für dieses Projekt [...] das \acs{CFT} \teamName des Geschäftsbereichs Informationstechnologie der \ac{KVWL} (\acs{CFT} steht für \aclu{CFT}).
-	[...]
+	Auftraggeber für dieses Projekt [\ldots] das \acs{CFT} \teamName des Geschäftsbereichs Informationstechnologie der \ac{KVWL} (\acs{CFT} steht für \aclu{CFT}).
+	[\ldots]
 	Das IT-Team \teamName verwaltet die Daten der \ac{KVWL} mithilfe unterschiedlicher Datenbankmanagementsysteme wie SQL Server oder Oracle Datenbanken.
 \end{displayquote}
 Der Begriff \ac{DWH} beschreibt dabei eine zentrale Datenbank, welche Daten aus mehreren heterogenen Quellen zu Zwecken der Analyse zusammenführt und verdichtet.\footnote{\Vgl \cite{wiki:dwh}}
 Folglich hat das Team die Zielsetzung, alle im Unternehmen produzierten Daten für Auswertungszwecke an einem zentralen Ort zu verwalten und in einer Form aufzubereiten, sodass einem möglichst großem Benutzerkreis einfache Zugriffsmöglichkeiten zur Verfügung gestellt werden.
 Zum Tagesgeschäft des IT-Teams \teamName gehört die Erstellung, Anpassung und Administration von Berichten (Reports), die den Fachabteilungen für operative und strategische Auswertungen und Analysen bereitgestellt werden.
 
-\subsection{Ausgangssituation} 
-\label{sec:Ausgangssituation}
+\subsection{Ausgangssituation}\label{sec:Ausgangssituation}
 Dieser Abschnitt liefert nur einen kurzen Überblick über die organisatorische und technische Ausgangssituation vor Projektbeginn. Genaueres wird später unter dem Punkt \ref{sec:Anforderungsanalyse} (\ua die Ist- und Soll-Zustände) erläutert.
 
-\subsubsection{Organisatorisch}
-\label{sec:Ausgangssituation:Organisatorisch}
+\subsubsection{Organisatorisch}\label{sec:Ausgangssituation:Organisatorisch}
 Da eine der Hauptaufgaben des Teams die Bereitstellung von Informationen ist, werden kontinuierlich Berichte zur Förderung der \ac{BI} (Geschäftsanalytik) erstellt und modifiziert, um Nutzern und Entwicklern einen komfortablen Zugriff zur einfachen Gewinnung verwertbarer Erkenntnisse zu ermöglichen. Hierzu werden \ac{BI}-Reports mit Tabellen und Diagrammen entwickelt, die Benutzern einen zentralisierten und einheitlichen Zugang zu der Vielzahl der komplexen Datenstrukturen gewähren.\footnote{\Vgl \cite{Projektantrag}}
 Um über die Gesamtmenge einen Überblick zu bewahren, existieren Metadaten-Berichte (also Berichte über Berichte), die \zB Informationen über die Anzahl und den Status bereitstellen.
 Da die Anzahl der angelegten Metadaten-Berichte sehr gering und die Informationsdichte nicht ausreichend ist, setzt dieses Projekt genau an dieser Stelle an.
 
-\subsubsection{Technisch}
-\label{sec:Ausgangssituation:Technisch}
+\subsubsection{Technisch}\label{sec:Ausgangssituation:Technisch}
 Zur Berichtserstellung wird die Berichtserstellungsplattform \ac{SSRS} eingesetzt, die Werkzeuge wie den Berichts-Generator/Designer bietet, um aussagekräftige und anschauliche Berichte auf einem Webportal veröffentlichen zu können.\footnote{\Vgl \cite{Projektantrag}}
 Es ist ein serverbasiertes Generierungssystem für Berichte des Herstellers Microsoft und nur ein Tool von vielen aus der Reihe der \ac{BI}-Werkzeuge (\zB auch Crystal Reports).
 
 
 
-\subsection[Projektziel]{Projektziel\footnote{\cite{Projektantrag}}}
-\label{sec:Projektziel}
+\subsection[Projektziel]{Projektziel\footnote{\cite{Projektantrag}}}\label{sec:Projektziel}
 \begin{displayquote}
 	Ziel der Anwendung ist die Verbesserung der Qualität der Gesamtheit der Berichte, um einen fehlerfreien und schnellen Zugriff auf \ac{BI}-Daten zu jeder Zeit sicherzustellen und die Anzahl der ungenutzten Berichte und Datenquellen schrittweise zu reduzieren. Für diesen Prozess soll die Applikation einen komfortablen Einstieg, aber auch Möglichkeiten für eine unkomplizierte Erweiterung bieten, um \ggfs die Erhebung neuer Statistiken zu begünstigen.
 \end{displayquote}
 
 
-\subsection[Projektbegründung]{Projektbegründung\footnote{\cite{Projektantrag}}}
-\label{sec:Projektbegruendung}
+\subsection[Projektbegründung]{Projektbegründung\footnote{\cite{Projektantrag}}}\label{sec:Projektbegruendung}
 \begin{displayquote}
 	Die stetig wachsende Anzahl von Berichten erschwert den Überblick über den Status (Fehleranfälligkeit), die Performance und die Abhängigkeiten von Berichten sowie die daran gekoppelten Datenquellen. Aktuell existieren über 1000 Berichte zur Auswertung diverser Daten für viele Abteilungen, die \ua Transparenz und Zugang zu \ac{KP}-Indikatoren schaffen und so einen erheblichen, produktiven Mehrwert erzeugen. Dennoch fehlen Metadaten über diese Plattform, die Aufwände für die Erstellung, Überarbeitung und Korrektur von Berichten auf die relevanten Stellen fokussieren.
 \end{displayquote}
 
-\subsection[Projektbeschreibung]{Projektbeschreibung\footnote{\cite{Projektantrag}}} 
-\label{sec:Projektbeschreibung}
+\subsection[Projektbeschreibung]{Projektbeschreibung\footnote{\cite{Projektantrag}}}\label{sec:Projektbeschreibung}
 \begin{displayquote}
 	Aufgabe des Prüflings \autorName\xspace ist daher die Implementierung einer Web-Applikation, die geeignete quantitative Metriken über die Ausführung, den Status, die Performance und die Abhängigkeiten zwischen den Berichten anschaulich visualisiert. Es muss eine Übersicht über die am häufigsten ausgeführten, fehlerhaften, langsamen Berichte und nicht mehr referenzierte Datenquellen angezeigt werden können. Die Nutzung der Applikation sollte ausgewählten Anwendern (Team \teamName) vorbehalten sein, \dahe ein Login mit Anbindung an das unternehmensinterne \ac{AD} muss implementiert werden. Das Backend der Anwendung soll in der Programmiersprache Java umgesetzt, das Frontend sollte als ansprechende HTML-Seite mit CSS gemäß der Corporate-Design-Richtlinien der \ac{KVWL} entworfen werden.
 \end{displayquote}
 
-\subsection{Projektschnittstellen} 
-\label{sec:Projektschnittstellen}
+\subsection{Projektschnittstellen}\label{sec:Projektschnittstellen}
 
-\subsubsection{Organisatorisch} 
-\label{sec:Projektschnittstellen:Organisatorisch}
+\subsubsection{Organisatorisch}\label{sec:Projektschnittstellen:Organisatorisch}
 
-\paragraph{Projektverantwortlichkeiten} ~\\
-\label{p:Projektverantwortlichkeiten}
+\paragraph{Projektverantwortlichkeiten}~\\\label{p:Projektverantwortlichkeiten}
 Für die Analyse, Umsetzung und Planung des gesamten Projekts ist Yannik Queisler zuständig, der seit dem 11. März 2019 Mitarbeiter des \ac{CFT} \teamName ist. Da dieses Projekt nicht nur ein unternehmens- sondern auch teaminternes Projekt ist, entstammen sämtliche Anforderungen ausschließlich aus diesem Team. Eine detaillierte Aufstellung aller Beteiligten folgt direkt im Anschluss im Abschnitt \nameref{p:Stakeholder}.
 
-\paragraph{Stakeholder} ~\\
-\label{p:Stakeholder}
+\paragraph{Stakeholder}~\\\label{p:Stakeholder}
 Die folgende Tabelle zeigt die beteiligten Stakeholder, \dahe die am Projektergebnis interessierten Personen (Anspruchsgruppe).
 \tabelle{Stakeholder}{tab:Stakeholder}{Stakeholder}
 
-\paragraph{Endbenutzer} ~\\
-\label{p:Endbenutzer}
+\paragraph{Endbenutzer}~\\\label{p:Endbenutzer}
 Die Anwendung \projektName soll von allen Mitgliedern des \ac{CFT} \teamName genutzt werden können. Entsprechende Zugangsberechtigungen zur Beschränkung auf diesen Nutzerkreis sind zu implementieren.
 
-\subsubsection{Technisch} 
-\label{sec:Projektschnittstellen:Technisch}
+\subsubsection{Technisch}\label{sec:Projektschnittstellen:Technisch}
 
-\paragraph{Programmiersprachen} ~\\
-\label{p:Programmiersprachen}
+\paragraph{Programmiersprachen}~\\\label{p:Programmiersprachen}
 Für die Implementierung des Projekts wurde die Programmiersprache Java in der Version 8 eingesetzt. Die clientseitige Oberfläche basiert auf HTML5-Templates, welche mit CSS gestaltet und mit Daten durch die Template-Engine Thymeleaf angereichert wurden. Jegliche Logik, die sich auf die Darstellung \bzw Navigation bezieht, ist mit ECMAScript beschrieben. Der Großteil der Datenbankabfragen ist unmittelbar durch Java-Code implementiert, vereinzelt für komplexere Abfragen kommt jedoch auch SQL zum Einsatz.
 
-\paragraph{Frameworks/Bibliotheken} ~\\
-\label{p:Frameworks}
+\paragraph{Frameworks/Bibliotheken}~\\\label{p:Frameworks}
 Die Anwendung wird mit dem Build-Management-Tool Maven automatisiert gebaut und basiert hauptsächlich auf dem Spring-Framework. Dieses stellt eine große Bandbreite verschiedener Funktionalitäten (\zB \ac{DI} oder \ac{AOP}) zur Verfügung und vereinfacht im Allgemeinen die Entwicklung von Web-Anwendungen.\\
 Zusätzlich wird dabei von dem Spring Boot Projekt Gebrauch gemacht, dass die Konfiguration von Spring-Applikationen durch Realisierung des Design-Paradigmas Convention over Configuration erheblich vereinfacht.\\
 Als \aclu{ORM}-Framework (\ac{ORM}: objektrelationale Abbildung) und \aclu{JPA}-Implementierung (\ac{JPA}) kommt Hibernate zum Einsatz. In diesem Zusammenhang erwähnenswert ist die Benutzung der Querydsl API, einer Schnittstelle zur Erstellung von gut lesbaren SQL-Abfragen in Java mittels eines Fluent Interfaces (sprechende Schnittstellen), einer Form der Programmierung, die der natürlichen Sprache sehr nahekommt.
 Außerdem werden diverse Funktionen üblicher Standard-Bibliotheken wie JUnit Jupiter (Test-Framework), Lombok (Code-Reduktion) und diverser Spring Boot Subprojekte (Security, Data, Web) verwendet.
 
 
-\paragraph{Abhängigkeiten und Schnittstellen} ~\\
-\label{p:Abhaengigkeiten}
+\paragraph{Abhängigkeiten und Schnittstellen}~\\\label{p:Abhaengigkeiten}
 Abhängigkeiten zu anderen Web-Anwendungen oder Services bestehen nicht, es wird lediglich über \ac{JDBC} auf die ReportServer-Datenbank (Microsoft SQL Server) zugegriffen. Eine vereinfachte Darstellung der Abhängigkeiten zwischen den Komponenten zeigt das Verteilungsdiagramm in \Abbildung{Deployment}.
 \begin{figure}[htb]
 	\centering
 	\includegraphicsKeepAspectRatio{Verteilungsdiagramm.png}{0.8}
 	\caption{Verteilungsdiagramm}
 	\label{fig:Deployment}
-\end{figure} 
+\end{figure}
 
-\subsection{Projektabgrenzung} 
-\label{sec:Projektabgrenzung}
+\subsection{Projektabgrenzung}\label{sec:Projektabgrenzung}
 Dieses Projekt beinhaltet ausschließlich die Implementierung der Spring Boot Applikation mit einer simpel gehaltenen Visualisierung der verschiedenen Statistiken. Es wurden keine aufwendigen Diagrammtypen erzeugt, sondern nur Tabellen implementiert, in denen die gewünschten Informationen enthalten sind.
 Desweiteren wurde sich auf die Hauptfunktionalitäten beschränkt und die mögliche Erhebung weiterführender, komplexer Metadaten als Weiterentwicklungspotential protokolliert.
 
-\subsection{Randbedingungen} 
-\label{sec:Randbedingungen}
+\subsection{Randbedingungen}\label{sec:Randbedingungen}
 Abschließend im Rahmen der Einleitung aufzugreifende Aspekte sind die vom Projektumfeld vorgegebenen Randbedingungen, hier unterteilt in zeitliche, organisatorische und technische Faktoren.
 
-\paragraph{Organisatorisch} ~\\
-\label{p:Randbedingungen:Organisatorisch}
+\paragraph{Organisatorisch}~\\\label{p:Randbedingungen:Organisatorisch}
 Die Unternehmenorganisation im Geschäftsbereich IT bei der \ac{KVWL} besteht in ihren elementaren Bestandteilen aus einer Menge von selbstorganisierten \ac{CFT}s. Aus diesem Grund existieren verhältnismäßig flache Hierarchien, die in Bezugnahme auf dieses Projekt dazu geführt haben, dass mein Projektfortschritt nur mit Ansprechpartnern des Teams kommuniziert werden musste. Dies hat zu einem geringeren Leistungsdruck und besseren Arbeitsklima beigetragen.
 
-\paragraph{Zeitlich} ~\\
-\label{p:Randbedingungen:Zeitlich}
+\paragraph{Zeitlich}~\\\label{p:Randbedingungen:Zeitlich}
 Das Projekt wurde seitens der IHK auf einen Zeitraum von 70 Stunden beschränkt, weshalb im Vorfeld eine umfangreiche Projekt- und Zeitplanung erfolgen musste. Diese wird in der folgenden Sektion \ref{sec:Projektplanung} genauer ausgeführt.
 
-\paragraph{Technisch} ~\\
-\label{p:Randbedingungen:Technisch}
+\paragraph{Technisch}~\\\label{p:Randbedingungen:Technisch}
 Die IT-Umgebung in der \ac{KVWL} besteht im Wesentlichen aus einer Menge von Windows-Desktop-Arbeitsplätzen, an denen die Entwicklung und Verwaltung von Anwendungen erfolgt und einem Rechenzentrum, das die Aufgaben der zentralen Datenverwaltung und des Server-Hostings übernimmt.
