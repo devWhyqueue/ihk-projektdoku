@@ -163,7 +163,7 @@ Im Zuge der Implementierung wurden Unit-Tests erstellt, die bis zu einem bestimm
 \paragraph{Versionierung} ~\\\label{p:Versionierung}
 Für die zentrale Verwaltung des Quellcodes wurde Git verwendet. Mithilfe dieses Tools lassen sich verschiedene Versionen des Quellcodes verwalten und bei Bedarf kann dieser auf einen alten Stand zurückgesetzt werden. Dies erweist sich besonders bei der nachträglichen Erkennung von Fehlern als hilfreich.
 
-\paragraph{Buildmanagement} ~\\\label{p:Buildmangement}
+\paragraph{Build-Management} ~\\\label{p:Buildmangement}
 Der Erstellungsprozess der Software ist ein umfangreicher und komplexer Prozess, bei dem der Quellcode in Software-Artefakte überführt wird, die ausgeführt werden können. Da manuelle Builds sehr fehleranfällig sind, wurde der Build-Prozess mithilfe des Build-Management-Tools Maven automatisiert. Über eine Konfigurationsdatei (\acs{POM}: \aclu{POM}) werden alle Abhängigkeiten des Projekts komfortabel verwaltet und vollautomatisch beim Build der Anwendung eingebunden.
 
 \Zwischenstand{Entwurfsphase}{Entwurf}
@@ -175,20 +175,18 @@ Die Codierung der Anwendung findet auf dem lokalen Windows-Rechner des Anwendung
 Wie bereits beschrieben wurde, sind sowohl die aktuelle Java 8 Version als auch eine \ac{IDE} auf dem Entwicklerrechner vorhanden. Es musste lediglich ein Bitbucket-Repository zur Versionsverwaltung angelegt und auf den lokalen Rechner geklont werden. Danach konnte das Basisprojekt unterstützt durch den Spring Initializr\footnote{\cite{spring:init}} über eine Weboberfläche generiert werden.
 
 \subsubsection{Einarbeitung in die genutzten Technologien}\label{sec:Technologien}
-Nachdem die Entwicklungsumgebung eingerichtet worden ist, konnte die Entwicklung des Projektes beginnen. Der Großteil der Technologien war bereits bekannt und wurde relativ sicher beherrscht. Die \ac{GUI} wurde mithilfe von Thymeleaf-Templates aufgebaut, mit CSS gestaltet und ECMAScript gesteuert. Die Geschäftslogik wurde in einfachen Java-Klassen (\acs{POJO}: \aclu{POJO}) realisiert. Nur für die Datenzugriffe über \ac{JPA} wurde das für den Prüfling bisher unbekannte Framework Querydsl benutzt. Als Nachschlagewerke wurden hauptsächlich die offiziellen Dokumentationsseiten und die Anleitungen von Baeldung genutzt.
+Nachdem die Entwicklungsumgebung eingerichtet worden ist, konnte die Entwicklung des Projektes beginnen. Der Großteil der Technologien war bereits bekannt und wurde relativ sicher beherrscht. Die \ac{GUI} wurde mithilfe von Thymeleaf-Templates aufgebaut, mit CSS gestaltet und per ECMAScript gesteuert. Die Geschäftslogik wurde in einfachen Java-Klassen (\acs{POJO}: \aclu{POJO}) realisiert. Nur für die Datenzugriffe über \ac{JPA} wurde das für den Prüfling bisher unbekannte Framework Querydsl benutzt. Als Nachschlagewerke wurden hauptsächlich die offiziellen Dokumentationsseiten und die Anleitungen von Baeldung genutzt.
 
 \subsubsection{Implementierung der Datenzugriffe}\label{sec:ImplementierungDatenzugriffe}
 Ausgehend von dem folgenden repräsentativen Beispiel für eine implementierte Datenabfrage, wird die Umsetzung dieses SQL-Ausdrucks durch alle Schichten hindurch beschrieben. Andere Statistiken wurden auf diesselbe Art extrahiert, verarbeitet und dargestellt. Das Resultat der Abfrage ist die geordnete Auflistung der am häufigsten ausgeführten Reports des letzten Monats.
-\begin{listing}[!ht]
+\begin{listing}[ht]
   \inputminted{tsql}{Listings/most_used_reports.sql}
   \caption{SQL-Abfrage}
   \label{l:sql}
 \end{listing}
-
 In der Abfrage werden zunächst die Attribute eines Items aus dem \Klasse{Catalog} selektiert. Die Tabelle \Klasse{Catalog} wird mit dem \Klasse{ExecutionLogStorage} über die ItemID verbunden. Durch das Type-Attribut werden alle Berichte identifiziert. Berichte mit dem Namenspräfix \gqq{H\_} werden herausgefiltert, da dies die Unterberichte sind. Außerdem wird der Ausführungszeitpunkt auf ein Intervall von 30 Tagen beschränkt und die Ergebnismenge nach der Anzahl der Ausführungen absteigend sortiert.\\
-Die äquivalente Darstellung als Java-Methode unter Verwendung von Querydsl sieht wie folgt aus:
-\clearpage
-\begin{listing}[!ht]
+Die äquivalente Darstellung als Java-Methode unter Verwendung von Querydsl wird in Listing \ref{l:findMostExecutedReportsInRecent} dargestellt.
+\begin{listing}[ht]
   \inputminted{java}{Listings/findMostExecutedReportsInRecent().java}
   \caption{\Methode{findMostExecutedReportsInRecent()}}
   \label{l:findMostExecutedReportsInRecent}
@@ -197,25 +195,25 @@ Es lässt sich bei der Java-Methode unmittelbar die Ähnlichkeit zur SQL-Abfrage
 
 \subsubsection{Implementierung der Geschäftslogik}\label{sec:ImplementierungGeschaeftslogik}
 Damit die Präsentationsschicht die Menge der am häufigsten ausgeführten Berichte des letzten Monats abrufen kann, muss auch die Geschäftslogikschicht eine Service-Methode zum Aufruf anbieten. In dieser ruft sie die in Listing \ref{l:findMostExecutedReportsInRecent} definierte \Methode{getMostExecutedReportsIn()}-Methode der Datenzugriffsschicht auf.
-\begin{listing}[!ht]
+\begin{listing}[ht]
   \inputminted{java}{Listings/getMostUsedReports().java}
   \caption{\Methode{getMostUsedReports()}}
   \label{l:getMostUsedReports}
 \end{listing}\\
 Zunächst werden in der Methode die \Attribut{ItemEntity}-Objekte in der Variable \Attribut{itemEntities} des Typs \Datentyp{Page} gespeichert.
 Wie bereits im Abschnitt \ref{p:Logik} beschrieben, werden daraufhin die aus der Datenbank extrahierten Entitäten mithilfe der Mapper-Klassen auf Business-Objekte abgebildet. In Listing~\ref{l:ItemEntity} wird eine \Klasse{ItemEntity} (Tabelle \Klasse{Catalog}) dargestellt.
-\begin{listing}[!ht]
+\begin{listing}[ht]
   \inputminted{java}{Listings/ItemEntity.java}
   \caption{\Klasse{ItemEntity}}
   \label{l:ItemEntity}
 \end{listing}
 Man erkennt in der Klasse alle auch in der SQL-Abfrage vorhandenen Attribute und die 1:n-Beziehung zum \Klasse{ExecutionLogStorage} in Form des \Attribut{executionLogEntities}-Objekts. Die \Klasse{ItemEntity}-Objekte werden nun auf die Business-Objekte \Klasse{Report} \bzw \Klasse{ExecutedReport} abgebildet, abhängig davon, ob zu der \Klasse{ItemEntity} \Klasse{ExecutionLogEntity}-Objekte existieren. Diese Logik findet sich in den Mapper-Klassen. In Listing \ref{l:Report} und \ref{l:ExecutedReport} sieht man die Klassen \Klasse{Report} und \Klasse{ExecutedReport}. Da eine \Datentyp{Page} der am häufigsten ausgeführten Berichte abgerufen wird, sind alle Berichte vom Typ \Klasse{ExecutedReport} und können als entsprechend parametrisierte \Datentyp{Page} von der \Methode{get\-Most\-Used\-Reports()}-Methode (Listing \ref{l:getMostUsedReports}) zurückgegeben werden.
-\begin{listing}[!ht]
+\begin{listing}[ht]
   \inputminted{java}{Listings/Report.java}
   \caption{\Klasse{Report}}
   \label{l:Report}
 \end{listing}
-\begin{listing}[!ht]
+\begin{listing}[ht]
   \inputminted{java}{Listings/ExecutedReport.java}
   \caption{\Klasse{ExecutedReport}}
   \label{l:ExecutedReport}
@@ -223,24 +221,23 @@ Man erkennt in der Klasse alle auch in der SQL-Abfrage vorhandenen Attribute und
 
 \subsubsection{Implementierung der Präsentationssschicht}\label{sec:ImplementierungPraesentationsschicht}
 Auch in der Präsentationsschicht findet ein Mapping zwischen den \Klasse{ExecutedReport} Business-Objekten auf \ac{GUI}-Objekte statt. \ac{GUI}-Objekte sind einfache \acs{DTO}s (\aclu{DTO}s), die nur Attribute und Zugriffsmethoden (\Methode{get()}, \Methode{set()}) auf diese bieten. Das \ac{DTO} für einen \Klasse{ExecutedReport} sieht wie in Listing \ref{l:ExecutedReportDTO} dargestellt aus.
-\begin{listing}[!ht]
+\begin{listing}[ht]
   \inputminted{java}{Listings/ExecutedReportDTO.java}
   \caption{\Klasse{ExecutedReportDTO}}
   \label{l:ExecutedReportDTO}
 \end{listing}
 Der \Klasse{UsageStatsController} kann nun über die Service-Methode \Methode{getMostUsedReports()} der Präsentationsschicht die Daten abrufen und unter einer Webadresse bereitstellen. Dazu ruft \Methode{getMostUsedReports()} die Service-Methode aus Listing \ref{l:getMostUsedReports} der Geschäftslogikschicht auf und mappt die zurückgegebene \Klasse{ExecutedReport}-\Datentyp{Page} auf eine \Datentyp{Page} aus \ac{DTO}s. Dies wird in Listing \ref{l:UsageStatsController} gezeigt.
-\begin{listing}[!ht]
+\begin{listing}[ht]
   \inputminted{java}{Listings/UsageStatsController.java}
   \caption{\Klasse{UsageStatsController}}
   \label{l:UsageStatsController}
 \end{listing}
 Per ECMAScript werden die Tabellendaten unter der angegebenen Adresse abgerufen und \ua mit dem folgenden Thymeleaf-Template unter Verwendung der CSS-Bibliothek Bootstrap dargestellt. Die Tabelle wird im Browser wie in \Abbildung{Tabelle} angezeigt.
-\begin{listing}[!ht]
+\begin{listing}[ht]
   \inputminted{java}{Listings/TableFragment.html}
   \caption{TableFragment}
   \label{l:TableFragment}
 \end{listing}
-\clearpage
 \begin{figure}[htb]
 	\centering
 	\includegraphicsKeepAspectRatio{Tabelle.png}{1}
@@ -248,15 +245,19 @@ Per ECMAScript werden die Tabellendaten unter der angegebenen Adresse abgerufen 
 	\label{fig:Tabelle}
 \end{figure}
 
+\clearpage
+
 \subsection{Überprüfung}\label{sec:Ueberpruefung}
 Neben den beschriebenen Anwender-Reviews (Paragraph \ref{p:Reviews}) wurden Testklassen geschrieben, die automatisiert mit dem JUnit-Framework ausgeführt werden konnten. Es wurden nur Funktionalitäts- und keine Performancetests erstellt, da die Applikation nur von einem verhältnismäßig kleinen Nutzerkreis gleichzeitig verwendet werden muss. Exemplarisch wird in Listing \ref{l:ItemRepositoryFindTest} ein Test der Datenzugriffsschicht-Methode \Methode{findMostExecutedReportsInRecent()} abgebildet. Erwähnenswert ist die Verwendung der DataJpaTest-Annotation, die für die Testklasse eine eigene speicherresidente Testdatenbank erzeugt, sodass durch die Datenmanipulationsmethoden auf dem \Klasse{ItemEntityRepository} keine Daten in der tatsächlichen Datenbank verändert werden. Alle Tests wurden nach dem Build-Operate-Check-Muster\footnote{\cite{fitnesse:boc}} verfasst.
-\begin{listing}[!ht]
+\begin{listing}[ht]
   \inputminted{java}{Listings/ItemRepositoryFindTest.java}
   \caption{\Klasse{ItemRepositoryFindTest}}
   \label{l:ItemRepositoryFindTest}
 \end{listing}
 \Zwischenstand{Überprüfung}{Ueberpruefung}
+
 \clearpage
+
 \subsection{Abnahme}
 \label{sec:Abnahme}
 Die Abnahme erfolgte im \ac{CFT} \teamName durch die Ansprechpartnerin Anne Schlebusch und die zukünftige Benutzerin Vera Ahrendt. Sie bestand aus einer kurzen Vorführung der erstellten Applikation und einigen manuellen Tests durch beide Teammitglieder. Die Tests bestanden im Wesentlichen nur aus einer funktionalen Überprüfung der Oberfläche. Nach der Anmeldung an der Webapplikation, testeten beide alle klickbaren Funktionen der Anwendung und ließen sich die entsprechenden Ausgaben anzeigen. Diese glichen sie mit ähnlichen Abfragen aus den bestehenden Metadaten-Berichten ab und validierten so die korrekte Datenabfrage. Insgesamt bereitete die Abnahme keine bemerkenswerten Probleme, da die Anwender schon im Vorfeld ausreichend in das Projekt integriert wurden.
