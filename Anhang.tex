@@ -63,3 +63,68 @@ Im Rahmen des Systementwurfs auf Basis der Anforderungsanalyse wurden Mock-Ups e
 
 \subsection{Benutzerdokumentation}
 \label{app:Benutzerdokumentation}
+\projektName ist eine Webanwendung zur Visualisierung von Statistiken für die Plattform \ac{SSRS}. In der Benutzerdokumentation werden alle Views der Applikation erläutert und mit Screenshots dargestellt.
+
+\subsubsection{Zielgruppe}
+\label{app:Zielgruppe}
+Die Zielgruppe dieser Benutzerdokumentation sind die Anwender aus dem \ac{CFT} \teamName. Da alle Mitglieder des Teams weitreichende Kenntnisse mit Datenbanken, der Plattform \ac{SSRS} und Softwareentwicklung im Allgemeinen haben, werden auch hier Fachbegriffe ohne Einführung verwendet.
+
+\subsubsection{Login}
+\label{app:Login}
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{screenshot_1.png}{1}
+    \caption{Login}
+    \label{fig:Login}
+\end{figure}
+Mithilfe der Anmeldeseite können sich autorisierte Nutzer (Zuweisung der Rechtegruppe über das \ac{AD}) mit ihrem Benutzernamen und Passwort an der Applikation anmelden. Bei fehlerhafter Eingabe wird eine Fehlermeldung ausgegeben.
+
+\subsubsection{Hauptseite}
+\label{app:Hauptseite}
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{screenshot_2.png}{1}
+    \caption{Hauptseite}
+    \label{fig:Hauptseite}
+\end{figure}
+Die Hauptseite umfasst wie alle folgenden Seiten eine Navigationsbar, den primären Seiteninhalt und einen Footer. Über die Navigationsbar können alle anderen Seiten über Links erreicht und sich ausgeloggt werden. Zudem wird hier der Name der Datenquelle angegeben, auf der die ReportServer-Datenbank liegt. Der Footer zeigt die Version der Anwendung. Als Seiteninhalt wird auf der Hauptseite eine Übersicht der wichtigsten Statistiken angezeigt. Es können die Anzahl der unbenutzten, nicht verwendeten, langsamen und fehlerhaften Berichte eingesehen werden. Je nach Höhe der Anzahl werden sie in rot, gelb oder grün angezeigt.
+
+\subsubsection{Ausführungsstatistiken}
+\label{app:Ausfuehrung}
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{screenshot_3.png}{1}
+    \caption{Ausführungsstatistiken}
+    \label{fig:Ausfuehrung}
+\end{figure}
+Die über den Link \gqq{Ausführung} erreichbaren Ausführungsstatistiken enthalten zwei Tabellen. Die erste Tabelle zeigt die am häufigsten ausgeführten Berichte des letztens Monats und die zweite die seit mindestens einem Monat nicht mehr ausgeführten Berichte. In allen Tabellen der Applikation kann mit den grünen Pfeilen zwischen den einzelnen Tabellenseiten navigiert werden.
+
+\subsubsection{Abhängigkeitsstatistiken}
+\label{app:Abhaengigkeit}
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{screenshot_4.png}{1}
+    \caption{Abhängigkeitsstatistiken}
+    \label{fig:Abhaengigkeit}
+\end{figure}
+Beim Klick auf \gqq{Abhängigkeiten} (siehe \Abbildung{Abhaengigkeit}) zeigt die Anwendung eine Auflistung aller ungenutzten (nicht mehr referenzierten) Datenquellen an. Diese können ohne Bedenken gelöscht werden.
+
+\subsubsection{Performancestatistiken}
+\label{app:Performance}
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{screenshot_5.png}{1}
+    \caption{Performancestatistiken}
+    \label{fig:Performance}
+\end{figure}
+In der in \Abbildung{Performance} dargestellten Performancestatistiken werden zu jedem Bericht, sein Speicherpfad und die durchschnittliche Ausführungszeit angezeigt. Die Liste ist nach Ausführungszeit absteigend sortiert.
+
+\subsubsection{Fehlerstatistiken}
+\label{app:Fehler}
+\begin{figure}[htb]
+    \centering
+    \includegraphicsKeepAspectRatio{screenshot_6.png}{1}
+    \caption{Fehlerstatistiken}
+    \label{fig:Fehler}
+\end{figure}
+Ist der letzte Ausführungsstatus eines Berichtes nicht erfolgreich, wird dieser mit seinem Status und letzten Ausführungszeitpunkt auf der Seite in \Abbildung{Fehler} aufgelistet. Berichte, die sich in dieser Tabelle befinden, sollten schnellstmöglich auf ihre korrekte Funktionsweise überprüft werden.
