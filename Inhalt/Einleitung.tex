@@ -28,7 +28,7 @@ Zum Tagesgeschäft des IT-Teams \teamName gehört die Erstellung, Anpassung und 
 Dieser Abschnitt liefert nur einen kurzen Überblick über die organisatorische und technische Ausgangssituation vor Projektbeginn. Genaueres wird später unter dem Punkt \ref{sec:Anforderungsanalyse} (\ua die Ist- und Soll-Zustände) erläutert.
 
 \subsubsection{Organisatorisch}\label{sec:Ausgangssituation:Organisatorisch}
-Da eine der Hauptaufgaben des Teams die Bereitstellung von Informationen ist, werden kontinuierlich Berichte zur Förderung der \ac{BI} (Geschäftsanalytik) erstellt und modifiziert, um Nutzern und Entwicklern einen komfortablen Zugriff zur einfachen Gewinnung verwertbarer Erkenntnisse zu ermöglichen. Hierzu werden \ac{BI}-Reports mit Tabellen und Diagrammen entwickelt, die Benutzern einen zentralisierten und einheitlichen Zugang zu der Vielzahl der komplexen Datenstrukturen gewähren.\footnote{\Vgl \cite{Projektantrag}}
+Da eine der Hauptaufgaben des Teams die Bereitstellung von Informationen ist, werden kontinuierlich Berichte zur Förderung der \ac{BI} (Geschäftsanalytik) erstellt und modifiziert, um Nutzern und Entwicklern einen komfortablen Zugriff zur einfachen Gewinnung verwertbarer Erkenntnisse zu ermöglichen. Hierzu werden \ac{BI}-Berichte mit Tabellen und Diagrammen entwickelt, die Benutzern einen zentralisierten und einheitlichen Zugang zu der Vielzahl der komplexen Datenstrukturen gewähren.\footnote{\Vgl \cite{Projektantrag}}
 Um über die Gesamtmenge einen Überblick zu bewahren, existieren Metadaten-Berichte (also Berichte über Berichte), die \zB Informationen über die Anzahl und den Status bereitstellen.
 Da die Anzahl der angelegten Metadaten-Berichte sehr gering und die Informationsdichte nicht ausreichend ist, setzt dieses Projekt genau an dieser Stelle an.
 
@@ -51,7 +51,7 @@ Es ist ein serverbasiertes Generierungssystem für Berichte des Herstellers Micr
 
 \subsection[Projektbeschreibung]{Projektbeschreibung\footnote{\cite{Projektantrag}}}\label{sec:Projektbeschreibung}
 \begin{displayquote}
-	Aufgabe des Prüflings \autorName\xspace ist daher die Implementierung einer Web-Applikation, die geeignete quantitative Metriken über die Ausführung, den Status, die Performance und die Abhängigkeiten zwischen den Berichten anschaulich visualisiert. Es muss eine Übersicht über die am häufigsten ausgeführten, fehlerhaften, langsamen Berichte und nicht mehr referenzierte Datenquellen angezeigt werden können. Die Nutzung der Applikation sollte ausgewählten Anwendern (Team \teamName) vorbehalten sein, \dahe ein Login mit Anbindung an das unternehmensinterne \ac{AD} muss implementiert werden. Das Backend der Anwendung soll in der Programmiersprache Java umgesetzt, das Frontend sollte als ansprechende HTML-Seite mit CSS gemäß der Corporate-Design-Richtlinien der \ac{KVWL} entworfen werden.
+	Aufgabe des Prüflings \autorName\xspace ist daher die Implementierung einer Webapplikation, die geeignete quantitative Metriken über die Ausführung, den Status, die Performance und die Abhängigkeiten zwischen den Berichten anschaulich visualisiert. Es muss eine Übersicht über die am häufigsten ausgeführten, fehlerhaften, langsamen Berichte und nicht mehr referenzierte Datenquellen angezeigt werden können. Die Nutzung der Applikation sollte ausgewählten Anwendern (Team \teamName) vorbehalten sein, \dahe ein Login mit Anbindung an das unternehmensinterne \ac{AD} muss implementiert werden. Das Backend der Anwendung soll in der Programmiersprache Java umgesetzt, das Frontend sollte als ansprechende HTML-Seite mit CSS gemäß der Corporate-Design-Richtlinien der \ac{KVWL} entworfen werden.
 \end{displayquote}
 
 \subsection{Projektschnittstellen}\label{sec:Projektschnittstellen}
@@ -74,14 +74,14 @@ Die Anwendung \projektName soll von allen Mitgliedern des \ac{CFT} \teamName gen
 Für die Implementierung des Projekts wurde die Programmiersprache Java in der Version 8 eingesetzt. Die clientseitige Oberfläche basiert auf HTML5-Templates, welche mit CSS gestaltet und mit Daten durch die Template-Engine Thymeleaf angereichert wurden. Jegliche Logik, die sich auf die Darstellung \bzw Navigation bezieht, ist mit ECMAScript beschrieben. Der Großteil der Datenbankabfragen ist unmittelbar durch Java-Code implementiert, vereinzelt für komplexere Abfragen kommt jedoch auch SQL zum Einsatz.
 
 \paragraph{Frameworks/Bibliotheken}~\\\label{p:Frameworks}
-Die Anwendung wird mit dem Build-Management-Tool Maven automatisiert gebaut und basiert hauptsächlich auf dem Spring-Framework. Dieses stellt eine große Bandbreite verschiedener Funktionalitäten (\zB \ac{DI} oder \ac{AOP}) zur Verfügung und vereinfacht im Allgemeinen die Entwicklung von Web-Anwendungen.\\
+Die Anwendung wird mit dem Build-Management-Tool Maven automatisiert gebaut und basiert hauptsächlich auf dem Spring-Framework. Dieses stellt eine große Bandbreite verschiedener Funktionalitäten (\zB \ac{DI} oder \ac{AOP}) zur Verfügung und vereinfacht im Allgemeinen die Entwicklung von Webanwendungen.\\
 Zusätzlich wird dabei von dem Spring Boot Projekt Gebrauch gemacht, dass die Konfiguration von Spring-Applikationen durch Realisierung des Design-Paradigmas Convention over Configuration erheblich vereinfacht.\\
 Als \aclu{ORM}-Framework (\ac{ORM}: objektrelationale Abbildung) und \aclu{JPA}-Implementierung (\ac{JPA}) kommt Hibernate zum Einsatz. In diesem Zusammenhang erwähnenswert ist die Benutzung der Querydsl API, einer Schnittstelle zur Erstellung von gut lesbaren SQL-Abfragen in Java mittels eines Fluent Interfaces (sprechende Schnittstellen), einer Form der Programmierung, die der natürlichen Sprache sehr nahekommt.
 Außerdem werden diverse Funktionen üblicher Standard-Bibliotheken wie JUnit Jupiter (Test-Framework), Lombok (Code-Reduktion) und diverser Spring Boot Subprojekte (Security, Data, Web) verwendet.
 
 
 \paragraph{Abhängigkeiten und Schnittstellen}~\\\label{p:Abhaengigkeiten}
-Abhängigkeiten zu anderen Web-Anwendungen oder Services bestehen nicht, es wird lediglich über \ac{JDBC} auf die ReportServer-Datenbank (Microsoft SQL Server) zugegriffen. Eine vereinfachte Darstellung der Abhängigkeiten zwischen den Komponenten zeigt das Verteilungsdiagramm in \Abbildung{Deployment}.
+Abhängigkeiten zu anderen Webanwendungen oder Services bestehen nicht, es wird lediglich über \ac{JDBC} auf die ReportServer-Datenbank (Microsoft SQL Server) zugegriffen. Eine vereinfachte Darstellung der Abhängigkeiten zwischen den Komponenten zeigt das Verteilungsdiagramm in \Abbildung{Deployment}.
 \begin{figure}[htb]
 	\centering
 	\includegraphicsKeepAspectRatio{Verteilungsdiagramm.png}{0.8}

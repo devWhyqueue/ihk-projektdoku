@@ -7,7 +7,7 @@ Das Kapitel Projektdurchführung befasst sich mit allen acht, in Abschnitt \ref{
 Eine Wirtschaftlichkeitsanalyse stellt die Kosten und das erwartete Ergebnis eines Projektes gegenüber. Ziel ist die Überprüfung der Rentabilität \bzw Wirtschaftlichkeit. Gründe für erfolgreiche Projekte sollen identifiziert und die Wirkung von Schwächen begrenzt werden.\footnote{\Vgl \cite{finlex:wa}}
 
 \subsubsection{\gqq{Make or Buy}-Entscheidung}\label{sec:MakeOrBuyEntscheidung}
-Eine umfangreiche Recherche innerhalb des eigenen Unternehmens und aller verfügbaren Internetquellen ergab, dass schon mehrere Lösungen zur Darstellung von Statistiken für die Berichterstellungsplattform \ac{SSRS} existieren. Ein repräsentatives Beispiel aller online verfügbaren Ansätze für die Erhebung von Metadaten liefert der Lösungsansatz des Autors Jeff Pries. Er stellt eine Reihe von Informationen über Benutzer, Berichtsausführungen und Performance als Report innerhalb der \ac{SSRS} dar.\footnote{\Vgl \cite{pries:usage}} Da aber vom Auftraggeber eine \gqq{Implementierung einer Web-Applikation}\footnote{\cite{Projektantrag}} gefordert wurde, die unabhängig und außerhalb des Report-Servers besteht, entspricht keine der gefundenen Lösungen den Anforderungen. Folglich wurde die Entscheidung gefällt, \projektName in Form einer Individualsoftware zu realisieren. Diese Umsetzung wird außerdem nicht an externe Dienstleister vergeben, sondern an die interne IT-Abteilung, weil diese am besten mit den Rahmenbedingungen vertraut ist. So kann gezielt auf die Bedürfnisse des Auftraggebers \ac{CFT} \teamName eingegangen werden, um einen hohen Individualisierungsgrad zu erzielen.
+Eine umfangreiche Recherche innerhalb des eigenen Unternehmens und aller verfügbaren Internetquellen ergab, dass schon mehrere Lösungen zur Darstellung von Statistiken für die Berichterstellungsplattform \ac{SSRS} existieren. Ein repräsentatives Beispiel aller online verfügbaren Ansätze für die Erhebung von Metadaten liefert der Lösungsansatz des Autors Jeff Pries. Er stellt eine Reihe von Informationen über Benutzer, Berichtsausführungen und Performance als Report innerhalb der \ac{SSRS} dar.\footnote{\Vgl \cite{pries:usage}} Da aber vom Auftraggeber eine \gqq{Implementierung einer Webapplikation}\footnote{\cite{Projektantrag}} gefordert wurde, die unabhängig und außerhalb des Report-Servers besteht, entspricht keine der gefundenen Lösungen den Anforderungen. Folglich wurde die Entscheidung gefällt, \projektName in Form einer Individualsoftware zu realisieren. Diese Umsetzung wird außerdem nicht an externe Dienstleister vergeben, sondern an die interne IT-Abteilung, weil diese am besten mit den Rahmenbedingungen vertraut ist. So kann gezielt auf die Bedürfnisse des Auftraggebers \ac{CFT} \teamName eingegangen werden, um einen hohen Individualisierungsgrad zu erzielen.
 
 
 \subsubsection{Projektkosten}\label{sec:Projektkosten}
@@ -49,19 +49,19 @@ Die von \ac{SSRS} gesammelten Daten werden in relationalen Tabellen auf dem SQL 
 \end{figure}
 
 \paragraph{Catalog}~\\\label{p:Catalog}
-Der Catalog umfasst alle für den Report-Server relevanten Items. Darunter befinden sich die Berichte und Datenquellen, aber auch \zB Datasets, Folders oder Resources (für dieses Projekt irrelevant).
+Der \Klasse{Catalog} umfasst alle für den Report-Server relevanten Items. Darunter befinden sich die Berichte und Datenquellen, aber auch \zB Datasets, Folders oder Resources (für dieses Projekt irrelevant).
 
 \paragraph{DataSource}~\\\label{p:DataSource}
-Die Tabelle DataSource beinhaltet alle Datenquellen des Report-Servers. Neben dem im Diagramm aufgeführten Attribut \gqq{Name} enthält es weitere für Datenquellen relevante Informationen wie Zugangsdaten oder weitere Optionen.\\
-Über den Fremdschlüssel \gqq{ItemID} erreicht man das zugehörige Catalog-Item. Dies kann ein Data\-Source-Item (\gqq{Type}=5) oder ein Report-Item (\gqq{Type}=2) sein. Ein zugehöriges Data\-Source-Item in der Catalog-Tabelle enthält weitere Informationen zur DataSource \zB \gqq{Path}, also den Speicherort. Verweist die \gqq{ItemID} auf ein Report-Item, nutzt dieses die entsprechende DataSource.\\
-Die \gqq{LinkID} zeigt immer auf ein zugehöriges DataSource-Item in der Catalog-Tabelle. Datensätze in der DataSource-Tabelle mit einer \gqq{ItemID}, die auf ein Report-Item verweisen, können beliebig viele DataSource-Items haben. Dies führt dann zu mehreren Zeilen in der DataSource-Tabelle mit denselben ItemIDs, aber unterschiedlichen LinkIDs.\\
-Einträge mit einer \gqq{ItemID}, die ein DataSource-Item referenziert, haben jedoch immer eine \gqq{LinkID}=NULL, da sie bereits über die \gqq{ItemID} an die Catalog-Tabelle geknüpft sind und da ein DataSource-Item ja keine abhängigen DataSource-Items haben kann.
+Die Tabelle \Klasse{DataSource} beinhaltet alle Datenquellen des Report-Servers. Neben dem im Diagramm aufgeführten Attribut \Attribut{Name} enthält es weitere für Datenquellen relevante Informationen wie Zugangsdaten oder weitere Optionen.\\
+Über den Fremdschlüssel \Attribut{ItemID} erreicht man das zugehörige \Klasse{Catalog}-Item. Dies kann ein Data\-Source-Item (\Attribut{Type}=5) oder ein Report-Item (\Attribut{Type}=2) sein. Ein zugehöriges Data\-Source-Item in der \Klasse{Catalog}-Tabelle enthält weitere Informationen zur \Klasse{DataSource} \zB \Attribut{Path}, also den Speicherort. Verweist die \Attribut{ItemID} auf ein Report-Item, nutzt dieses die entsprechende \Klasse{DataSource}.\\
+Die \Attribut{LinkID} zeigt immer auf ein zugehöriges \Klasse{DataSource}-Item in der \Klasse{Catalog}-Tabelle. Datensätze in der \Klasse{DataSource}-Tabelle mit einer \Attribut{ItemID}, die auf ein Report-Item verweisen, können beliebig viele \Klasse{DataSource}-Items haben. Dies führt dann zu mehreren Zeilen in der \Klasse{DataSource}-Tabelle mit denselben \Attribut{ItemID}s, aber unterschiedlichen \Attribut{LinkID}s.\\
+Einträge mit einer \Attribut{ItemID}, die ein \Klasse{DataSource}-Item referenziert, haben jedoch immer eine \Attribut{LinkID}=NULL, da sie bereits über die \Attribut{ItemID} an die \Klasse{Catalog}-Tabelle geknüpft sind und da ein \Klasse{DataSource}-Item ja keine abhängigen \Klasse{DataSource}-Items haben kann.
 
 \paragraph{ExecutionLogStorage}~\\\label{p:ExecutionLogStorage}
-Einträge im ExecutionLogStorage repräsentieren die Ausführung von Berichten über das Webportal. Wird ein Report ausgeführt, schreibt der Report-Server \ua die Ladezeit, den Ausführungsstatus und den aufrufenden Benutzer in die Protokolltabelle.
+Einträge im \Klasse{ExecutionLogStorage} repräsentieren die Ausführung von Berichten über das Webportal. Wird ein Report ausgeführt, schreibt der Report-Server \ua die Ladezeit, den Ausführungsstatus und den aufrufenden Benutzer in die Protokolltabelle.
 
 \paragraph{ConfigurationInfo}~\\\label{p:ConfigurationInfo}
-Hier befinden sich globale Konfigurationen des Report-Servers (SessionTimeout, Execution\-Log\-Level, MaxFileSizeMb) als Key-Value-Pairs.
+Hier befinden sich globale Konfigurationen des Report-Servers (\Attribut{SessionTimeout}, \Attribut{Execution\-Log\-Level}, \Attribut{MaxFileSizeMb}) als Key-Value-Pairs.
 
 \Zwischenstand{Einarbeitung in das Projektumfeld}{Einarbeitung}
 
@@ -101,7 +101,7 @@ Wie bereits erwähnt, sollen nach Ende des Projektes weitere Funktionen hinzugef
 \subsection{Systementwurf}\label{sec:Systementwurf}
 
 \subsubsection{Zielplattform}\label{sec:Zielplattform}
-Die \ac{KVWL} setzt bezüglich der Entwicklung von Web-Anwendungen hauptsächlich auf Software, die in Java programmiert ist. Somit ist dies eine implizite Vorgabe für dieses Projekt. Aktuell wird die Programmiersprache Java in der Version 8 eingesetzt.
+Die \ac{KVWL} setzt bezüglich der Entwicklung von Webanwendungen hauptsächlich auf Software, die in Java programmiert ist. Somit ist dies eine implizite Vorgabe für dieses Projekt. Aktuell wird die Programmiersprache Java in der Version 8 eingesetzt.
 
 \paragraph{Server}~\\\label{p:Server}
  Da das Team \teamName hauptsächlich Windows-Server betreibt, muss auch \projektName auf diesen bereitgestellt werden. Diese sind bereits in ausreichender Zahl vorhanden, sodass weder Hardware noch zusätzliche virtuelle Server benötigt werden. Die Installation eines Webservers (wie Tomcat oder WildFly) ist ebenfalls nicht notwendig, weil das genutzte Spring Boot Framework bereits einen eingebetteten Webserver mitliefert.\footnote{\Vgl \cite{spring:web}} Zudem benötigt die Applikation keine Persistierungsmöglichkeiten für Daten; es muss also keine Datenbank erzeugt werden.
@@ -117,27 +117,27 @@ Das Grundgerüst der Architektur bildet die Anwendung des Schichtenmodells. Hier
 Bei \projektName wurde eine Drei-Schichten-Architektur implementiert, bestehend aus der Datenhaltung-, der Logik- und der Präsentationsschicht. Für gewöhnlich ist die Datenhaltungsschicht sowohl für das Speichern als auch das Laden von Daten verantwortlich; bei diesem Projekt mussten jedoch keine Informationen persistiert werden.
 
 \paragraph{Datenhaltung} ~\\\label{p:Datenhaltung}
-Zugriffe auf die Tabellen des Report-Servers werden in der Datenhaltungsschicht definiert. Sie sind das Herzstück der Applikation. Hier werden die in den Anforderungen definierten statistischen Daten aus den Tabellen der ReportServer-Datenbank extrahiert und auf Java-Entitäten abgebildet. In \Abbildung{CustomItemRepository} wird ein Repository dargestellt, dass auf Datensätze der Tabelle Catalog zugreift.
+Zugriffe auf die Tabellen des Report-Servers werden in der Datenhaltungsschicht definiert. Sie sind das Herzstück der Applikation. Hier werden die in den Anforderungen definierten statistischen Daten aus den Tabellen der ReportServer-Datenbank extrahiert und auf Java-Entitäten abgebildet. In \Abbildung{CustomItemRepository} wird ein Repository dargestellt, dass auf Datensätze der Tabelle \Klasse{Catalog} zugreift.
 \begin{figure}[htb]
 	\centering
 	\includegraphicsKeepAspectRatio{Klassendiagramm_CustomItemRepository.png}{0.5}
-	\caption{Klasse CustomItemRepository}
+	\caption{Klasse \Klasse{CustomItemRepository}}
 	\label{fig:CustomItemRepository}
 \end{figure}
 
 \paragraph{Logik} ~\\\label{p:Logik}
-Die Geschäftslogik von \projektName besteht im Wesentlichen aus der Abbildung von Entitäten der Datenhaltungsschicht auf Objekte der Logikschicht und der Deklaration von Service-Methoden, die diese weiterverarbeiten. Eine Übersicht der Klassen des Pakets \gqq{Mapping} findet sich in \Abbildung{Mapping}.
+Die Geschäftslogik von \projektName besteht im Wesentlichen aus der Abbildung von Entitäten der Datenhaltungsschicht auf Objekte der Logikschicht und der Deklaration von Service-Methoden, die diese weiterverarbeiten. Eine Übersicht der Klassen des Pakets \Klasse{Mapping} findet sich in \Abbildung{Mapping}.
 \begin{figure}[htb]
 	\centering
 	\includegraphicsKeepAspectRatio{Klassendiagramm_Mapping.png}{0.5}
-	\caption{Paket \gqq{Mapping}}
+	\caption{Paket \Klasse{Mapping}}
 	\label{fig:Mapping}
 \end{figure}\\
-Mithilfe dieser Mapping-Klassen werden die Entitätsobjekte in Business-Objekte konvertiert, die Clienten aus der Präsentationsschicht über Service-Methoden einfach verwenden können. Klassen der Präsentationsschicht können auf die gewünschte Menge von Business-Objekten über Service-Klassen zugreifen. Repräsentativ für die Service-Klassen zeigt \Abbildung{Logik} die ReportService-Schnittstelle.
+Mithilfe dieser Mapping-Klassen werden die Entitätsobjekte in Business-Objekte konvertiert, die Clienten aus der Präsentationsschicht über Service-Methoden einfach verwenden können. Klassen der Präsentationsschicht können auf die gewünschte Menge von Business-Objekten über Service-Klassen zugreifen. Repräsentativ für die Service-Klassen zeigt \Abbildung{Logik} die \Klasse{ReportService}-Schnittstelle.
 \begin{figure}[htb]
 	\centering
 	\includegraphicsKeepAspectRatio{Klassendiagramm_ReportService.png}{0.6}
-	\caption{Services in der Logikschicht}
+	\caption{\Klasse{ReportService}-Interface}
 	\label{fig:Logik}
 \end{figure}
 
@@ -185,54 +185,53 @@ Ausgehend von dem folgenden repräsentativen Beispiel für eine implementierte D
   \label{l:sql}
 \end{listing}
 
-In der Abfrage werden zunächst die Attribute eines Items aus dem Catalog selektiert. Die Tabelle Catalog wird mit dem ExecutionLogStorage über die ItemID verbunden. Durch das Type-Attribut werden alle Berichte identifiziert. Berichte mit dem Namenspräfix \gqq{H\_} werden herausgefiltert, da dies die Unterberichte sind. Außerdem wird der Ausführungszeitpunkt auf ein Intervall von 30 Tagen beschränkt und die Ergebnismenge nach der Anzahl der Ausführungen absteigend sortiert.\\
+In der Abfrage werden zunächst die Attribute eines Items aus dem \Klasse{Catalog} selektiert. Die Tabelle \Klasse{Catalog} wird mit dem \Klasse{ExecutionLogStorage} über die ItemID verbunden. Durch das Type-Attribut werden alle Berichte identifiziert. Berichte mit dem Namenspräfix \gqq{H\_} werden herausgefiltert, da dies die Unterberichte sind. Außerdem wird der Ausführungszeitpunkt auf ein Intervall von 30 Tagen beschränkt und die Ergebnismenge nach der Anzahl der Ausführungen absteigend sortiert.\\
 Die äquivalente Darstellung als Java-Methode unter Verwendung von Querydsl sieht wie folgt aus:
 \clearpage
 \begin{listing}[!ht]
   \inputminted{java}{Listings/findMostExecutedReportsInRecent().java}
-  \caption{findMostExecutedReportsInRecent()}
+  \caption{\Methode{findMostExecutedReportsInRecent()}}
   \label{l:findMostExecutedReportsInRecent}
 \end{listing}
 Es lässt sich bei der Java-Methode unmittelbar die Ähnlichkeit zur SQL-Abfrage feststellen. Der einzige Unterschied besteht darin, dass noch ein Parameter zur Paginierung übergeben wird. Dieser bewirkt, dass immer nur der Teil der Gesamtergebnismenge zurückgegeben wird, der auch in der Tabelle in der Benutzeroberfläche angezeigt wird.
 
 \subsubsection{Implementierung der Geschäftslogik}\label{sec:ImplementierungGeschaeftslogik}
-Damit die Präsentationsschicht die Menge der am häufigsten ausgeführten Berichte des letzten Monats abrufen kann, muss auch die Geschäftslogikschicht eine Service-Methode zum Aufruf anbieten. In dieser ruft sie die in Listing \ref{l:findMostExecutedReportsInRecent} definierte getMostExecutedReportsIn()-Methode der Datenzugriffsschicht auf.
+Damit die Präsentationsschicht die Menge der am häufigsten ausgeführten Berichte des letzten Monats abrufen kann, muss auch die Geschäftslogikschicht eine Service-Methode zum Aufruf anbieten. In dieser ruft sie die in Listing \ref{l:findMostExecutedReportsInRecent} definierte \Methode{getMostExecutedReportsIn()}-Methode der Datenzugriffsschicht auf.
 \begin{listing}[!ht]
   \inputminted{java}{Listings/getMostUsedReports().java}
-  \caption{getMostUsedReports()}
+  \caption{\Methode{getMostUsedReports()}}
   \label{l:getMostUsedReports}
 \end{listing}\\
-Zunächst werden in der Methode die ItemEntities in der Variable itemEntities des Typs Page gespeichert.
-Wie bereits im Abschnitt \ref{p:Logik} beschrieben, werden daraufhin die aus der Datenbank extrahierten Entitäten mithilfe der Mapper-Klassen auf Business-Objekte abgebildet. In Listing~\ref{l:ItemEntity} wird eine ItemEntity (Tabelle Catalog) dargestellt.
+Zunächst werden in der Methode die \Attribut{ItemEntity}-Objekte in der Variable \Attribut{itemEntities} des Typs \Datentyp{Page} gespeichert.
+Wie bereits im Abschnitt \ref{p:Logik} beschrieben, werden daraufhin die aus der Datenbank extrahierten Entitäten mithilfe der Mapper-Klassen auf Business-Objekte abgebildet. In Listing~\ref{l:ItemEntity} wird eine \Klasse{ItemEntity} (Tabelle \Klasse{Catalog}) dargestellt.
 \begin{listing}[!ht]
   \inputminted{java}{Listings/ItemEntity.java}
-  \caption{ItemEntity}
+  \caption{\Klasse{ItemEntity}}
   \label{l:ItemEntity}
 \end{listing}
-Man erkennt in der Klasse alle auch in der SQL-Abfrage vorhandenen Attribute und die 1:n-Beziehung zum ExecutionLogStorage in Form des executionLogEntities-Objekts. Die ItemEntities werden nun auf die Business-Objekte Report \bzw ExecutedReport abgebildet, abhängig davon, ob zu der ItemEntity ExecutionLogEntities existieren. Diese Logik findet sich in den Mapper-Klassen. In Listing \ref{l:Report} und \ref{l:ExecutedReport} sieht man die Klassen Report und ExecutedReport.
+Man erkennt in der Klasse alle auch in der SQL-Abfrage vorhandenen Attribute und die 1:n-Beziehung zum \Klasse{ExecutionLogStorage} in Form des \Attribut{executionLogEntities}-Objekts. Die \Klasse{ItemEntity}-Objekte werden nun auf die Business-Objekte \Klasse{Report} \bzw \Klasse{ExecutedReport} abgebildet, abhängig davon, ob zu der \Klasse{ItemEntity} \Klasse{ExecutionLogEntity}-Objekte existieren. Diese Logik findet sich in den Mapper-Klassen. In Listing \ref{l:Report} und \ref{l:ExecutedReport} sieht man die Klassen \Klasse{Report} und \Klasse{ExecutedReport}. Da eine \Datentyp{Page} der am häufigsten ausgeführten Berichte abgerufen wird, sind alle Berichte vom Typ \Klasse{ExecutedReport} und können als entsprechend parametrisierte \Datentyp{Page} von der \Methode{get\-Most\-Used\-Reports()}-Methode (Listing \ref{l:getMostUsedReports}) zurückgegeben werden.
 \begin{listing}[!ht]
   \inputminted{java}{Listings/Report.java}
-  \caption{Report}
+  \caption{\Klasse{Report}}
   \label{l:Report}
 \end{listing}
 \begin{listing}[!ht]
   \inputminted{java}{Listings/ExecutedReport.java}
-  \caption{ExecutedReport}
+  \caption{\Klasse{ExecutedReport}}
   \label{l:ExecutedReport}
 \end{listing}
-Da eine Page der am häufigsten ausgeführten Reports abgerufen wird, sind alle Reports vom Typ ExecutedReport und können als entsprechend parametrisierte Page von der get\-Most\-Used\-Reports()-Methode (Listing \ref{l:getMostUsedReports}) zurückgegeben werden.
 
 \subsubsection{Implementierung der Präsentationssschicht}\label{sec:ImplementierungPraesentationsschicht}
-Auch in der Präsentationsschicht findet ein Mapping zwischen den ExecutedReport Business-Objekten auf \ac{GUI}-Objekte statt. \ac{GUI}-Objekte sind einfache \acs{DTO}s (\aclu{DTO}s), die nur Attribute und Zugriffsmethoden (get(), set()) auf diese bieten. Das \ac{DTO} für einen ExecutedReport sieht wie folgt aus:
+Auch in der Präsentationsschicht findet ein Mapping zwischen den \Klasse{ExecutedReport} Business-Objekten auf \ac{GUI}-Objekte statt. \ac{GUI}-Objekte sind einfache \acs{DTO}s (\aclu{DTO}s), die nur Attribute und Zugriffsmethoden (\Methode{get()}, \Methode{set()}) auf diese bieten. Das \ac{DTO} für einen \Klasse{ExecutedReport} sieht wie in Listing \ref{l:ExecutedReportDTO} dargestellt aus.
 \begin{listing}[!ht]
   \inputminted{java}{Listings/ExecutedReportDTO.java}
-  \caption{ExecutedReportDTO}
+  \caption{\Klasse{ExecutedReportDTO}}
   \label{l:ExecutedReportDTO}
 \end{listing}
-Der UsageStatsController kann nun über die Service-Methode getMostUsedReports() der Präsentationsschicht die Daten abrufen und unter einer Webadresse bereitstellen. Dazu ruft getMostUsedReports() die Service-Methode aus Listing \ref{l:getMostUsedReports} der Geschäftslogikschicht auf und mappt die zurückgegebene ExecutedReport-Page auf eine Page aus \ac{DTO}s. Dies sieht so aus:
+Der \Klasse{UsageStatsController} kann nun über die Service-Methode \Methode{getMostUsedReports()} der Präsentationsschicht die Daten abrufen und unter einer Webadresse bereitstellen. Dazu ruft \Methode{getMostUsedReports()} die Service-Methode aus Listing \ref{l:getMostUsedReports} der Geschäftslogikschicht auf und mappt die zurückgegebene \Klasse{ExecutedReport}-\Datentyp{Page} auf eine \Datentyp{Page} aus \ac{DTO}s. Dies wird in Listing \ref{l:UsageStatsController} gezeigt.
 \begin{listing}[!ht]
   \inputminted{java}{Listings/UsageStatsController.java}
-  \caption{UsageStatsController}
+  \caption{\Klasse{UsageStatsController}}
   \label{l:UsageStatsController}
 \end{listing}
 Per ECMAScript werden die Tabellendaten unter der angegebenen Adresse abgerufen und \ua mit dem folgenden Thymeleaf-Template unter Verwendung der CSS-Bibliothek Bootstrap dargestellt. Die Tabelle wird im Browser wie in \Abbildung{Tabelle} angezeigt.
@@ -250,17 +249,17 @@ Per ECMAScript werden die Tabellendaten unter der angegebenen Adresse abgerufen 
 \end{figure}
 
 \subsection{Überprüfung}\label{sec:Ueberpruefung}
-Neben den beschriebenen Anwender-Reviews (Paragraph \ref{p:Reviews}) wurden Testklassen geschrieben, die automatisiert mit dem JUnit-Framework ausgeführt werden konnten. Es wurden nur Funktionalitäts- und keine Performancetests erstellt, da die Applikation nur von einem verhältnismäßig kleinen Nutzerkreis gleichzeitig verwendet werden muss. Exemplarisch wird in Listing \ref{l:ItemRepositoryFindTest} ein Test der Datenzugriffsschicht-Methode findMostExecutedReportsInRecent() abgebildet. Erwähnenswert ist die Verwendung der DataJpaTest-Annotation, die für die Testklasse eine eigene speicherresidente Testdatenbank erzeugt, sodass durch die Datenmanipulationsmethoden auf dem ItemEntityRepository keine Daten in der tatsächlichen Datenbank verändert werden. Alle Tests wurden nach dem Build-Operate-Check-Muster\footnote{\cite{fitnesse:boc}} verfasst.
+Neben den beschriebenen Anwender-Reviews (Paragraph \ref{p:Reviews}) wurden Testklassen geschrieben, die automatisiert mit dem JUnit-Framework ausgeführt werden konnten. Es wurden nur Funktionalitäts- und keine Performancetests erstellt, da die Applikation nur von einem verhältnismäßig kleinen Nutzerkreis gleichzeitig verwendet werden muss. Exemplarisch wird in Listing \ref{l:ItemRepositoryFindTest} ein Test der Datenzugriffsschicht-Methode \Methode{findMostExecutedReportsInRecent()} abgebildet. Erwähnenswert ist die Verwendung der DataJpaTest-Annotation, die für die Testklasse eine eigene speicherresidente Testdatenbank erzeugt, sodass durch die Datenmanipulationsmethoden auf dem \Klasse{ItemEntityRepository} keine Daten in der tatsächlichen Datenbank verändert werden. Alle Tests wurden nach dem Build-Operate-Check-Muster\footnote{\cite{fitnesse:boc}} verfasst.
 \begin{listing}[!ht]
   \inputminted{java}{Listings/ItemRepositoryFindTest.java}
-  \caption{ItemRepositoryFindTest}
+  \caption{\Klasse{ItemRepositoryFindTest}}
   \label{l:ItemRepositoryFindTest}
 \end{listing}
 \Zwischenstand{Überprüfung}{Ueberpruefung}
 \clearpage
 \subsection{Abnahme}
 \label{sec:Abnahme}
-Die Abnahme erfolgte im \ac{CFT} \teamName durch die Ansprechpartnerin Anne Schlebusch und die zukünftige Benutzerin Vera Ahrendt. Sie bestand aus einer kurzen Vorführung der erstellten Applikation und einigen manuellen Tests durch beide Teammitglieder. Die Tests bestanden im Wesentlichen nur aus einer funktionalen Überprüfung der Oberfläche. Nach der Anmeldung an der Web-Applikation, testeten beide alle klickbaren Funktionen der Anwendung und ließen sich die entsprechenden Ausgaben anzeigen. Diese glichen sie mit ähnlichen Abfragen aus den bestehenden Metadaten-Berichten ab und validierten so die korrekte Datenabfrage. Insgesamt bereitete die Abnahme keine bemerkenswerten Probleme, da die Anwender schon im Vorfeld ausreichend in das Projekt integriert wurden.
+Die Abnahme erfolgte im \ac{CFT} \teamName durch die Ansprechpartnerin Anne Schlebusch und die zukünftige Benutzerin Vera Ahrendt. Sie bestand aus einer kurzen Vorführung der erstellten Applikation und einigen manuellen Tests durch beide Teammitglieder. Die Tests bestanden im Wesentlichen nur aus einer funktionalen Überprüfung der Oberfläche. Nach der Anmeldung an der Webapplikation, testeten beide alle klickbaren Funktionen der Anwendung und ließen sich die entsprechenden Ausgaben anzeigen. Diese glichen sie mit ähnlichen Abfragen aus den bestehenden Metadaten-Berichten ab und validierten so die korrekte Datenabfrage. Insgesamt bereitete die Abnahme keine bemerkenswerten Probleme, da die Anwender schon im Vorfeld ausreichend in das Projekt integriert wurden.
 
 \subsection{Erstellung der Dokumentation}\label{sec:Dokumentation}
 Neben dieser Projektdokumentation wurden weitere Typen von Dokumentationen erstellt. Das Verfassen aller Dokumentationsartefakte hat erheblich mehr Zeit in Anspruch genommen als zu Beginn eingeplant. Dies lässt sich aus der Tabelle \ref{tab:Dokumentation} am Ende dieser Sektion entnehmen.
