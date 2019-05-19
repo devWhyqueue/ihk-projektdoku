@@ -1,0 +1,15 @@
+<div layout:replace=
+            "~{templates/pageable_table_template(dataPage=${mostUsedReports})}">
+    <th:block layout:fragment="table_headers">
+        <th scope="col">Name</th>
+        <th scope="col">Pfad</th>
+        <th scope="col">Anzahl Ausfuehrungen</th>
+        <th scope="col">zuletzt ausgefuehrt am</th>
+    </th:block>
+    <th:block layout:fragment="table_data">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.path}"></td>
+        <td th:text="${item.numOfExecutionsInPeriod}"></td>
+        <td th:text="${item.lastExecutedOn}"></td>
+    </th:block>
+</div>
